@@ -6,14 +6,21 @@ use App\Http\Controllers\ExercisesController;
 use App\Models\Theme;
 use Illuminate\Support\Facades\Route;
 
-$themes = cache()->rememberForever( 'themes', function () {
-	return Theme::all();
-} );
-$themeConstrain = cache()->rememberForever( 'themeConstrain', function ()  use ($themes) {
-	return '(' . $themes->pluck( 'slug' )->join( '|' ) . ')';
-} );
+
+$themes = [];
+$themeConstrain = [];
+try {
+	$themes = cache()->rememberForever( 'themes', function () {
+		return Theme::all();
+	} );
+	$themeConstrain = cache()->rememberForever( 'themeConstrain', function ()  use ($themes) {
+		return '(' . $themes->pluck( 'slug' )->join( '|' ) . ')';
+	} );
+} catch ( Exception $e ) {
+}
 
 
+// Main page
 Route::get('/', function () {
     return view('welcome', ['themes'=>Theme::all()]);
 });
