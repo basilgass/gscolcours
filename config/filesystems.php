@@ -53,6 +53,20 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'themes' => [
+	        'driver' => 'local',
+	        'root'   => resource_path() . '/views/themes'
+        ],
+
+        'tools' => [
+	        'driver' => 'local',
+	        'root' => resource_path() . '/views/toolbox'
+        ],
+
+        'latex' => [
+	        'driver' => 'local',
+	        'root'   => storage_path() . '/latex'
+        ],
     ],
 
     /*

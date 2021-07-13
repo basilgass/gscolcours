@@ -1,0 +1,12 @@
+@layer base {
+    .typo h1 {
+        @apply text-2xl font-semibold;
+    }
+    .typo h2 {
+        @apply text-xl font-semibold;
+    }
+
+    .type h3 {
+        @apply text-lg font-semibold;
+    }
+}
