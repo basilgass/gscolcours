@@ -50,6 +50,17 @@
 						<div class="flex-1">
 							{{$question->body}}
 						</div>
+						
+						@if($question->checker==='number')
+							<x-checker.number :question="$question"/>
+						@elseif($question->checker==='choices')
+							<x-checker.choices :question="$question"/>
+						@elseif($question->checker==='polynom')
+							POLYNOM  {{$question->checker_options}}
+						@else
+							SOMETHING ELSE
+						@endif
+						
 						<div class="form-input mx-3">
 							<input
 									placeholder=" "

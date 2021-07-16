@@ -10,7 +10,9 @@ class CreateQuestionsTable extends Migration {
 			$table->bigIncrements( 'id' );
 			$table->foreignId('exercise_id');
 			$table->text( 'body' );
-			$table->string('answer');
+			$table->string('answer')->default(null);
+			$table->string('checker')->default('');
+			$table->string('checker_options')->default('');
 
 			//
 
