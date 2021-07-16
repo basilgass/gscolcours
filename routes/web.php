@@ -23,11 +23,11 @@ try {
 // Main page
 Route::get('/', function () {
     return view('welcome', ['themes'=>Theme::all()]);
-});
+})->name('home');
 
 // All main pages
-Route::get( '/{theme:slug}', [articlesController::class, 'index'])->where('theme', $themeConstrain);
-Route::get( '/{theme:slug}/{article:slug}', [articlesController::class, 'show'])->where('theme', $themeConstrain);
+Route::get( '/{theme:slug}', [articlesController::class, 'index'])->where('theme', $themeConstrain)->name('theme');
+Route::get( '/{theme:slug}/{article:slug}', [articlesController::class, 'show'])->where('theme', $themeConstrain)->name('article');
 Route::get('/{theme:slug}/{article:slug}/exercices', [ExercisesController::class, 'index'])->where('theme', $themeConstrain);
 Route::get('/{theme:slug}/{article:slug}/exercice/{exercise}', [ExercisesController::class, 'show'])->where('theme', $themeConstrain);
 

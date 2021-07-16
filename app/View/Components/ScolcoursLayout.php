@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
+use App\Models\Theme;
 use Illuminate\View\Component;
 
 class ScolcoursLayout extends Component {
 	public Bool $fullpage;
-	public string $bgColor;
+	public Theme $theme;
 
 	/**
 	 * Get the view / contents that represent the component.
@@ -14,9 +15,9 @@ class ScolcoursLayout extends Component {
 	 * @return \Illuminate\View\View|string
 	 */
 
-	public function __construct(Bool $fullpage = false, string $bg = 'bg-gray-100') {
+	public function __construct(Bool $fullpage = false, Theme $theme = null) {
 		$this->fullpage = $fullpage;
-		$this->bgColor = $bg;
+		$this->theme     = $theme;
 	}
 
 	public function render() {

@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Exercise[] $exercises
+ * @property-read int|null $exercises_count
  * @property-read mixed $view
  * @property-read \App\Models\Theme $theme
  * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()

@@ -55,7 +55,7 @@
 	
 	<!-- Page Heading -->
 	@if(isset($header))
-		<header class="{{$bgColor}} shadow">
+		<header class="scolcours-{{$theme->slug}} shadow">
 			<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-white">
 				{{ $header }}
 			</div>
@@ -68,7 +68,7 @@
 			{{ $slot }}
 		</main>
 	@else
-		<main class="container mx-auto bg-white py-10 px-4 min-h-screen">
+		<main class="container mx-auto bg-white py-5 px-4 min-h-screen">
 			{{ $slot }}
 		</main>
 	@endif

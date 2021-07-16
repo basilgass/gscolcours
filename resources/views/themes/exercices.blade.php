@@ -1,4 +1,4 @@
-<x-scolcours-layout :bg="$theme->color">
+<x-scolcours-layout :theme="$theme">
 	<x-slot name="header">
 		<h1 class="text-3xl">{{ $article->name }}</h1>
 	</x-slot>

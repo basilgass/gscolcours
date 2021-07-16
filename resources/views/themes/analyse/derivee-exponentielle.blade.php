@@ -1,5 +1,5 @@
 <!--
-name: Dérivées d'exponentielle
+name: Dérivées d'exponentielles
 description: Calculs de dérivée d'éxponentielle en utilisant les règles du plus fort et de Bernoulli-L'Hospital
 categories: 3m
 -->

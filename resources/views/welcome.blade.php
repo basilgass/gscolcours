@@ -11,7 +11,7 @@
 			@foreach($themes as $theme)
 			<a class="text-center text-lg font-thin whitespace-nowrap
 			rounded border py-24
-			{{$theme->color}} text-white
+			scolcours-{{$theme->slug}} text-white
 			cursor-pointer
 			transform hover:scale-105 {{$loop->index%2===0?'rotate-1':'-rotate-1'}} hover:rotate-0 duration-300"
 			href="/{{$theme->slug}}">
