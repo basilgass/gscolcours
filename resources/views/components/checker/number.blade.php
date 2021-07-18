@@ -10,15 +10,12 @@
 	'option': '{{$question->checker_options}}',
 	check() {
 		// Exact numeric answer
-		
 		if(+this.option===0){
 			if(+this.userInput===+this.answer){
 				return true
 			}
 		}else{
-			const max = +this.answer+(+this.option),
-					min = +this.answer-this.option
-			if(+this.userInput<=max && +this.userInput>=min){
+			if( Math.abs(this.userInput-this.answer)<= (0.00000000000001 + (+this.option))){
 				return true
 			}
 		}

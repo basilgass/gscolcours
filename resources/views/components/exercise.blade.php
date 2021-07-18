@@ -25,21 +25,8 @@
 		<div class="space-y-10 py-10">
 			@foreach($exercice->questions as $question)
 				<div class="w-full border rounded-xl"
+					 x-data="{correct: false}"
 					 :class="{'border-gray-200': !correct, 'border-green-500': correct}"
-					 x-data="{
-								userInput: '',
-								correct: false,
-								reponse: new Pi.Polynom('{{$question->answer}}'),
-								check() {
-									try {
-										const checkPolynom = new Pi.Polynom(this.userInput)
-										if(!this.reponse.isEqual(checkPolynom)){return false;}
-										return this.reponse.isFactorized(this.userInput)
-									} catch {
-										return false
-									}
-								}
-							}"
 				>
 					<div class="flex items-center">
 						<div class="font-semibold rounded-l-xl mr-2 px-3 py-6"
@@ -56,20 +43,11 @@
 						@elseif($question->checker==='choices')
 							<x-checker.choices :question="$question"/>
 						@elseif($question->checker==='polynom')
-							POLYNOM  {{$question->checker_options}}
+							<x-checker.polynom :question="$question"/>
 						@else
 							SOMETHING ELSE
 						@endif
 						
-						<div class="form-input mx-3">
-							<input
-									placeholder=" "
-									x-model="userInput"
-									@input="correct = check()"
-									:class="{'success':correct}"
-							>
-							<label>Réponse</label>
-						</div>
 					</div>
 				</div>
 			@endforeach

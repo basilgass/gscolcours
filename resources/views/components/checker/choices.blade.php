@@ -5,41 +5,47 @@
 <div class="form-input mx-3"
 	 x-data="{
 	'userInput': '',
+	'buttonText': 'sélectionner',
 	'show': false,
 	'correct': false,
-	'answer': '{{$question->answer}}',
-	check() {
-		// Exact numeric answer
+	'answer': {{$question->answer}},
+	check(ev, idx) {
+		// Close the menu
+		this.show=false;
 		
-		if(+this.option===0){
-			if(+this.userInput===+this.answer){
-				return true
-			}
+		// Update the answer
+		let item
+		if(ev.target.classList.contains('checker-option-item')){
+			item =ev.target;
 		}else{
-			const max = +this.answer+(+this.option),
-					min = +this.answer-this.option
-			if(+this.userInput<=max && +this.userInput>=min){
-				return true
+			item = ev.target.parentNode
+			
+			while(!item.classList.contains('checker-option-item')){
+				item = item.parentNode
 			}
 		}
 		
-		return false
+		this.buttonText = item.innerHTML
+		
+		// Check the choices value
+		return this.answer===idx
 	}
 }"
 >
-	<div class="relative">
-		<button class="border-b-2" @click="show=!show">Sélectionner</button>
-		<div x-show="show" class="w-44 shadow bg-white rounded border absolute top-6 left-0 z-50">
+	<div class="relative w-44">
+		<button class="w-full text-left
+		border-b-2 hover:border-blue-400
+		px-2 py-1"
+				@click="show=!show"
+				x-html="buttonText"
+				:class="{'bg-green-50 border-b-green-500':correct}"
+		></button>
+		<div x-show="show" class="w-44 shadow bg-white rounded border absolute top-10 z-50">
 			@foreach(explode(';', $question->checker_options) as $opt)
-				<div class="w-full py-3 px-2 hover:bg-gray-200">{{$opt}}</div>
+				<div class="w-full py-3 px-4 hover:bg-gray-200 cursor-pointer checker-option-item"
+					@click="correct = check($event, {{$loop->index}})"
+				>{{$opt}}</div>
 				@endforeach
 		</div>
 	</div>
-	<input
-			placeholder=" "
-			x-model="userInput"
-			@input="correct = check()"
-			:class="{'success':correct}"
-	>
-	<label>Réponse</label>
 </div>

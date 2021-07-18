@@ -30,12 +30,4 @@ class articlesController extends Controller {
 			'article'=>$article
 		]);
 	}
-
-	public function exercice( Theme $theme, Article $article, $exercice ) {
-		return view ('themes.exercice', [
-			'theme'=>$theme,
-			'article'=>$article,
-			'exercice'=>"themes/{$theme->slug}/{$article->slug}/exercices/{$exercice}"
-		]);
-	}
 }

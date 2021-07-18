@@ -6,7 +6,7 @@
 	
 	<div class="mt-10">
 		<div class="bg-white border rounded-3xl
-		grid grid-cols-2 md:grid-cols-3
+		grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 		gap-6 p-6">
 			@foreach($themes as $theme)
 			<a class="text-center text-lg font-thin whitespace-nowrap

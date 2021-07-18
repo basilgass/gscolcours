@@ -3,6 +3,7 @@
 		<h1 class="text-3xl">{{ $article->name }}</h1>
 	</x-slot>
 	
+	<x-scolcours-breadcrumbs :theme="$theme" :article="$article"/>
 	<div id="exercises-wrapper" class="space-y-10">
 		@foreach($exercices as $exercice)
 			<x-exercise
