@@ -6,7 +6,7 @@
         @apply text-xl font-semibold;
     }
 
-    .type h3 {
+    .typo h3 {
         @apply text-lg font-semibold;
     }
 }

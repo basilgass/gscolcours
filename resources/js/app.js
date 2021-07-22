@@ -1,6 +1,8 @@
 require('./bootstrap');
 
 require('alpinejs');
+const AsciiMathParser = require('./asciimath2tex')
+window.asciimath2tex = new AsciiMathParser();
 
 /* Alpine loading and directives */
 import Alpine from 'alpinejs'
@@ -22,7 +24,9 @@ Alpine.directive('katex', (el, {value, modifiers, expression}, {Alpine, effect, 
 	effect(() => {
 		// katex.render(evaluate(expression), el, katexOptions)
 		getTex(tex => {
-			katex.render(tex, el, katexOptions)
+			katex.render(
+				modifiers.includes('ascii')?asciimath2tex.parse(tex):tex
+				, el, katexOptions)
 		})
 	})
 });
