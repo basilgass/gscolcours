@@ -4969,13 +4969,20 @@ alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.directive('katex', function (el, _
   var katexOptions = {
     displayMode: modifiers.includes('display') || !modifiers.includes('inline'),
     throwOnError: modifiers.includes('error')
-  }; // let tex = evaluate(expression);
+  };
+  el.classList.add('alpine-katex');
+
+  if (modifiers.includes('left')) {
+    el.classList.add('katex-left');
+  } // let tex = evaluate(expression);
+
 
   var getTex = evaluateLater(expression);
   effect(function () {
     // katex.render(evaluate(expression), el, katexOptions)
     getTex(function (tex) {
-      katex.render(modifiers.includes('ascii') ? asciimath2tex.parse(tex) : tex, el, katexOptions);
+      el.dataset.tex = tex;
+      return katex.render(modifiers.includes('ascii') ? asciimath2tex.parse(tex) : tex, el, katexOptions);
     });
   });
 });

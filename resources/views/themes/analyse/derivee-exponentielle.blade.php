@@ -4,8 +4,6 @@ description: Calculs de dérivée d'éxponentielle en utilisant les règles du p
 categories: 3m
 -->
 <article class="typo" x-data="deriveeExponentielle">
-	<h1>Dérivées d'exponentielles</h1>
-	
 	<p x-katex.display="exp">
 	
 	</p>

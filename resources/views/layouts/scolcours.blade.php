@@ -56,9 +56,19 @@
 	<!-- Page Heading -->
 	@if(isset($header))
 		<header class="scolcours-{{$theme->slug}} shadow">
-			<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-white">
-				{{ $header }}
+			<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8
+			text-white
+			flex justify-between">
+					<div class="text-3xl">{{ $header }}</div>
+				
+				<div>
+					<a href="/" class="text-2xl">
+						Scolcours
+					</a>
+				</div>
 			</div>
+			
+			
 		</header>
 	@endif
 
@@ -68,7 +78,7 @@
 			{{ $slot }}
 		</main>
 	@else
-		<main class="container mx-auto bg-white py-5 px-4 min-h-screen">
+		<main class="container mx-auto pt-1 min-h-screen">
 			{{ $slot }}
 		</main>
 	@endif

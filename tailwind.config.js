@@ -38,6 +38,7 @@ module.exports = {
         padding: ['hover','responsive'],
         textShadow: ['hover'],
         fontWeight: ['hover', 'focus'],
+        borderRadius: ['responsive','hover'],
     },
 
     plugins: [require('@tailwindcss/forms')],

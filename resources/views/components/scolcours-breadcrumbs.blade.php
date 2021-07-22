@@ -1,4 +1,4 @@
-<div class="mb-5 flex space-x-2">
+<div class="mb-5 flex space-x-2 text-sm">
 	<a href="{{route('home')}}" class="hover:text-blue-600">
 		<i class="bi bi-house-door"></i>
 	</a>

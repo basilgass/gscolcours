@@ -19,3 +19,7 @@
 .scolcours-statistiques{@apply bg-cyan-500}
 .scolcours-jeux{@apply bg-orange-500}
 .scolcours-tools{@apply bg-pink-400}
+
+.katex-left > .katex-display > .katex > .katex-html {
+    @apply text-left;
+}
