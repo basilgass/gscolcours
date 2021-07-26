@@ -1,7 +1,3 @@
-@props([
-	'question'=>null,
-])
-
 <div class="form-input mx-3"
 	 x-data="{
 	'userInput': '',
@@ -43,9 +39,9 @@
 		<div x-show="show" class="w-44 shadow bg-white rounded border absolute top-10 z-50">
 			@foreach(explode(';', $question->checker_options) as $opt)
 				<div class="w-full py-3 px-4 hover:bg-gray-200 cursor-pointer checker-option-item"
-					@click="correct = check($event, {{$loop->index}})"
+					 @click="correct = check($event, {{$loop->index}})"
 				>{{$opt}}</div>
-				@endforeach
+			@endforeach
 		</div>
 	</div>
 </div>

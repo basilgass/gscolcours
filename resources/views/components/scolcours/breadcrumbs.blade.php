@@ -15,5 +15,5 @@
 			{{$name}}
 		</a>
 	@endforeach
-	
+
 </div>

@@ -85,7 +85,6 @@ categories: 2M
 						this.zeroes.numerator = this.N.getZeroes()
 						this.zeroes.denominator = this.D.getZeroes()
 
-						// TODO: Modifier Pi pour ne pas affiche "No zero for..."
 						this.etudeED = this.zeroes.denominator[0]!==false?
 							`ED_f = \\mathbb{R}\\setminus\\left\\{ ${this.zeroes.denominator.map(x=>x.tex).join(';')} \\right\\}`
 							:`ED_f = \\mathbb{R}`
@@ -93,7 +92,6 @@ categories: 2M
 						// TODO: déterminer s'il s'agit de +- ou -+  infini
 						this.etudeAV = []
 
-						// TODO: Pi.getZeroes ne détecte pas le zéro de x^2 ?
 						for(let zero of this.zeroes.denominator){
 							if(zero!==false) {
 								this.etudeAV.push(

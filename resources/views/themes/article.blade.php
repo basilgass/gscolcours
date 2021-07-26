@@ -1,8 +1,9 @@
 <x-scolcours-layout :theme="$theme" >
 	<x-slot name="header">{{ $article->name }}</x-slot>
-	<x-scolcours-breadcrumbs :theme="$theme" :article="$article"/>
 	
-	@if(count($article->exercises)>0)
+	<x-scolcours.breadcrumbs :theme="$theme" :article="$article"/>
+
+@if(count($article->exercises)>0)
 		<div>
 			Il y a des exercices
 		</div>

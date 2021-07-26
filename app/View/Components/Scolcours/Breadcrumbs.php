@@ -1,13 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Scolcours;
 
 use App\Models\Article;
 use App\Models\Theme;
-use Illuminate\Support\Facades\URL;
 use Illuminate\View\Component;
 
-class ScolcoursBreadcrumbs extends Component {
+class Breadcrumbs extends Component {
 	public Theme $theme;
 	public Article|null $article;
 
@@ -21,7 +20,6 @@ class ScolcoursBreadcrumbs extends Component {
 	 * @return \Illuminate\View\View|string
 	 */
 	public function render() {
-
 		$breadcrumbs = [];
 		// $breadcrumbs['name'] = '/url'
 		if($this->theme->exists){
@@ -38,7 +36,7 @@ class ScolcoursBreadcrumbs extends Component {
 			}
 		}
 
-		return view( 'components.scolcours-breadcrumbs',
+		return view( 'components.scolcours.breadcrumbs',
 			[
 				'breadcrumbs'=>$breadcrumbs
 			]

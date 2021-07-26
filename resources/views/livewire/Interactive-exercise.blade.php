@@ -1,25 +1,16 @@
-@props([
-	'exercice'=>null,
-	'nombre'=>false,
-	'interactive'=>false,
-	'link'=>false
-])
 <article>
 	<div class="flex items-center">
 		<h2 class="text-lg font-semibold">
-			Exercice {{$nombre}}
+			Exercice
 		</h2>
-		@if($link)
-			<a class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}" href="{{$exercice->url}}">
-				<i class="bi bi-check2-circle"></i>
-				Répondre
-			</a>
-		@endif
+			<button class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}" wire:click="toggleInteractive">
+				<i class="bi bi-check2-circle"></i>Répondre
+			</button>
 	</div>
+	
 	<div class="exercise-body">
 		{{$exercice->body}}
 	</div>
-	
 	
 	@if($interactive)
 		<div class="space-y-10 py-10">
@@ -38,20 +29,26 @@
 							{{$question->body}}
 						</div>
 						
-						@if($question->checker==='number')
-							<x-checker.number :question="$question"/>
-						@elseif($question->checker==='choices')
-							<x-checker.choices :question="$question"/>
-						@elseif($question->checker==='polynom')
-							<x-checker.polynom :question="$question"/>
-						@else
-							SOMETHING ELSE
-						@endif
-						
+						<livewire:interactive-question :question="$question"/>
+					
 					</div>
 				</div>
 			@endforeach
 		</div>
+		<script>
+			renderMathInElement(document.body, {
+				// customised options
+				// • auto-render specific keys, e.g.:
+				delimiters: [
+					{left: '$$', right: '$$', display: true},
+					{left: '$', right: '$', display: false},
+					{left: '\\(', right: '\\)', display: false},
+					{left: '\\[', right: '\\]', display: true}
+				],
+				// • rendering keys, e.g.:
+				throwOnError: false
+			});
+		</script>
 	@else
 		@if(count($exercice->questions)>1)
 			<div class="grid grid-cols-3 list-decimal list-inside">

@@ -1,7 +1,3 @@
-@props([
-	'question'=>null,
-])
-
 <div class="form-input mx-3"
 	 x-data="{
 								userInput: '',

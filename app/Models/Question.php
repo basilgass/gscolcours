@@ -33,7 +33,11 @@ class Question extends Model {
 
 	protected $guarded=[];
 
-	public function exercise() {
+	public function exercise(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
 		return $this->belongsTo( Exercise::class);
+	}
+
+	public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+		return $this->belongsToMany(User::class);
 	}
 }
