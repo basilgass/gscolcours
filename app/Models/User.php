@@ -47,6 +47,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+	    'role'
     ];
 
     /**
@@ -69,6 +70,7 @@ class User extends Authenticatable
     ];
 
 	public function questions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
-		return $this->belongsToMany(Question::class);
+		return $this->belongsToMany(Question::class)
+		            ->withPivot(['answer', 'correct', 'attempts']);;
     }
 }

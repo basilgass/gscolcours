@@ -47,7 +47,6 @@
 	
 	<!-- Styles -->
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
 	
 	<!-- Livewire styles -->
 	@livewireStyles
@@ -58,20 +57,43 @@
 	
 	<!-- Page Heading -->
 	@if(isset($header))
-		<header class="scolcours-{{$theme->slug}} shadow">
+		<header class="scolcours-{{$theme->exists?$theme->slug:'main'}} shadow">
 			<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8
 			text-white
 			flex justify-between">
 					<div class="text-3xl">{{ $header }}</div>
-				
+
 				<div>
-					<a href="/" class="text-2xl">
-						Scolcours
-					</a>
+				@auth
+					<button x-data="{open: false}" @click="open=!open" class="relative">
+						{{Auth::user()->name}}
+						<div x-show="open" x-cloak class="w-40
+						flex flex-col text-left space-y-1 py-2
+						absolute top-5 -right-1 bg-white text-gray-800 border-gray-200 rounded shadow-lg"
+						x-transition>
+							<a class="hover:bg-gray-100 px-3 py-2"
+							href="{{route('profile')}}">
+								profile
+							</a>
+							
+							<form
+								class="hover:bg-gray-100 px-3 py-2"
+								method="POST" action="{{ route('logout') }}">
+								@csrf
+								
+								<a href="{{route('logout')}}"
+								   @click.prevent="$event.target.closest('form').submit()">
+									se déconnecter
+								</a>
+							</form>
+						</div>
+					</button>
+				@else
+						<a href="{{route('login')}}">Se connecter</a>
+					@endauth
 				</div>
+				
 			</div>
-			
-			
 		</header>
 	@endif
 

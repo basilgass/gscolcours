@@ -5,7 +5,7 @@
 
 @if(count($article->exercises)>0)
 		<div>
-			Il y a des exercices
+			<a href="{{url()->current()}}/exercices">Il y a des exercices</a>
 		</div>
 	@endif
 	

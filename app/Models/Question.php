@@ -38,6 +38,7 @@ class Question extends Model {
 	}
 
 	public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
-		return $this->belongsToMany(User::class);
+		return $this->belongsToMany(User::class)
+		            ->withPivot(['answer', 'correct', 'attempts']);
 	}
 }

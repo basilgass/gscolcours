@@ -13,6 +13,7 @@
 [x-cloak] { display: none !important; }
 
 /* Just adding the color for JIT */
+.scolcours-main{background-color: chocolate}
 .scolcours-algebre{@apply bg-blue-500}
 .scolcours-analyse{@apply bg-amber-500}
 .scolcours-geometrie{@apply bg-purple-500}

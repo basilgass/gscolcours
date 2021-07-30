@@ -50,7 +50,7 @@ class CreateThemesTable extends Migration {
 		);
 		Theme::create( [
 				'slug'  => 'tools',
-				'name'  => 'Boîte à outils',
+				'name'  => 'boîte à outils',
 				'color' => 'bg-pink-200',
 				'icon' => 'wrench'
 			]

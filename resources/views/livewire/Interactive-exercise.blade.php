@@ -1,66 +1,57 @@
-<article>
-	<div class="flex items-center">
+<article x-data="{ 'interactive': false }"
+		 class="bg-white border-gray-200 rounded-lg px-3 pt-3 pb-1"
+>
+	<div class="flex items-center justify-between">
 		<h2 class="text-lg font-semibold">
-			Exercice
+			exercice
 		</h2>
-			<button class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}" wire:click="toggleInteractive">
-				<i class="bi bi-check2-circle"></i>Répondre
+		<div>
+			<button class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}"
+					@click="interactive=!interactive">
+				<i class="bi bi-check2-circle"></i>répondre
 			</button>
-	</div>
-	
-	<div class="exercise-body">
-		{{$exercice->body}}
-	</div>
-	
-	@if($interactive)
-		<div class="space-y-10 py-10">
-			@foreach($exercice->questions as $question)
-				<div class="w-full border rounded-xl"
-					 x-data="{correct: false}"
-					 :class="{'border-gray-200': !correct, 'border-green-500': correct}"
+			
+			@if(auth()->user()?->role==='admin')
+				<a href="{{route('edit exercise', ['theme'=>$exercice->article->theme, 'article'=>$exercice->article, 'exercise'=>$exercice->id])}}"
+				   class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}"
 				>
-					<div class="flex items-center">
-						<div class="font-semibold rounded-l-xl mr-2 px-3 py-6"
-							 :class="{'bg-gray-100': !correct, 'bg-green-50': correct}"
-						>
-							{{$loop->iteration}}.
-						</div>
-						<div class="flex-1">
-							{{$question->body}}
-						</div>
-						
-						<livewire:interactive-question :question="$question"/>
-					
-					</div>
-				</div>
-			@endforeach
+					<i class="bi bi-check2-circle"></i>éditer
+				</a>
+			@endif
 		</div>
-		<script>
-			renderMathInElement(document.body, {
-				// customised options
-				// • auto-render specific keys, e.g.:
-				delimiters: [
-					{left: '$$', right: '$$', display: true},
-					{left: '$', right: '$', display: false},
-					{left: '\\(', right: '\\)', display: false},
-					{left: '\\[', right: '\\]', display: true}
-				],
-				// • rendering keys, e.g.:
-				throwOnError: false
-			});
-		</script>
-	@else
-		@if(count($exercice->questions)>1)
-			<div class="grid grid-cols-3 list-decimal list-inside">
-				@foreach($exercice->questions as $question)
-					<div class="list-item">{{$question->body}}</div>
-				@endforeach
-			</div>
-		@else
-			<div>
-				{{$exercice->questions[0]->body}}
-			</div>
-		@endif
+	</div>
 	
-	@endif
+	<div>
+		<div id="exercise-title">
+			<h3 class="exercise-title text-lg">{{$exercice->title}}</h3>
+		</div>
+		
+		<div id="exercise-body" class="my-4">
+			<p>{{$exercice->body}}</p>
+		</div>
+		
+		
+		<div id="questions-wrapper"
+			 class="py-10"
+			 :class="interactive?'space-y-10':'space-y-2'"
+		>
+			@forelse($exercice->questions as $question)
+				
+				<div class="w-full">
+					<livewire:interactive-question
+							:question="$question"
+							:key="'question-'.time()"
+					/>
+				</div>
+			
+			@empty
+				Il n'y a pas de question dans cet exercice !
+			@endforelse
+		
+		</div>
+	</div>
+	
+	<div class="flex items-center justify-between text-xs text-gray-500">
+		<div>dernière mise à jour {{$exercice->updated_at->diffForHumans()}}</div>
+	</div>
 </article>

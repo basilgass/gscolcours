@@ -50,7 +50,7 @@
 
     /* Textarea wrapper */
     .form-textarea{
-        @apply relative mb-8 mt-16;
+        @apply relative my-4;
     }
     /* Textarea design */
     .form-textarea>textarea {
@@ -64,9 +64,15 @@
         @apply absolute;
         top: -2rem !important;
     }
-    /* Underliying parapgraph (error messages for example ) */
+    /* Underlying paragraph (error messages for example ) */
     .form-input>p,.form-textarea>p{
         @apply px-1 text-xs
     }
 
+    .form-input>select {
+        @apply w-full block
+        appearance-none
+        bg-transparent border-0 border-b-2 border-gray-200
+        focus:outline-none focus-within:border-blue-500;
+    }
 }
