@@ -47,6 +47,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+	    'role'
     ];
 
     /**
@@ -67,4 +68,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+	public function questions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
+		return $this->belongsToMany(Question::class)
+		            ->withPivot(['answer', 'correct', 'attempts']);;
+    }
 }

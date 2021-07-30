@@ -1,9 +1,8 @@
 <x-scolcours-layout :theme="$theme">
-	<x-slot name="header">
-		<h1 class="text-3xl">{{ $article->name }}</h1>
-	</x-slot>
+	<x-slot name="header">{{ $article->name }}</x-slot>
 	
-	<x-exercise :exercice="$exercice" :interactive="true"/>
+	<x-scolcours.breadcrumbs :theme="$theme" :article="$article"/>
 	
-	
+	<livewire:interactive-exercise :exercice="$exercice"/>
+
 </x-scolcours-layout>

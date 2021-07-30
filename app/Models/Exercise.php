@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Exercise
+ * App\Models\InteractiveExercise
  *
  * @property int $id
  * @property int $article_id
@@ -35,11 +35,11 @@ class Exercise extends Model {
 		return $this->belongsTo( Article::class);
 	}
 	public function questions() {
-		return $this->hasMany( Question::class);
+		return $this->hasMany( Question::class)->orderBy('position');
 	}
 
 	public function getUrlAttribute() {
-		return "/{$this->article->theme->slug}/{$this->article->slug}/exercice/{$this->id}";
+		return "/{$this->article->theme->slug}/{$this->article->slug}/exercices/{$this->id}";
 	}
 
 	public function getTextColorAttribute(  ) {

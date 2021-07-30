@@ -15,18 +15,26 @@ Alpine.directive('katex', (el, {value, modifiers, expression}, {Alpine, effect, 
 
 	const katexOptions = {
 		displayMode: modifiers.includes('display') || !modifiers.includes('inline'),
-		throwOnError: modifiers.includes('error')
+		throwOnError: modifiers.includes('error'),
 	}
 
+	el.classList.add('alpine-katex')
+
+	if(modifiers.includes('left')){
+		el.classList.add('katex-left')
+	}
 	// let tex = evaluate(expression);
 	let getTex = evaluateLater(expression);
 
 	effect(() => {
 		// katex.render(evaluate(expression), el, katexOptions)
 		getTex(tex => {
-			katex.render(
-				modifiers.includes('ascii')?asciimath2tex.parse(tex):tex
-				, el, katexOptions)
+			el.dataset.tex = tex
+
+			return katex.render(
+				modifiers.includes('ascii')?asciimath2tex.parse(tex):tex,
+				el,
+				katexOptions)
 		})
 	})
 });

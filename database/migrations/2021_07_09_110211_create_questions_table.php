@@ -8,7 +8,8 @@ class CreateQuestionsTable extends Migration {
 	public function up() {
 		Schema::create( 'questions', function ( Blueprint $table ) {
 			$table->bigIncrements( 'id' );
-			$table->foreignId('exercise_id');
+			$table->foreignId('exercise_id')->constrained()->onDelete('cascade');
+			$table->integer( 'position' );
 			$table->text( 'body' );
 			$table->string('answer')->default(null);
 			$table->string('checker')->default('');

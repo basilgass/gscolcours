@@ -4,5 +4,5 @@ description: L'étude des fonctions exponentielles \(a^x=b\) et logarithmes \(\l
 categories: 2m,2c
 -->
 <article>
-	<h1>Exponentielle</h1>
+	Todo: Exponentielle et logarithmes
 </article>
