@@ -30,7 +30,7 @@ class ExercisesController extends Controller {
 	public function create(Theme $theme, Article $article) {
 		return view('exercises.create',[
 				'theme'=>$theme,
-				'article'=>$article
+				'article'=>$article,
 		]);
 	}
 
@@ -55,6 +55,7 @@ class ExercisesController extends Controller {
 			for ( $i = 0; $i < $n; $i ++ ) {
 				Question::create( [
 					'exercise_id'     => $exercice->id,
+					'position'=> $i+1,
 					'body'            => $request->questions[ $i ] ?? '',
 					'answer'          => $request->reponses[ $i ] ?? '',
 					'checker'         => $request->checker[ $i ],
@@ -63,7 +64,11 @@ class ExercisesController extends Controller {
 			}
 		}
 
-		return redirect()->back();
+		return redirect()->route('show exercice', [
+			'theme'=> $exercice->article->theme,
+			'article'=> $exercice->article,
+			'exercise'=>$exercice->id
+		]);
 	}
 
 	/**

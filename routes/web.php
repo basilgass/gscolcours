@@ -31,7 +31,8 @@ Route::get( '/{theme:slug}/{article:slug}', [articlesController::class, 'show'])
 Route::get('/{theme:slug}/{article:slug}/exercices', [ExercisesController::class, 'index'])->where('theme', $themeConstrain);
 Route::get('/{theme:slug}/{article:slug}/exercices/{exercise}', [ExercisesController::class, 'show'])
 	->where('theme', $themeConstrain)
-	->whereNumber('exercise');
+	->whereNumber('exercise')
+	->name('show exercice');
 
 // Exercise creation and edition
 Route::get('/{theme:slug}/{article:slug}/exercices/nouveau',

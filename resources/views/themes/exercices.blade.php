@@ -5,11 +5,8 @@
 	
 	<div id="exercises-wrapper" class="space-y-10">
 		@foreach($exercices as $exercice)
-			<div class="bg-white border border-gray-200 rounded-xl px-2 py-3">
-				<livewire:interactive-exercise
-						:exercice="$exercice"
-				/>
-			</div>
+			<x-exercise-interactive :exercise="$exercice"/>
+			
 		@endforeach
 	</div>
 </x-scolcours-layout>

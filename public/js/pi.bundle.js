@@ -24,7 +24,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e58) { throw _e58; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e59) { didErr = true; err = _e59; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e56) { throw _e56; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e57) { didErr = true; err = _e57; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -35,8 +35,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -59,61 +57,35 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             r = i(330),
             o = i(956);
 
-        var l = /*#__PURE__*/function () {
-          function l() {
+        var h = /*#__PURE__*/function () {
+          function h() {
             var _this = this;
 
-            _classCallCheck(this, l);
+            _classCallCheck(this, h);
 
-            _defineProperty(this, "_left", void 0);
+            for (var _len = arguments.length, t = new Array(_len), _key = 0; _key < _len; _key++) {
+              t[_key] = arguments[_key];
+            }
 
-            _defineProperty(this, "_right", void 0);
-
-            _defineProperty(this, "_sign", void 0);
-
-            _defineProperty(this, "_polynom", void 0);
-
-            _defineProperty(this, "_solutions", void 0);
-
-            _defineProperty(this, "_varnothing", "\\varnothing");
-
-            _defineProperty(this, "_real", "\\mathbb{R}");
-
-            _defineProperty(this, "parse", function (t) {
+            if (this._varnothing = "\\varnothing", this._real = "\\mathbb{R}", this.parse = function (t) {
               var e, i;
               if (i = _this._findSign(t), !1 !== i) return e = t.split(i), _this.create(new s.Polynom(e[0]), new s.Polynom(e[1]), _this._formatSign(i));
               console.log("The equation is not valid (no sign found)");
-            });
-
-            _defineProperty(this, "_findSign", function (t) {
+            }, this._findSign = function (t) {
               return t.includes("geq") ? t.includes("\\geq") ? "\\geq" : "geq" : t.includes("leq") ? t.includes("\\leq") ? "\\leq" : "leq" : t.includes(">=") ? ">=" : t.includes("=>") ? "=>" : t.includes(">") ? ">" : t.includes("<=") ? "<=" : t.includes("=<") ? "=<" : t.includes("<") ? "<" : t.includes("=") ? "=" : (console.log("Equation: parse string : sign not found"), !1);
-            });
-
-            _defineProperty(this, "_formatSign", function (t) {
+            }, this._formatSign = function (t) {
               return void 0 === t ? "=" : t.includes("geq") || t.includes(">=") || t.includes("=>") ? ">=" : t.includes(">") ? ">" : t.includes("leq") || t.includes("<=") || t.includes("=<") ? "<=" : t.includes("<") ? "<" : "=";
-            });
-
-            _defineProperty(this, "_reverseSign", function () {
+            }, this._reverseSign = function () {
               return "=" === _this._sign ? _this : _this._sign.includes("<") ? (_this._sign.replace("<", ">"), _this) : _this._sign.includes(">") ? (_this._sign.replace(">", "<"), _this) : _this;
-            });
-
-            _defineProperty(this, "create", function (t, e, i) {
+            }, this.create = function (t, e, i) {
               return _this._left = t, _this._right = e, _this._sign = _this._formatSign(i), _this;
-            });
-
-            _defineProperty(this, "clone", function () {
-              return new l().create(_this._left.clone(), _this._right.clone(), _this._sign + "");
-            });
-
-            _defineProperty(this, "_randomizeDefaults", {
+            }, this.clone = function () {
+              return new h().create(_this._left.clone(), _this._right.clone(), _this._sign + "");
+            }, this._randomizeDefaults = {
               degree: 2
-            });
-
-            _defineProperty(this, "randomize", function (t, e) {
-              return new l().create(new s.Polynom(), new s.Polynom(), e);
-            });
-
-            _defineProperty(this, "reorder", function (t) {
+            }, this.randomize = function (t, e) {
+              return new h().create(new s.Polynom(), new s.Polynom(), e);
+            }, this.reorder = function (t) {
               if (_this._left.subtract(_this._right), _this._right.zero(), t) return _this;
               var e;
 
@@ -122,8 +94,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                  var _t2 = _step.value;
-                  0 === _t2.degree() && (e = _t2.clone(), _this._left.subtract(e), _this._right.subtract(e));
+                  var _t = _step.value;
+                  0 === _t.degree() && (e = _t.clone(), _this._left.subtract(e), _this._right.subtract(e));
                 }
               } catch (err) {
                 _iterator.e(err);
@@ -132,15 +104,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this._left.reorder(), _this._right.reorder(), _this;
-            });
-
-            _defineProperty(this, "simplify", function () {
+            }, this.simplify = function () {
               var _o$Numeric, _o$Numeric2;
 
               return _this.multiply((_o$Numeric = o.Numeric).lcm.apply(_o$Numeric, _toConsumableArray(_this._left.getDenominators()).concat(_toConsumableArray(_this._right.getDenominators())))), _this.divide((_o$Numeric2 = o.Numeric).gcd.apply(_o$Numeric2, _toConsumableArray(_this._left.getNumerators()).concat(_toConsumableArray(_this._right.getNumerators())))), _this;
-            });
-
-            _defineProperty(this, "isolate", function (t) {
+            }, this.isolate = function (t) {
               if (1 !== _this.degree(t)) return !1;
               if (_this.isMultiVariable()) return !1;
               var e, i;
@@ -161,31 +129,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return 1 === _this._left.length && (i = _this._left.monoms[0].coefficient.clone(), _this._left.divide(i), _this._right.divide(i), _this);
-            });
-
-            _defineProperty(this, "multiply", function (t) {
+            }, this.multiply = function (t) {
               var e = new n.Fraction(t);
               return _this._left.multiply(e), _this._right.multiply(e), "=" !== _this._sign && -1 === e.sign() && _this._reverseSign(), _this;
-            });
-
-            _defineProperty(this, "divide", function (t) {
+            }, this.divide = function (t) {
               var e = new n.Fraction(t);
               return e.isZero() ? _this : _this.multiply(e.invert());
-            });
-
-            _defineProperty(this, "degree", function (t) {
+            }, this.degree = function (t) {
               return Math.max(_this._left.degree(t), _this._right.degree(t));
-            });
-
-            _defineProperty(this, "isMultiVariable", function () {
+            }, this.isMultiVariable = function () {
               return _this._left.isMultiVariable || _this._right.isMultiVariable;
-            });
-
-            _defineProperty(this, "letters", function () {
+            }, this.letters = function () {
               return _toConsumableArray(new Set([].concat(_toConsumableArray(_this._left.letters()), _toConsumableArray(_this._right.letters()))));
-            });
-
-            _defineProperty(this, "solve", function (t) {
+            }, this.solve = function (t) {
               switch (_this._solutions = [], _this._polynom = _this._left.clone().subtract(_this._right), _this._polynom.degree(t)) {
                 case 0:
                 case 1:
@@ -204,73 +160,55 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this;
-            });
-
-            _defineProperty(this, "isGreater", function () {
+            }, this.isGreater = function () {
               return -1 !== _this._sign.indexOf(">") || -1 !== _this._sign.indexOf("geq");
-            });
-
-            _defineProperty(this, "isStrictEqual", function () {
+            }, this.isStrictEqual = function () {
               return "=" === _this._sign;
-            });
-
-            _defineProperty(this, "isAlsoEqual", function () {
+            }, this.isAlsoEqual = function () {
               return -1 !== _this._sign.indexOf("=") || -1 !== _this._sign.indexOf("geq") || -1 !== _this._sign.indexOf("leq") || void 0;
-            });
-
-            _defineProperty(this, "_solveDegree1", function (t) {
+            }, this._solveDegree1 = function (t) {
               var e = _this._polynom.monomByDegree(1, t).coefficient,
                   i = _this._polynom.monomByDegree(0, t).coefficient,
                   s = i.clone().opposed().divide(e).display;
 
               var n;
               return _this.isStrictEqual() ? 0 === e.value ? 0 === i.value ? _this._solutions = [_this._real] : _this._solutions = [_this._varnothing] : _this._solutions = [s] : (n = 0 === e.value ? 0 === i.value && _this.isAlsoEqual() ? "\\mathbb{R}" : i.value > 0 ? _this.isGreater() ? _this._real : _this._varnothing : _this.isGreater() ? _this._varnothing : _this._real : _this.isGreater() && 1 === e.sign() || !_this.isGreater() && -1 === e.sign() ? "\\left".concat(_this.isAlsoEqual() ? "\\[" : "\\]").concat(s, ";+\\infty\\right\\[") : "\\left\\]-\\infty;".concat(s, " \\right\\").concat(_this.isAlsoEqual() ? "\\]" : "\\["), _this._solutions = [n]), _this._solutions;
-            });
-
-            _defineProperty(this, "_solveDegree2", function (t) {
+            }, this._solveDegree2 = function (t) {
               var e,
                   i,
                   s,
-                  _l,
-                  h,
+                  _h,
+                  l,
                   a,
-                  c = _this._polynom.monomByDegree(2, t).coefficient,
-                  u = _this._polynom.monomByDegree(1, t).coefficient,
+                  u = _this._polynom.monomByDegree(2, t).coefficient,
+                  c = _this._polynom.monomByDegree(1, t).coefficient,
                   m = _this._polynom.monomByDegree(0, t).coefficient,
-                  _ = o.Numeric.lcm(c.denominator, u.denominator, m.denominator),
-                  f = c.multiply(_).value,
-                  d = u.multiply(_).value;
+                  _ = o.Numeric.lcm(u.denominator, c.denominator, m.denominator),
+                  f = u.multiply(_).value,
+                  d = c.multiply(_).value;
 
               if (e = d * d - 4 * f * m.multiply(_).value, e > 0) {
-                if (s = (-d - Math.sqrt(e)) / (2 * f), _l = (-d + Math.sqrt(e)) / (2 * f), e > 1e5) _this._solutions = [((-d - Math.sqrt(e)) / (2 * f)).toFixed(5), ((-d + Math.sqrt(e)) / (2 * f)).toFixed(5)];else if (i = new r.Nthroot().parse(e).reduce(), i.hasRadical()) {
-                  var _t3 = o.Numeric.gcd(d, 2 * f, i.coefficient);
+                if (s = (-d - Math.sqrt(e)) / (2 * f), _h = (-d + Math.sqrt(e)) / (2 * f), e > 1e5) _this._solutions = [((-d - Math.sqrt(e)) / (2 * f)).toFixed(5), ((-d + Math.sqrt(e)) / (2 * f)).toFixed(5)];else if (i = new r.Nthroot().parse(e).reduce(), i.hasRadical()) {
+                  var _t2 = o.Numeric.gcd(d, 2 * f, i.coefficient);
 
-                  i.coefficient = i.coefficient / _t3, _this._solutions = 0 !== d ? 2 * f / _t3 == 1 ? ["".concat(-d / _t3, " - ").concat(i.tex), "".concat(-d / _t3, " + ").concat(i.tex)] : ["\\dfrac{".concat(-d / _t3, " - ").concat(i.tex, " }{ ").concat(2 * f / _t3, " }"), "\\dfrac{".concat(-d / _t3, " + ").concat(i.tex, " }{ ").concat(2 * f / _t3, " }")] : 2 * f / _t3 == 1 ? ["- ".concat(i.tex), "".concat(i.tex)] : ["\\dfrac{- ".concat(i.tex, " }{ ").concat(2 * f / _t3, " }"), "\\dfrac{".concat(i.tex, " }{ ").concat(2 * f / _t3, " }")];
+                  i.coefficient = i.coefficient / _t2, _this._solutions = 0 !== d ? 2 * f / _t2 == 1 ? ["".concat(-d / _t2, " - ").concat(i.tex), "".concat(-d / _t2, " + ").concat(i.tex)] : ["\\dfrac{".concat(-d / _t2, " - ").concat(i.tex, " }{ ").concat(2 * f / _t2, " }"), "\\dfrac{".concat(-d / _t2, " + ").concat(i.tex, " }{ ").concat(2 * f / _t2, " }")] : 2 * f / _t2 == 1 ? ["- ".concat(i.tex), "".concat(i.tex)] : ["\\dfrac{- ".concat(i.tex, " }{ ").concat(2 * f / _t2, " }"), "\\dfrac{".concat(i.tex, " }{ ").concat(2 * f / _t2, " }")];
                 } else _this._solutions = [new n.Fraction(-d - i.coefficient, 2 * f).reduce().dfrac, new n.Fraction(-d + i.coefficient, 2 * f).reduce().dfrac];
               } else _this._solutions = 0 === e ? [new n.Fraction(-d, 2 * f).reduce().dfrac] : [_this._varnothing];
-              return _this.isStrictEqual() || (2 === _this._solutions.length ? (h = s < _l ? _this._solutions[0] : _this._solutions[1], a = s < _l ? _this._solutions[1] : _this._solutions[0], _this.isGreater() && 1 === c.sign() || !_this.isGreater() && -1 === c.sign() ? _this._solutions = ["\\left]-\\infty ; ".concat(h, "\\right").concat(_this.isAlsoEqual() ? "]" : "[", " \\cup \\left").concat(_this.isAlsoEqual() ? "[" : "]").concat(a, ";+\\infty\\right[")] : _this._solutions = ["\\left".concat(_this.isAlsoEqual() ? "[" : "]").concat(h, " ; ").concat(a, "\\right").concat(_this.isAlsoEqual() ? "]" : "[")]) : 1 === _this._solutions.length && _this._solutions[0] !== _this._varnothing ? _this.isAlsoEqual() ? (_this.isGreater() && 1 === c.sign() || !_this.isGreater() && -1 === c.sign()) && (_this._solutions = [_this._real]) : _this.isGreater() && 1 === c.sign() || !_this.isGreater() && -1 === c.sign() ? _this._solutions = ["\\left]-\\infty ; ".concat(_this._solutions[0], "\\right[ \\cup \\left]").concat(_this._solutions[0], ";+\\infty\\right[")] : _this._solutions = [_this._varnothing] : _this.isGreater() ? _this._solutions = [1 === c.sign() ? _this._real : _this._varnothing] : _this._solutions = [-1 === c.sign() ? _this._real : _this._varnothing]), _this._solutions;
-            });
-
-            _defineProperty(this, "_solveDegree3plus", function (t) {
+              return _this.isStrictEqual() || (2 === _this._solutions.length ? (l = s < _h ? _this._solutions[0] : _this._solutions[1], a = s < _h ? _this._solutions[1] : _this._solutions[0], _this.isGreater() && 1 === u.sign() || !_this.isGreater() && -1 === u.sign() ? _this._solutions = ["\\left]-\\infty ; ".concat(l, "\\right").concat(_this.isAlsoEqual() ? "]" : "[", " \\cup \\left").concat(_this.isAlsoEqual() ? "[" : "]").concat(a, ";+\\infty\\right[")] : _this._solutions = ["\\left".concat(_this.isAlsoEqual() ? "[" : "]").concat(l, " ; ").concat(a, "\\right").concat(_this.isAlsoEqual() ? "]" : "[")]) : 1 === _this._solutions.length && _this._solutions[0] !== _this._varnothing ? _this.isAlsoEqual() ? (_this.isGreater() && 1 === u.sign() || !_this.isGreater() && -1 === u.sign()) && (_this._solutions = [_this._real]) : _this.isGreater() && 1 === u.sign() || !_this.isGreater() && -1 === u.sign() ? _this._solutions = ["\\left]-\\infty ; ".concat(_this._solutions[0], "\\right[ \\cup \\left]").concat(_this._solutions[0], ";+\\infty\\right[")] : _this._solutions = [_this._varnothing] : _this.isGreater() ? _this._solutions = [1 === u.sign() ? _this._real : _this._varnothing] : _this._solutions = [-1 === u.sign() ? _this._real : _this._varnothing]), _this._solutions;
+            }, this._solveDegree3plus = function (t) {
               return _this._solutions = [t], _this._solutions;
-            });
-
-            for (var _len = arguments.length, _t = new Array(_len), _key = 0; _key < _len; _key++) {
-              _t[_key] = arguments[_key];
-            }
-
-            if (this._left = new s.Polynom().zero(), this._right = new s.Polynom().zero(), this._sign = "=", 1 === _t.length) {
-              if (!0 === _t[0].isEquation) return _t[0].clone();
-              this.parse(_t[0]);
+            }, this._left = new s.Polynom().zero(), this._right = new s.Polynom().zero(), this._sign = "=", 1 === t.length) {
+              if (!0 === t[0].isEquation) return t[0].clone();
+              this.parse(t[0]);
             } else {
-              if (2 !== _t.length) return this;
-              this.left = _t[0].isPolynom ? _t[0].clone() : new s.Polynom(_t[0]), this.right = _t[1].isPolynom ? _t[1].clone() : new s.Polynom(_t[1]);
+              if (2 !== t.length) return this;
+              this.left = t[0].isPolynom ? t[0].clone() : new s.Polynom(t[0]), this.right = t[1].isPolynom ? t[1].clone() : new s.Polynom(t[1]);
             }
 
             return this;
           }
 
-          _createClass(l, [{
+          _createClass(h, [{
             key: "isEquation",
             get: function get() {
               return !0;
@@ -354,10 +292,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return l;
+          return h;
         }();
 
-        e.Equation = l;
+        e.Equation = h;
       },
       554: function _(t, e, i) {
         Object.defineProperty(e, "__esModule", {
@@ -368,21 +306,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             r = i(956),
             o = i(38);
 
-        var l = /*#__PURE__*/function () {
-          function l() {
+        var h = /*#__PURE__*/function () {
+          function h() {
             var _this2 = this;
 
-            _classCallCheck(this, l);
+            _classCallCheck(this, h);
 
-            _defineProperty(this, "_solutions", void 0);
+            for (var _len2 = arguments.length, t = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+              t[_key2] = arguments[_key2];
+            }
 
-            _defineProperty(this, "_resolutionSteps", void 0);
-
-            _defineProperty(this, "_equations", void 0);
-
-            _defineProperty(this, "_letters", void 0);
-
-            _defineProperty(this, "parse", function () {
+            return this.parse = function () {
               for (var _len3 = arguments.length, t = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
                 t[_key3] = arguments[_key3];
               }
@@ -390,9 +324,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               return _this2._equations = t.map(function (t) {
                 return new n.Equation(t);
               }), _this2._findLetters(), _this2;
-            });
-
-            _defineProperty(this, "setCoefficient", function () {
+            }, this.setCoefficient = function () {
               _this2._equations = [];
               var e = 0;
 
@@ -411,25 +343,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this2;
-            });
+            }, this.clone = function () {
+              var _h3;
 
-            _defineProperty(this, "clone", function () {
-              var _l3;
-
-              return (_l3 = new l()).parse.apply(_l3, _toConsumableArray(_this2._equations.map(function (t) {
+              return (_h3 = new h()).parse.apply(_h3, _toConsumableArray(_this2._equations.map(function (t) {
                 return t.clone();
               })));
-            });
-
-            _defineProperty(this, "setLetters", function () {
+            }, this.setLetters = function () {
               for (var _len5 = arguments.length, t = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
                 t[_key5] = arguments[_key5];
               }
 
               return _this2._letters = t, _this2;
-            });
-
-            _defineProperty(this, "_findLetters", function () {
+            }, this._findLetters = function () {
               var t = new Set();
 
               var _iterator3 = _createForOfIteratorHelper(_this2._equations),
@@ -447,17 +373,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this2._letters = _toConsumableArray(t), _this2;
-            });
-
-            _defineProperty(this, "generate", function () {
+            }, this.generate = function () {
               var e = [];
 
               for (var _len6 = arguments.length, t = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
                 t[_key6] = arguments[_key6];
               }
 
-              for (var _i3 = 0, _t5 = t; _i3 < _t5.length; _i3++) {
-                var _i4 = _t5[_i3];
+              for (var _i3 = 0, _t3 = t; _i3 < _t3.length; _i3++) {
+                var _i4 = _t3[_i3];
                 "number" == typeof _i4 ? e.push(new s.Fraction(_i4.toString())) : e.push(_i4.clone());
               }
 
@@ -468,41 +392,35 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this2;
-            });
-
-            _defineProperty(this, "_generateOneEquation", function () {
+            }, this._generateOneEquation = function () {
               var e,
                   i = [],
                   o = new s.Fraction().zero(),
-                  _l2 = ["x", "y", "z", "t", "u", "v", "w", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"],
-                  h = "";
+                  _h2 = ["x", "y", "z", "t", "u", "v", "w", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"],
+                  l = "";
 
               for (var _len7 = arguments.length, t = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
                 t[_key7] = arguments[_key7];
               }
 
               for (var _e2 = 0; _e2 < t.length; _e2++) {
-                i.push(r.Numeric.randomIntSym(5)), o.add(t[_e2].clone().multiply(i[_e2])), h += "".concat(i[_e2] < 0 ? i[_e2] : "+" + i[_e2]).concat(_l2[_e2]);
+                i.push(r.Numeric.randomIntSym(5)), o.add(t[_e2].clone().multiply(i[_e2])), l += "".concat(i[_e2] < 0 ? i[_e2] : "+" + i[_e2]).concat(_h2[_e2]);
               }
 
-              return e = new n.Equation("".concat(h, "=").concat(o.display)), 1 != e.right.monoms[0].coefficient.denominator && e.multiply(new s.Fraction(e.right.monoms[0].coefficient.denominator, 1)), _this2._checkIfLinerCombination(e) ? e : _this2._generateOneEquation.apply(_this2, t);
-            });
-
-            _defineProperty(this, "mergeEquations", function (t, e, i, n) {
+              return e = new n.Equation("".concat(l, "=").concat(o.display)), 1 != e.right.monoms[0].coefficient.denominator && e.multiply(new s.Fraction(e.right.monoms[0].coefficient.denominator, 1)), _this2._checkIfLinerCombination(e) ? e : _this2._generateOneEquation.apply(_this2, t);
+            }, this.mergeEquations = function (t, e, i, n) {
               var r = t.clone().multiply(new s.Fraction(i)),
                   o = e.clone().multiply(new s.Fraction(n));
               return r.left.add(o.left), r.right.add(o.right), r;
-            });
-
-            _defineProperty(this, "reorder", function () {
+            }, this.reorder = function () {
               var _iterator4 = _createForOfIteratorHelper(_this2._equations),
                   _step4;
 
               try {
                 for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                  var _t6 = _step4.value;
+                  var _t4 = _step4.value;
 
-                  _t6.reorder();
+                  _t4.reorder();
                 }
               } catch (err) {
                 _iterator4.e(err);
@@ -511,9 +429,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this2;
-            });
-
-            _defineProperty(this, "solve", function () {
+            }, this.solve = function () {
               _this2._solutions = {}, _this2._resolutionSteps = [], _this2.reorder();
 
               var t = _this2.variables.sort();
@@ -533,13 +449,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this2;
-            });
-
-            _defineProperty(this, "_checkIfLinerCombination", function (t) {
+            }, this._checkIfLinerCombination = function (t) {
               return !0;
-            });
-
-            _defineProperty(this, "log", function () {
+            }, this.log = function () {
               var t = "";
 
               var _iterator6 = _createForOfIteratorHelper(_this2._equations),
@@ -557,16 +469,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return t;
-            });
-
-            for (var _len2 = arguments.length, _t4 = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-              _t4[_key2] = arguments[_key2];
-            }
-
-            return this._equations = [], this._letters = "xy".split(""), void 0 !== _t4 && _t4.length > 0 && this.parse.apply(this, _t4), this;
+            }, this._equations = [], this._letters = "xy".split(""), void 0 !== t && t.length > 0 && this.parse.apply(this, t), this;
           }
 
-          _createClass(l, [{
+          _createClass(h, [{
             key: "isLinerarSystem",
             get: function get() {
               return !0;
@@ -689,13 +595,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   var _s2 = _step10.value;
 
                   if (_s2 !== t) {
-                    var _l4;
+                    var _h4;
 
-                    for (var _t7 = 0; _t7 < i.length - 1; _t7++) {
-                      n.push(this._linearReduction(i[_t7], i[_t7 + 1], _s2));
+                    for (var _t5 = 0; _t5 < i.length - 1; _t5++) {
+                      n.push(this._linearReduction(i[_t5], i[_t5 + 1], _s2));
                     }
 
-                    this._resolutionSteps.push((_l4 = new l()).parse.apply(_l4, _toConsumableArray(n))), i = this._resolutionSteps[this._resolutionSteps.length - 1].clone().equations, n = [];
+                    this._resolutionSteps.push((_h4 = new h()).parse.apply(_h4, _toConsumableArray(n))), i = this._resolutionSteps[this._resolutionSteps.length - 1].clone().equations, n = [];
                   }
                 }
               } catch (err) {
@@ -713,10 +619,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return l;
+          return h;
         }();
 
-        e.LinearSystem = l;
+        e.LinearSystem = h;
       },
       937: function _(t, e, i) {
         Object.defineProperty(e, "__esModule", {
@@ -726,29 +632,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             n = i(956);
 
         var r = /*#__PURE__*/function () {
-          function r(_t8) {
+          function r(t) {
             var _this3 = this;
 
             _classCallCheck(this, r);
 
-            _defineProperty(this, "_coefficient", void 0);
+            return this.parse = function (t) {
+              _this3.literalStr = t, _this3._coefficient = new s.Fraction();
 
-            _defineProperty(this, "_literal", void 0);
-
-            _defineProperty(this, "parse", function (t) {
-              if ("string" == typeof t) {
-                _this3.literalStr = t, _this3._coefficient = new s.Fraction();
-
-                for (var _i7 = 0, _arr = _toConsumableArray(t.replace(/([a-z])|(\^[+-]?[0-9]+)/g, ",").split(",")); _i7 < _arr.length; _i7++) {
-                  var _e7 = _arr[_i7];
-                  "" !== _e7.trim() && _this3._coefficient.multiply(new s.Fraction(_e7.trim()));
-                }
-              } else "number" == typeof t ? _this3._coefficient = new s.Fraction(t) : "object" == _typeof(t) && t instanceof s.Fraction && (_this3._coefficient = t.clone());
+              for (var _i7 = 0, _arr = _toConsumableArray(t.replace(/([a-z])|(\^[+-]?[0-9]+)/g, ",").split(",")); _i7 < _arr.length; _i7++) {
+                var _e7 = _arr[_i7];
+                "" !== _e7.trim() && _this3._coefficient.multiply(new s.Fraction(_e7.trim()));
+              }
 
               return _this3;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               var t = new r();
               t.coefficient = _this3._coefficient.clone();
 
@@ -757,25 +655,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return t;
-            });
-
-            _defineProperty(this, "zero", function () {
+            }, this.zero = function () {
               return _this3._coefficient = new s.Fraction().zero(), _this3._literal = {}, _this3;
-            });
-
-            _defineProperty(this, "one", function () {
+            }, this.one = function () {
               return _this3._coefficient = new s.Fraction().one(), _this3._literal = {}, _this3;
-            });
-
-            _defineProperty(this, "clean", function () {
-              for (var _t9 in _this3._literal) {
-                0 === _this3._literal[_t9] && delete _this3._literal[_t9];
+            }, this.clean = function () {
+              for (var _t6 in _this3._literal) {
+                0 === _this3._literal[_t6] && delete _this3._literal[_t6];
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "random", function () {
+            }, this.random = function () {
               var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "x";
               var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
               var i = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : !1;
@@ -799,79 +689,65 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "opposed", function () {
+            }, this.opposed = function () {
               return _this3._coefficient.opposed(), _this3;
-            });
-
-            _defineProperty(this, "add", function () {
+            }, this.add = function () {
               for (var _len8 = arguments.length, t = new Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
                 t[_key8] = arguments[_key8];
               }
 
-              for (var _i9 = 0, _t10 = t; _i9 < _t10.length; _i9++) {
-                var _e9 = _t10[_i9];
+              for (var _i9 = 0, _t7 = t; _i9 < _t7.length; _i9++) {
+                var _e9 = _t7[_i9];
                 _this3.isSameAs(_e9) ? _this3._coefficient.add(_e9.coefficient) : console.log("Add: Is not similar: ", _e9.display);
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "subtract", function () {
+            }, this.subtract = function () {
               for (var _len9 = arguments.length, t = new Array(_len9), _key9 = 0; _key9 < _len9; _key9++) {
                 t[_key9] = arguments[_key9];
               }
 
-              for (var _i10 = 0, _t11 = t; _i10 < _t11.length; _i10++) {
-                var _e10 = _t11[_i10];
+              for (var _i10 = 0, _t8 = t; _i10 < _t8.length; _i10++) {
+                var _e10 = _t8[_i10];
                 _this3.isSameAs(_e10) ? _this3._coefficient.add(_e10.coefficient.clone().opposed()) : console.log("Subtract: Is not similar: ", _e10.display);
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "multiply", function () {
+            }, this.multiply = function () {
               for (var _len10 = arguments.length, t = new Array(_len10), _key10 = 0; _key10 < _len10; _key10++) {
                 t[_key10] = arguments[_key10];
               }
 
-              for (var _i11 = 0, _t12 = t; _i11 < _t12.length; _i11++) {
-                var _e11 = _t12[_i11];
+              for (var _i11 = 0, _t9 = t; _i11 < _t9.length; _i11++) {
+                var _e11 = _t9[_i11];
 
                 _this3._coefficient.multiply(_e11.coefficient);
 
-                for (var _t13 in _e11.literal) {
-                  _this3._literal[_t13] = void 0 === _this3._literal[_t13] ? _e11.literal[_t13] : _this3._literal[_t13] + _e11.literal[_t13];
+                for (var _t10 in _e11.literal) {
+                  _this3._literal[_t10] = void 0 === _this3._literal[_t10] ? _e11.literal[_t10] : _this3._literal[_t10] + _e11.literal[_t10];
                 }
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "multiplyByNumber", function (t) {
+            }, this.multiplyByNumber = function (t) {
               return _this3._coefficient.multiply(t), _this3;
-            });
-
-            _defineProperty(this, "divide", function () {
+            }, this.divide = function () {
               for (var _len11 = arguments.length, t = new Array(_len11), _key11 = 0; _key11 < _len11; _key11++) {
                 t[_key11] = arguments[_key11];
               }
 
-              for (var _i12 = 0, _t14 = t; _i12 < _t14.length; _i12++) {
-                var _e12 = _t14[_i12];
+              for (var _i12 = 0, _t11 = t; _i12 < _t11.length; _i12++) {
+                var _e12 = _t11[_i12];
 
                 _this3._coefficient.divide(_e12.coefficient);
 
-                for (var _t15 in _e12.literal) {
-                  _this3._literal[_t15] = void 0 === _this3._literal[_t15] ? -_e12.literal[_t15] : _this3._literal[_t15] - _e12.literal[_t15], 0 === _this3._literal[_t15] && delete _this3._literal[_t15];
+                for (var _t12 in _e12.literal) {
+                  _this3._literal[_t12] = void 0 === _this3._literal[_t12] ? -_e12.literal[_t12] : _this3._literal[_t12] - _e12.literal[_t12], 0 === _this3._literal[_t12] && delete _this3._literal[_t12];
                 }
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "pow", function (t) {
+            }, this.pow = function (t) {
               _this3._coefficient.pow(t);
 
               for (var _e13 in _this3._literal) {
@@ -879,25 +755,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this3;
-            });
-
-            _defineProperty(this, "root", function (t) {
+            }, this.root = function (t) {
               return _this3;
-            });
-
-            _defineProperty(this, "sqrt", function () {
+            }, this.sqrt = function () {
               if (_this3.isSquare()) {
                 _this3._coefficient.sqrt();
 
-                for (var _t16 in _this3._literal) {
-                  _this3._literal[_t16] /= 2;
+                for (var _t13 in _this3._literal) {
+                  _this3._literal[_t13] /= 2;
                 }
               }
 
               return _this3.root(2);
-            });
-
-            _defineProperty(this, "compare", function (t, e) {
+            }, this.compare = function (t, e) {
               switch (void 0 === e && (e = "="), e) {
                 case "=":
                   return !!_this3.compare(t, "same") && _this3._coefficient.isEqual(t.coefficient);
@@ -929,43 +799,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 default:
                   return !1;
               }
-            });
-
-            _defineProperty(this, "isEqual", function (t) {
+            }, this.isEqual = function (t) {
               return _this3.compare(t, "=");
-            });
-
-            _defineProperty(this, "isSameAs", function (t) {
+            }, this.isSameAs = function (t) {
               return _this3.compare(t, "same");
-            });
-
-            _defineProperty(this, "isSquare", function () {
+            }, this.isSquare = function () {
               return !!_this3.coefficient.isSquare() && _this3.isLitteralSquare();
-            });
-
-            _defineProperty(this, "isLitteralSquare", function () {
-              for (var _t17 in _this3.literal) {
-                if (_this3.literal[_t17] % 2 != 0) return !1;
+            }, this.isLitteralSquare = function () {
+              for (var _t14 in _this3.literal) {
+                if (_this3.literal[_t14] % 2 != 0) return !1;
               }
 
               return !0;
-            });
-
-            _defineProperty(this, "hasLetter", function (t) {
+            }, this.hasLetter = function (t) {
               return _this3._literal[void 0 === t ? "x" : t] > 0;
-            });
-
-            _defineProperty(this, "setLetter", function (t, e) {
+            }, this.setLetter = function (t, e) {
               e <= 0 || !Number.isSafeInteger(e) ? void 0 !== _this3._literal[t] && delete _this3._literal[t] : _this3._literal[t] = e;
-            });
-
-            _defineProperty(this, "degree", function (t) {
+            }, this.degree = function (t) {
               return 0 === _this3.variables.length ? 0 : void 0 === t ? Object.values(_this3._literal).reduce(function (t, e) {
                 return t + e;
               }) : void 0 === _this3._literal[t] ? 0 : _this3._literal[t];
-            });
-
-            _defineProperty(this, "evaluate", function (t) {
+            }, this.evaluate = function (t) {
               var e = _this3.coefficient.clone();
 
               for (var _i14 in _this3._literal) {
@@ -974,9 +828,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return e;
-            });
-
-            _defineProperty(this, "derivative", function (t) {
+            }, this.derivative = function (t) {
               if (void 0 === t && (t = "x"), _this3.hasLetter(t)) {
                 var _e16 = +_this3._literal[t],
                     _i15 = _this3.clone();
@@ -985,32 +837,26 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return new r().zero();
-            });
-
-            _defineProperty(this, "areSameAs", function () {
+            }, this.areSameAs = function () {
               for (var _e17 = 0; _e17 < arguments.length; _e17++) {
                 if (!_this3.isSameAs(_e17 < 0 || arguments.length <= _e17 ? undefined : arguments[_e17])) return !1;
               }
 
               return !0;
-            });
-
-            _defineProperty(this, "areEquals", function () {
+            }, this.areEquals = function () {
               for (var _len12 = arguments.length, t = new Array(_len12), _key12 = 0; _key12 < _len12; _key12++) {
                 t[_key12] = arguments[_key12];
               }
 
               if (!_this3.areSameAs.apply(_this3, t)) return !1;
 
-              for (var _i16 = 0, _t18 = t; _i16 < _t18.length; _i16++) {
-                var _e18 = _t18[_i16];
+              for (var _i16 = 0, _t15 = t; _i16 < _t15.length; _i16++) {
+                var _e18 = _t15[_i16];
                 if (!_this3._coefficient.isEqual(_e18.coefficient)) return !1;
               }
 
               return !0;
-            });
-
-            return this.zero(), void 0 !== _t8 && this.parse(_t8), this;
+            }, this.zero(), void 0 !== t && this.parse(t), this;
           }
 
           _createClass(r, [{
@@ -1038,13 +884,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             key: "literalSqrt",
             get: function get() {
               if (this.isLitteralSquare()) {
-                var _t19 = {};
+                var _t16 = {};
 
                 for (var _e19 in this._literal) {
-                  _t19[_e19] = this._literal[_e19] / 2;
+                  _t16[_e19] = this._literal[_e19] / 2;
                 }
 
-                return _t19;
+                return _t16;
               }
 
               return this._literal;
@@ -1076,7 +922,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 0 !== this._literal[_e22] && (t += "".concat(_e22), this._literal[_e22] > 1 && (t += "^".concat(this._literal[_e22])));
               }
 
-              return "" === t ? 0 != this._coefficient.value ? "".concat(this._coefficient.display) : "0" : 1 === this._coefficient.value ? t : -1 === this._coefficient.value ? "-".concat(t) : 0 === this._coefficient.value ? "0" : "".concat(this._coefficient.display).concat(t);
+              return "" === t ? 0 != this._coefficient.value ? "".concat(this._coefficient.display) : "" : 1 === this._coefficient.value ? t : -1 === this._coefficient.value ? "-".concat(t) : 0 === this._coefficient.value ? "0" : "".concat(this._coefficient.display).concat(t);
             }
           }, {
             key: "dividers",
@@ -1086,8 +932,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var t = n.Numeric.dividers(Math.abs(this.coefficient.numerator));
               var e = [];
 
-              for (var _t20 in this.literal) {
-                e = this._getLitteralDividers(e, _t20);
+              for (var _t17 in this.literal) {
+                e = this._getLitteralDividers(e, _t17);
               }
 
               var i = [];
@@ -1105,11 +951,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                     try {
                       for (_iterator14.s(); !(_step14 = _iterator14.n()).done;) {
-                        var _t21 = _step14.value;
+                        var _t18 = _step14.value;
 
                         var _e23 = new r();
 
-                        _e23.coefficient = new s.Fraction(_n), _e23.literal = _t21, i.push(_e23);
+                        _e23.coefficient = new s.Fraction(_n), _e23.literal = _t18, i.push(_e23);
                       }
                     } catch (err) {
                       _iterator14.e(err);
@@ -1128,11 +974,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                 try {
                   for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
-                    var _t22 = _step15.value;
+                    var _t19 = _step15.value;
 
                     var _e24 = new r();
 
-                    _e24.coefficient = new s.Fraction().one(), _e24.literal = _t22, i.push(_e24);
+                    _e24.coefficient = new s.Fraction().one(), _e24.literal = _t19, i.push(_e24);
                   }
                 } catch (err) {
                   _iterator15.e(err);
@@ -1147,9 +993,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
                     var _e25 = _step16.value;
 
-                    var _t23 = new r();
+                    var _t20 = new r();
 
-                    _t23.coefficient = new s.Fraction(_e25), i.push(_t23);
+                    _t20.coefficient = new s.Fraction(_e25), i.push(_t20);
                   }
                 } catch (err) {
                   _iterator16.e(err);
@@ -1167,8 +1013,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               for (var _s4 = 0; _s4 <= this.literal[e]; _s4++) {
                 if (0 === t.length) {
-                  var _t24 = {};
-                  _t24[e] = _s4, i.push(_t24);
+                  var _t21 = {};
+                  _t21[e] = _s4, i.push(_t21);
                 } else {
                   var _iterator17 = _createForOfIteratorHelper(t),
                       _step17;
@@ -1176,13 +1022,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   try {
                     for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
                       var _n2 = _step17.value;
-                      var _t25 = {};
+                      var _t22 = {};
 
                       for (var _e26 in _n2) {
-                        _t25[_e26] = _n2[_e26];
+                        _t22[_e26] = _n2[_e26];
                       }
 
-                      _t25[e] = _s4, i.push(_t25);
+                      _t22[e] = _s4, i.push(_t22);
                     }
                   } catch (err) {
                     _iterator17.e(err);
@@ -1226,7 +1072,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return r;
         }();
 
-        _defineProperty(r, "lcm", function () {
+        e.Monom = r, r.lcm = function () {
           var _n$Numeric, _n$Numeric2;
 
           for (var _len13 = arguments.length, t = new Array(_len13), _key13 = 0; _key13 < _len13; _key13++) {
@@ -1240,42 +1086,38 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               o = t.map(function (t) {
             return t.coefficient.denominator;
           }),
-              l = (_n$Numeric = n.Numeric).gcd.apply(_n$Numeric, _toConsumableArray(i)),
-              h = (_n$Numeric2 = n.Numeric).lcm.apply(_n$Numeric2, _toConsumableArray(o));
+              h = (_n$Numeric = n.Numeric).gcd.apply(_n$Numeric, _toConsumableArray(i)),
+              l = (_n$Numeric2 = n.Numeric).lcm.apply(_n$Numeric2, _toConsumableArray(o));
 
-          e.coefficient = new s.Fraction(l, h).reduce();
+          e.coefficient = new s.Fraction(h, l).reduce();
 
-          for (var _i19 = 0, _t26 = t; _i19 < _t26.length; _i19++) {
-            var _i20 = _t26[_i19];
+          for (var _i19 = 0, _t23 = t; _i19 < _t23.length; _i19++) {
+            var _i20 = _t23[_i19];
 
-            for (var _t27 in e.literal) {
-              _t27 in _i20.literal || (e.literal[_t27] = 0);
+            for (var _t24 in e.literal) {
+              _t24 in _i20.literal || (e.literal[_t24] = 0);
             }
 
-            for (var _t28 in _i20.literal) {
-              void 0 === e.literal[_t28] && _i20.literal[_t28] > 0 ? e.literal[_t28] = _i20.literal[_t28] : e.literal[_t28] = Math.min(_i20.literal[_t28], e.literal[_t28]);
+            for (var _t25 in _i20.literal) {
+              void 0 === e.literal[_t25] && _i20.literal[_t25] > 0 ? e.literal[_t25] = _i20.literal[_t25] : e.literal[_t25] = Math.min(_i20.literal[_t25], e.literal[_t25]);
             }
           }
 
           return e;
-        });
-
-        _defineProperty(r, "xmultiply", function () {
+        }, r.xmultiply = function () {
           var e = new r().one();
 
           for (var _len14 = arguments.length, t = new Array(_len14), _key14 = 0; _key14 < _len14; _key14++) {
             t[_key14] = arguments[_key14];
           }
 
-          for (var _i21 = 0, _t29 = t; _i21 < _t29.length; _i21++) {
-            var _i22 = _t29[_i21];
+          for (var _i21 = 0, _t26 = t; _i21 < _t26.length; _i21++) {
+            var _i22 = _t26[_i21];
             e.multiply(_i22);
           }
 
           return e;
-        });
-
-        e.Monom = r;
+        };
       },
       38: function _(t, e, i) {
         Object.defineProperty(e, "__esModule", {
@@ -1286,21 +1128,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             r = i(956),
             o = i(506);
 
-        var l = /*#__PURE__*/function () {
-          function l(_t30) {
+        var h = /*#__PURE__*/function () {
+          function h(t) {
             var _this4 = this;
 
-            _classCallCheck(this, l);
+            _classCallCheck(this, h);
 
-            _defineProperty(this, "_rawString", void 0);
+            for (var _len15 = arguments.length, e = new Array(_len15 > 1 ? _len15 - 1 : 0), _key15 = 1; _key15 < _len15; _key15++) {
+              e[_key15 - 1] = arguments[_key15];
+            }
 
-            _defineProperty(this, "_monoms", void 0);
-
-            _defineProperty(this, "_factors", void 0);
-
-            _defineProperty(this, "_texString", void 0);
-
-            _defineProperty(this, "genDisplay", function (t, e, i) {
+            return this.genDisplay = function (t, e, i) {
               var s = "";
 
               var _iterator18 = _createForOfIteratorHelper(_this4._monoms),
@@ -1318,9 +1156,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return !0 === i && _this4.length > 1 && (s = "tex" === t ? "\\left( ".concat(s, " \\right)") : "(".concat(s, ")")), "" === s && (s = "0"), s;
-            });
-
-            _defineProperty(this, "parse", function (t) {
+            }, this.parse = function (t) {
               for (var _len16 = arguments.length, e = new Array(_len16 > 1 ? _len16 - 1 : 0), _key16 = 1; _key16 < _len16; _key16++) {
                 e[_key16 - 1] = arguments[_key16];
               }
@@ -1329,9 +1165,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 if (t = "" + t, _this4._rawString = t, "" !== t && !isNaN(Number(t))) {
                   _this4.empty();
 
-                  var _e29 = new s.Monom();
+                  var _e28 = new s.Monom();
 
-                  return _e29.coefficient = new o.Fraction(t), _e29.literalStr = "", _this4.add(_e29), _this4;
+                  return _e28.coefficient = new o.Fraction(t), _e28.literalStr = "", _this4.add(_e28), _this4;
                 }
 
                 return _this4.shutingYardToReducedPolynom(t);
@@ -1345,7 +1181,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 });
 
                 if (t.length > 1) {
-                  var _e30 = t.split(""),
+                  var _e29 = t.split(""),
                       _n3 = 0;
 
                   var _iterator19 = _createForOfIteratorHelper(_i24),
@@ -1353,11 +1189,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                   try {
                     for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
-                      var _t31 = _step19.value;
+                      var _t27 = _step19.value;
 
                       var _i25 = new s.Monom();
 
-                      _i25.coefficient = _t31.clone(), _i25.literalStr = _e30[_n3] || "", _this4.add(_i25), _n3++;
+                      _i25.coefficient = _t27.clone(), _i25.literalStr = _e29[_n3] || "", _this4.add(_i25), _n3++;
                     }
                   } catch (err) {
                     _iterator19.e(err);
@@ -1365,7 +1201,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     _iterator19.f();
                   }
                 } else {
-                  var _e31 = _i24.length - 1;
+                  var _e30 = _i24.length - 1;
 
                   var _iterator20 = _createForOfIteratorHelper(_i24),
                       _step20;
@@ -1376,7 +1212,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
                       var _i26 = new s.Monom();
 
-                      _i26.coefficient = _n4.clone(), _i26.literalStr = "".concat(t, "^").concat(_e31), _this4.add(_i26), _e31--;
+                      _i26.coefficient = _n4.clone(), _i26.literalStr = "".concat(t, "^").concat(_e30), _this4.add(_i26), _e30--;
                     }
                   } catch (err) {
                     _iterator20.e(err);
@@ -1389,14 +1225,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4.zero();
-            });
-
-            _defineProperty(this, "shutingYardToReducedPolynom", function (t) {
+            }, this.shutingYardToReducedPolynom = function (t) {
               var e = new n.Shutingyard().parse(t),
                   i = e.rpn,
                   r = [];
               var o,
-                  h,
+                  l,
                   a = null;
 
               var _iterator21 = _createForOfIteratorHelper(i),
@@ -1404,28 +1238,28 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator21.s(); !(_step21 = _iterator21.n()).done;) {
-                  var _t32 = _step21.value;
+                  var _t28 = _step21.value;
 
-                  if (e.isOperation(_t32)) {
-                    switch (h = r.pop() || new l().zero(), "^" !== _t32[0] ? o = r.length > 0 && r.pop() || new l().zero() : a = Number(_t32.substr(1)), _t32) {
+                  if (e.isOperation(_t28)) {
+                    switch (l = r.pop() || new h().zero(), "^" !== _t28[0] ? o = r.length > 0 && r.pop() || new h().zero() : a = Number(_t28.substr(1)), _t28) {
                       case "+":
-                        o.add(h);
+                        o.add(l);
                         break;
 
                       case "-":
-                        o.subtract(h);
+                        o.subtract(l);
                         break;
 
                       case "*":
-                        o.multiply(h);
+                        o.multiply(l);
                         break;
 
                       default:
-                        null !== a ? "^" === _t32[0] && (o = h.clone().pow(a)) : console.log("Token not recognized in shuting yard to reduce polynom: ", _t32);
+                        null !== a ? "^" === _t28[0] && (o = l.clone().pow(a)) : console.log("Token not recognized in shuting yard to reduce polynom: ", _t28);
                     }
 
                     r.push(o);
-                  } else r.push(new l().add(new s.Monom(_t32)));
+                  } else r.push(new h().add(new s.Monom(_t28)));
                 }
               } catch (err) {
                 _iterator21.e(err);
@@ -1434,10 +1268,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4._monoms = r[0].monoms, _this4;
-            });
-
-            _defineProperty(this, "clone", function () {
-              var t = new l(),
+            }, this.clone = function () {
+              var t = new h(),
                   e = [];
 
               var _iterator22 = _createForOfIteratorHelper(_this4._monoms),
@@ -1445,8 +1277,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator22.s(); !(_step22 = _iterator22.n()).done;) {
-                  var _t33 = _step22.value;
-                  e.push(_t33.clone());
+                  var _t29 = _step22.value;
+                  e.push(_t29.clone());
                 }
               } catch (err) {
                 _iterator22.e(err);
@@ -1455,21 +1287,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return t.monoms = e, t;
-            });
-
-            _defineProperty(this, "zero", function () {
+            }, this.zero = function () {
               return _this4._monoms = [], _this4._monoms.push(new s.Monom().zero()), _this4._rawString = "0", _this4;
-            });
-
-            _defineProperty(this, "one", function () {
+            }, this.one = function () {
               return _this4._monoms = [], _this4._monoms.push(new s.Monom().one()), _this4._rawString = "1", _this4;
-            });
-
-            _defineProperty(this, "empty", function () {
+            }, this.empty = function () {
               return _this4._monoms = [], _this4._rawString = "", _this4;
-            });
-
-            _defineProperty(this, "_randomizeDefaults", {
+            }, this._randomizeDefaults = {
               degree: 2,
               unit: !0,
               fractions: !1,
@@ -1477,107 +1301,85 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               letters: "x",
               allowNullMonom: !1,
               numberOfMonoms: !1
-            });
-
-            _defineProperty(this, "randomize", function (t) {
-              var e = new l();
+            }, this.randomize = function (t) {
+              var e = new h();
               void 0 === t && (t = {});
 
-              for (var _e32 in _this4._randomizeDefaults) {
-                void 0 === t[_e32] && (t[_e32] = _this4._randomizeDefaults[_e32]);
+              for (var _e31 in _this4._randomizeDefaults) {
+                void 0 === t[_e31] && (t[_e31] = _this4._randomizeDefaults[_e31]);
               }
 
               return e;
-            });
-
-            _defineProperty(this, "rndSimple", function () {
+            }, this.rndSimple = function () {
               var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
               var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : !1;
               var i = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : !1;
               var n = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "x";
 
-              var _l5 = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : !0;
+              var _h5 = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : !0;
 
-              var h = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : -1;
+              var l = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : -1;
               var a;
 
               _this4.empty();
 
               for (var _r3 = t; _r3 >= 0; _r3--) {
-                a = new s.Monom().random(n, _r3, i, _r3 !== t && _l5), e && _r3 === t && (a.coefficient = new o.Fraction().one()), _this4.add(a);
+                a = new s.Monom().random(n, _r3, i, _r3 !== t && _h5), e && _r3 === t && (a.coefficient = new o.Fraction().one()), _this4.add(a);
               }
 
-              if (h > 0 && h < _this4.length) for (_this4.reorder(); _this4.length > h;) {
+              if (l > 0 && l < _this4.length) for (_this4.reorder(); _this4.length > l;) {
                 _this4._monoms.splice(r.Numeric.randomInt(1, _this4.length - 1), 1);
               }
               return _this4;
-            });
-
-            _defineProperty(this, "rndFactorable", function () {
+            }, this.rndFactorable = function () {
               var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2;
               var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : !1;
               var i = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "x";
               _this4._factors = [];
 
               for (var _s5 = 0; _s5 < t; _s5++) {
-                var _t34 = !0 === e || _s5 >= e,
-                    _n5 = new l().rndSimple(1, _t34, !1, i);
+                var _t30 = !0 === e || _s5 >= e,
+                    _n5 = new h().rndSimple(1, _t30, !1, i);
 
                 _this4._factors.push(_n5);
               }
 
               _this4.empty().monoms = _this4._factors[0].monoms;
 
-              for (var _t35 = 1; _t35 < _this4._factors.length; _t35++) {
-                _this4.multiply(_this4._factors[_t35]);
+              for (var _t31 = 1; _t31 < _this4._factors.length; _t31++) {
+                _this4.multiply(_this4._factors[_t31]);
               }
 
               return _this4;
-            });
-
-            _defineProperty(this, "opposed", function () {
+            }, this.opposed = function () {
               return _this4._monoms = _this4._monoms.map(function (t) {
                 return t.opposed();
               }), _this4;
-            });
-
-            _defineProperty(this, "add", function () {
+            }, this.add = function () {
               for (var _len17 = arguments.length, t = new Array(_len17), _key17 = 0; _key17 < _len17; _key17++) {
                 t[_key17] = arguments[_key17];
               }
 
-              for (var _i27 = 0, _t36 = t; _i27 < _t36.length; _i27++) {
-                var _e33 = _t36[_i27];
-                "object" == _typeof(_e33) ? _e33 instanceof l ? _this4._monoms = _this4._monoms.concat(_e33.monoms) : _e33 instanceof s.Monom && _this4._monoms.push(_e33.clone()) : _this4._monoms.push(new s.Monom(_e33));
+              for (var _i27 = 0, _t32 = t; _i27 < _t32.length; _i27++) {
+                var _e32 = _t32[_i27];
+                _e32.isPolynom ? _this4._monoms = _this4._monoms.concat(_e32.monoms) : _e32.isMonom ? _this4._monoms.push(_e32.clone()) : Number.isSafeInteger(_e32) ? _this4._monoms.push(new s.Monom(_e32.toString())) : _this4._monoms.push(new s.Monom(_e32));
               }
 
               return _this4.reduce();
-            });
-
-            _defineProperty(this, "subtract", function () {
+            }, this.subtract = function () {
               for (var _len18 = arguments.length, t = new Array(_len18), _key18 = 0; _key18 < _len18; _key18++) {
                 t[_key18] = arguments[_key18];
               }
 
-              for (var _i28 = 0, _t37 = t; _i28 < _t37.length; _i28++) {
-                var _e34 = _t37[_i28];
-                "object" == _typeof(_e34) ? _e34 instanceof l ? _this4._monoms = _this4._monoms.concat(_e34.clone().opposed().monoms) : _e34 instanceof s.Monom && _this4._monoms.push(_e34.clone().opposed()) : _this4._monoms.push(new s.Monom(_e34).opposed());
+              for (var _i28 = 0, _t33 = t; _i28 < _t33.length; _i28++) {
+                var _e33 = _t33[_i28];
+                _e33.isPolynom ? _this4._monoms = _this4._monoms.concat(_e33.clone().opposed().monoms) : _e33.isMonom ? _this4._monoms.push(_e33.clone().opposed()) : Number.isSafeInteger(_e33) ? _this4._monoms.push(new s.Monom(_e33.toString()).opposed()) : _this4._monoms.push(new s.Monom(_e33).opposed());
               }
 
               return _this4.reduce();
-            });
-
-            _defineProperty(this, "multiply", function (t) {
-              if ("object" == _typeof(t)) {
-                if (t instanceof l) return _this4.multiplyByPolynom(t);
-                if (t instanceof o.Fraction) return _this4.multiplyByFraction(t);
-                if (t instanceof s.Monom) return _this4.multiplyByMonom(t);
-              } else if ("number" == typeof t && Number.isSafeInteger(t)) return _this4.multiplyByInteger(t);
-
-              return _this4;
-            });
-
-            _defineProperty(this, "multiplyByPolynom", function (t) {
+            }, this.multiply = function (t) {
+              return t.isPolynom ? _this4.multiplyByPolynom(t) : t.isFraction ? _this4.multiplyByFraction(t) : t.isMonom ? _this4.multiplyByMonom(t) : Number.isSafeInteger(t) ? _this4.multiplyByInteger(t) : _this4;
+            }, this.multiplyByPolynom = function (t) {
               var e = [];
 
               var _iterator23 = _createForOfIteratorHelper(_this4._monoms),
@@ -1608,17 +1410,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4._monoms = e, _this4.reduce();
-            });
-
-            _defineProperty(this, "multiplyByFraction", function (t) {
+            }, this.multiplyByFraction = function (t) {
               var _iterator25 = _createForOfIteratorHelper(_this4._monoms),
                   _step25;
 
               try {
                 for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-                  var _e35 = _step25.value;
+                  var _e34 = _step25.value;
 
-                  _e35.coefficient.multiply(t);
+                  _e34.coefficient.multiply(t);
                 }
               } catch (err) {
                 _iterator25.e(err);
@@ -1627,21 +1427,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4.reduce();
-            });
-
-            _defineProperty(this, "multiplyByInteger", function (t) {
+            }, this.multiplyByInteger = function (t) {
               return _this4.multiplyByFraction(new o.Fraction(t));
-            });
-
-            _defineProperty(this, "multiplyByMonom", function (t) {
+            }, this.multiplyByMonom = function (t) {
               var _iterator26 = _createForOfIteratorHelper(_this4._monoms),
                   _step26;
 
               try {
                 for (_iterator26.s(); !(_step26 = _iterator26.n()).done;) {
-                  var _e36 = _step26.value;
+                  var _e35 = _step26.value;
 
-                  _e36.multiply(t);
+                  _e35.multiply(t);
                 }
               } catch (err) {
                 _iterator26.e(err);
@@ -1650,11 +1446,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4.reduce();
-            });
-
-            _defineProperty(this, "euclidian", function (t) {
+            }, this.euclidian = function (t) {
               var e = t.variables[0],
-                  i = new l().zero(),
+                  i = new h().zero(),
                   s = _this4.clone().reorder(e);
 
               if (0 === t.variables.length) return {
@@ -1665,9 +1459,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   r = t.degree(e);
 
               var o,
-                  h = 2 * _this4.degree(e);
+                  l = 2 * _this4.degree(e);
 
-              for (; s.degree(e) >= r && h >= 0 && (h--, o = s.monomByDegree(void 0, e).clone().divide(n), !o.isZero());) {
+              for (; s.degree(e) >= r && l >= 0 && (l--, o = s.monomByDegree(void 0, e).clone().divide(n), !o.isZero());) {
                 i.add(o), s.subtract(t.clone().multiply(o));
               }
 
@@ -1675,14 +1469,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 quotient: i,
                 reminder: s
               };
-            });
-
-            _defineProperty(this, "divide", function (t) {
-              if ("number" == typeof t && Number.isSafeInteger(t)) return _this4.divideByInteger(t);
-              "object" == _typeof(t) && t instanceof o.Fraction && _this4.divideByFraction(t);
-            });
-
-            _defineProperty(this, "divideByInteger", function (t) {
+            }, this.divide = function (t) {
+              if (t.isFraction) _this4.divideByFraction(t);else if (Number.isSafeInteger(t)) return _this4.divideByInteger(t);
+            }, this.divideByInteger = function (t) {
               var e = new o.Fraction(t);
 
               var _iterator27 = _createForOfIteratorHelper(_this4._monoms),
@@ -1690,9 +1479,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
-                  var _t38 = _step27.value;
+                  var _t34 = _step27.value;
 
-                  _t38.coefficient.divide(e);
+                  _t34.coefficient.divide(e);
                 }
               } catch (err) {
                 _iterator27.e(err);
@@ -1701,17 +1490,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4;
-            });
-
-            _defineProperty(this, "divideByFraction", function (t) {
+            }, this.divideByFraction = function (t) {
               var _iterator28 = _createForOfIteratorHelper(_this4._monoms),
                   _step28;
 
               try {
                 for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
-                  var _e37 = _step28.value;
+                  var _e36 = _step28.value;
 
-                  _e37.coefficient.divide(t);
+                  _e36.coefficient.divide(t);
                 }
               } catch (err) {
                 _iterator28.e(err);
@@ -1720,12 +1507,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4;
-            });
-
-            _defineProperty(this, "pow", function (t) {
+            }, this.pow = function (t) {
               if (!Number.isSafeInteger(t)) return _this4.zero();
               if (t < 0) return _this4.zero();
-              if (0 === t) return new l();
+              if (0 === t) return new h();
 
               var e = _this4.clone();
 
@@ -1734,9 +1519,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4.reduce();
-            });
-
-            _defineProperty(this, "compare", function (t, e) {
+            }, this.compare = function (t, e) {
               void 0 === e && (e = "=");
 
               var i = _this4.clone().reduce().reorder(),
@@ -1746,8 +1529,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 case "=":
                   if (i.length !== s.length || i.degree() !== s.degree()) return !1;
 
-                  for (var _t39 in i.monoms) {
-                    if (!i.monoms[_t39].isEqual(s.monoms[_t39])) return !1;
+                  for (var _t35 in i.monoms) {
+                    if (!i.monoms[_t35].isEqual(s.monoms[_t35])) return !1;
                   }
 
                   return !0;
@@ -1755,8 +1538,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 case "same":
                   if (i.length !== s.length || i.degree() !== s.degree()) return !1;
 
-                  for (var _t40 in i.monoms) {
-                    if (!i.monoms[_t40].isSameAs(s.monoms[_t40])) return !1;
+                  for (var _t36 in i.monoms) {
+                    if (!i.monoms[_t36].isSameAs(s.monoms[_t36])) return !1;
                   }
 
                   return !0;
@@ -1764,22 +1547,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 default:
                   return !1;
               }
-            });
-
-            _defineProperty(this, "isEqual", function (t) {
+            }, this.isEqual = function (t) {
               return _this4.compare(t, "=");
-            });
-
-            _defineProperty(this, "isSameAs", function (t) {
+            }, this.isSameAs = function (t) {
               return _this4.compare(t, "same");
-            });
-
-            _defineProperty(this, "isOpposedAt", function (t) {
+            }, this.isOpposedAt = function (t) {
               return _this4.compare(t.clone().opposed(), "=");
-            });
-
-            _defineProperty(this, "isFactorized", function (t) {
-              var e = new l(t);
+            }, this.isFactorized = function (t) {
+              var e = new h(t);
               if (!_this4.isEqual(e)) return !1;
               var i = t.replaceAll("*", ""),
                   s = "" + i,
@@ -1790,11 +1565,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
-                  var _t41 = _step29.value;
-                  if (void 0 !== _t41[2]) for (var _e38 = 0; _e38 < +_t41[2].substr(1); _e38++) {
-                    n.push(_t41[1]);
-                  } else n.push(_t41[1]);
-                  s = s.replaceAll(_t41[0], "");
+                  var _t37 = _step29.value;
+                  if (void 0 !== _t37[2]) for (var _e37 = 0; _e37 < +_t37[2].substr(1); _e37++) {
+                    n.push(_t37[1]);
+                  } else n.push(_t37[1]);
+                  s = s.replaceAll(_t37[0], "");
                 }
               } catch (err) {
                 _iterator29.e(err);
@@ -1804,7 +1579,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               "" !== s && n.push(s);
               var r = n.map(function (t) {
-                return new l(t);
+                return new h(t);
               });
 
               _this4.factorize();
@@ -1817,16 +1592,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
-                  var _t42 = _step30.value;
+                  var _t38 = _step30.value;
 
-                  for (var _e39 = 0; _e39 < r.length; _e39++) {
-                    if (_t42.isEqual(r[_e39])) {
-                      r.splice(_e39, 1);
+                  for (var _e38 = 0; _e38 < r.length; _e38++) {
+                    if (_t38.isEqual(r[_e38])) {
+                      r.splice(_e38, 1);
                       break;
                     }
 
-                    if (_t42.isOpposedAt(r[_e39])) {
-                      r.splice(_e39, 1), o = -o;
+                    if (_t38.isOpposedAt(r[_e38])) {
+                      r.splice(_e38, 1), o = -o;
                       break;
                     }
                   }
@@ -1838,12 +1613,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return 0 === r.length && 1 === o;
-            });
-
-            _defineProperty(this, "reduce", function () {
-              for (var _t43 = 0; _t43 < _this4._monoms.length; _t43++) {
-                for (var _e40 = _t43 + 1; _e40 < _this4._monoms.length; _e40++) {
-                  _this4._monoms[_t43].isSameAs(_this4.monoms[_e40]) && (_this4._monoms[_t43].add(_this4.monoms[_e40]), _this4._monoms.splice(_e40, 1));
+            }, this.reduce = function () {
+              for (var _t39 = 0; _t39 < _this4._monoms.length; _t39++) {
+                for (var _e39 = _t39 + 1; _e39 < _this4._monoms.length; _e39++) {
+                  _this4._monoms[_t39].isSameAs(_this4.monoms[_e39]) && (_this4._monoms[_t39].add(_this4.monoms[_e39]), _this4._monoms.splice(_e39, 1));
                 }
               }
 
@@ -1856,9 +1629,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator31.s(); !(_step31 = _iterator31.n()).done;) {
-                  var _t44 = _step31.value;
+                  var _t40 = _step31.value;
 
-                  _t44.coefficient.reduce();
+                  _t40.coefficient.reduce();
                 }
               } catch (err) {
                 _iterator31.e(err);
@@ -1866,17 +1639,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 _iterator31.f();
               }
 
-              return 0 === _this4.length ? new l().zero() : _this4;
-            });
-
-            _defineProperty(this, "reorder", function () {
+              return 0 === _this4.length ? new h().zero() : _this4;
+            }, this.reorder = function () {
               var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "x";
               return _this4._monoms.sort(function (e, i) {
                 return i.degree(t) - e.degree(t);
               }), _this4.reduce();
-            });
-
-            _defineProperty(this, "degree", function (t) {
+            }, this.degree = function (t) {
               var e = 0;
 
               var _iterator32 = _createForOfIteratorHelper(_this4._monoms),
@@ -1894,9 +1663,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return e;
-            });
-
-            _defineProperty(this, "letters", function () {
+            }, this.letters = function () {
               var t = new Set();
 
               var _iterator33 = _createForOfIteratorHelper(_this4._monoms),
@@ -1904,8 +1671,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator33.s(); !(_step33 = _iterator33.n()).done;) {
-                  var _e41 = _step33.value;
-                  t = new Set([].concat(_toConsumableArray(t), _toConsumableArray(_e41.variables)));
+                  var _e40 = _step33.value;
+                  t = new Set([].concat(_toConsumableArray(t), _toConsumableArray(_e40.variables)));
                 }
               } catch (err) {
                 _iterator33.e(err);
@@ -1914,11 +1681,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _toConsumableArray(t);
-            });
-
-            _defineProperty(this, "replaceBy", function (t, e) {
+            }, this.replaceBy = function (t, e) {
               var i;
-              var s = new l().zero();
+              var s = new h().zero();
 
               var _iterator34 = _createForOfIteratorHelper(_this4.monoms),
                   _step34;
@@ -1935,17 +1700,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4._monoms = s.reduce().reorder().monoms, _this4;
-            });
-
-            _defineProperty(this, "evaluate", function (t) {
+            }, this.evaluate = function (t) {
               var e = new o.Fraction().zero();
               return _this4._monoms.forEach(function (i) {
                 e.add(i.evaluate(t));
               }), e;
-            });
-
-            _defineProperty(this, "derivative", function (t) {
-              var e = new l();
+            }, this.derivative = function (t) {
+              var e = new h();
 
               var _iterator35 = _createForOfIteratorHelper(_this4._monoms),
                   _step35;
@@ -1962,21 +1723,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return e;
-            });
-
-            _defineProperty(this, "factorize_OLD", function (t) {
+            }, this.factorize_OLD = function (t) {
               _this4._factors = [];
 
               var e = _this4.clone(),
                   i = 0;
 
-              e.monomByDegree().coefficient.numerator < 0 && _this4._factors.push(new l("-1"));
+              e.monomByDegree().coefficient.numerator < 0 && _this4._factors.push(new h("-1"));
               var s = e.commonMonom();
 
               if (!s.isOne()) {
-                var _t45 = new l();
+                var _t41 = new h();
 
-                _t45.monoms = [s], 0 === _this4._factors.length ? _this4._factors.push(_t45) : (_this4._factors = [], _this4._factors.push(_t45.opposed())), e = e.euclidian(_t45).quotient, i = _t45.degree();
+                _t41.monoms = [s], 0 === _this4._factors.length ? _this4._factors.push(_t41) : (_this4._factors = [], _this4._factors.push(_t41.opposed())), e = e.euclidian(_t41).quotient, i = _t41.degree();
               }
 
               if (e.degree() <= 1) _this4._factors.push(e.clone());else {
@@ -1987,10 +1746,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 t = void 0 === t ? 20 : t;
 
                 for (var _o = 1; _o <= t; _o++) {
-                  for (var h = -t; h <= t; h++) {
-                    if (_n8.parse(-h, _o), e.evaluate({
+                  for (var l = -t; l <= t; l++) {
+                    if (_n8.parse(-l, _o), e.evaluate({
                       x: _n8
-                    })) for (_s6 = new l("".concat(_o, "x+").concat(h)); 0 === e.evaluate({
+                    })) for (_s6 = new h("".concat(_o, "x+").concat(l)); 0 === e.evaluate({
                       x: _n8
                     }).value;) {
                       _this4._factors.push(_s6.clone()), i++, e = e.euclidian(_s6).quotient;
@@ -2002,15 +1761,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 if (e.degree() > 1) return _this4._factors.push(e.clone()), _this4;
               }
               return _this4;
-            });
-
-            _defineProperty(this, "factorize", function (t) {
+            }, this.factorize = function (t) {
               var e,
                   i = [],
                   s = _this4.clone().reorder(),
                   n = s.commonMonom();
 
-              n.isOne() || (e = new l(), e.monoms = [n], i = [e.clone()], s = s.euclidian(e).quotient);
+              n.isOne() || (e = new h(), e.monoms = [n], i = [e.clone()], s = s.euclidian(e).quotient);
               var r = 2 * s.degree();
 
               for (; r >= 0;) {
@@ -2020,27 +1777,27 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 }
 
                 {
-                  var _t46 = s.monoms[0].dividers,
-                      _e42 = s.monoms[s.monoms.length - 1].dividers;
+                  var _t42 = s.monoms[0].dividers,
+                      _e41 = s.monoms[s.monoms.length - 1].dividers;
 
-                  var _iterator36 = _createForOfIteratorHelper(_t46),
+                  var _iterator36 = _createForOfIteratorHelper(_t42),
                       _step36;
 
                   try {
                     for (_iterator36.s(); !(_step36 = _iterator36.n()).done;) {
                       var _n9 = _step36.value;
 
-                      var _iterator37 = _createForOfIteratorHelper(_e42),
+                      var _iterator37 = _createForOfIteratorHelper(_e41),
                           _step37;
 
                       try {
                         for (_iterator37.s(); !(_step37 = _iterator37.n()).done;) {
-                          var _t47 = _step37.value;
+                          var _t43 = _step37.value;
 
-                          var _e43 = void 0,
-                              _r5 = new l();
+                          var _e42 = void 0,
+                              _r5 = new h();
 
-                          _r5.monoms = [_n9.clone(), _t47.clone()], _e43 = s.euclidian(_r5), _e43.reminder.isZero() ? (s = _e43.quotient.clone(), i.push(_r5)) : (_r5.monoms = [_n9.clone(), _t47.clone().opposed()], _e43 = s.euclidian(_r5), _e43.reminder.isZero() && (s = _e43.quotient.clone(), i.push(_r5)));
+                          _r5.monoms = [_n9.clone(), _t43.clone()], _e42 = s.euclidian(_r5), _e42.reminder.isZero() ? (s = _e42.quotient.clone(), i.push(_r5)) : (_r5.monoms = [_n9.clone(), _t43.clone().opposed()], _e42 = s.euclidian(_r5), _e42.reminder.isZero() && (s = _e42.quotient.clone(), i.push(_r5)));
                         }
                       } catch (err) {
                         _iterator37.e(err);
@@ -2057,25 +1814,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this4.factors = i, i;
-            });
-
-            _defineProperty(this, "_factorize2ndDegree", function (t) {
-              var e, i, s, n, r, o, h, a, c;
-              if (1 === _this4.numberOfVars) return s = _this4.monomByDegree(2, t).coefficient, n = _this4.monomByDegree(1, t).coefficient, r = _this4.monomByDegree(0, t).coefficient, o = n.clone().pow(2).subtract(s.clone().multiply(r).multiply(4)), o.isZero() ? (h = n.clone().opposed().divide(s.clone().multiply(2)), e = new l(t).subtract(h.display).multiply(h.denominator), i = new l(t).subtract(h.display).multiply(h.denominator), c = s.divide(h.denominator).divide(h.denominator), c.isOne() ? [e, i] : [new l(c.display), e, i]) : o.isPositive() && o.isSquare() ? (h = n.clone().opposed().add(o.clone().sqrt()).divide(s.clone().multiply(2)), a = n.clone().opposed().subtract(o.clone().sqrt()).divide(s.clone().multiply(2)), c = s.divide(h.denominator).divide(a.denominator), c.isOne() ? [new l(t).subtract(h.display).multiply(h.denominator), new l(t).subtract(a.display).multiply(a.denominator)] : [new l(c.display), new l(t).subtract(h.display).multiply(h.denominator), new l(t).subtract(a.display).multiply(a.denominator)]) : [_this4.clone()];
+            }, this._factorize2ndDegree = function (t) {
+              var e, i, s, n, r, o, l, a, u;
+              if (1 === _this4.numberOfVars) return s = _this4.monomByDegree(2, t).coefficient, n = _this4.monomByDegree(1, t).coefficient, r = _this4.monomByDegree(0, t).coefficient, o = n.clone().pow(2).subtract(s.clone().multiply(r).multiply(4)), o.isZero() ? (l = n.clone().opposed().divide(s.clone().multiply(2)), e = new h(t).subtract(l.display).multiply(l.denominator), i = new h(t).subtract(l.display).multiply(l.denominator), u = s.divide(l.denominator).divide(l.denominator), u.isOne() ? [e, i] : [new h(u.display), e, i]) : o.isPositive() && o.isSquare() ? (l = n.clone().opposed().add(o.clone().sqrt()).divide(s.clone().multiply(2)), a = n.clone().opposed().subtract(o.clone().sqrt()).divide(s.clone().multiply(2)), u = s.divide(l.denominator).divide(a.denominator), u.isOne() ? [new h(t).subtract(l.display).multiply(l.denominator), new h(t).subtract(a.display).multiply(a.denominator)] : [new h(u.display), new h(t).subtract(l.display).multiply(l.denominator), new h(t).subtract(a.display).multiply(a.denominator)]) : [_this4.clone()];
 
               if (s = _this4.monomByDegree(2, t), n = _this4.monomByDegree(1, t), r = _this4.monomByDegree(0, t), s.isLitteralSquare() && r.isLitteralSquare() && n.clone().pow(2).isSameAs(s.clone().multiply(r))) {
-                var _t48,
-                    _e44 = new l("x", s.coefficient, n.coefficient, r.coefficient)._factorize2ndDegree("x"),
+                var _t44,
+                    _e43 = new h("x", s.coefficient, n.coefficient, r.coefficient)._factorize2ndDegree("x"),
                     _i33 = [];
 
-                if (_e44.length >= 2) {
-                  var _iterator38 = _createForOfIteratorHelper(_e44),
+                if (_e43.length >= 2) {
+                  var _iterator38 = _createForOfIteratorHelper(_e43),
                       _step38;
 
                   try {
                     for (_iterator38.s(); !(_step38 = _iterator38.n()).done;) {
                       var _n10 = _step38.value;
-                      0 === _n10.degree() ? _i33.push(_n10.clone()) : (_t48 = _n10.clone(), _t48.monoms[0].literal = s.literalSqrt, _t48.monoms[1].literal = r.literalSqrt, _i33.push(_t48.clone()));
+                      0 === _n10.degree() ? _i33.push(_n10.clone()) : (_t44 = _n10.clone(), _t44.monoms[0].literal = s.literalSqrt, _t44.monoms[1].literal = r.literalSqrt, _i33.push(_t44.clone()));
                     }
                   } catch (err) {
                     _iterator38.e(err);
@@ -2088,13 +1843,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return [_this4.clone()];
-            });
-
-            _defineProperty(this, "_factorizeByGroups", function () {
+            }, this._factorizeByGroups = function () {
               return [];
-            });
-
-            _defineProperty(this, "getZeroes", function () {
+            }, this.getZeroes = function () {
               switch (_this4.degree()) {
                 case 0:
                   return 0 === _this4._monoms[0].coefficient.value ? [!0] : [!1];
@@ -2102,16 +1853,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 case 1:
                   if (1 === _this4._monoms.length) return [new o.Fraction().zero()];
                   {
-                    var _t50 = _this4.clone().reduce().reorder();
+                    var _t46 = _this4.clone().reduce().reorder();
 
-                    return [_t50.monoms[1].coefficient.opposed().divide(_t50.monoms[0].coefficient)];
+                    return [_t46.monoms[1].coefficient.opposed().divide(_t46.monoms[0].coefficient)];
                   }
 
                 default:
-                  if (1 === _this4._monoms.length) return [new o.Fraction().zero()];
                   0 === _this4._factors.length && _this4.factorize();
-                  var _t49 = [],
-                      _e45 = [];
+                  var _t45 = [],
+                      _e44 = [];
 
                   var _iterator39 = _createForOfIteratorHelper(_this4._factors),
                       _step39;
@@ -2120,17 +1870,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     for (_iterator39.s(); !(_step39 = _iterator39.n()).done;) {
                       var _i34 = _step39.value;
                       if (_i34.degree() > 2) ;else if (2 === _i34.degree()) {
-                        var _e46 = _i34.monomByDegree(2).coefficient,
+                        var _e45 = _i34.monomByDegree(2).coefficient,
                             _s7 = _i34.monomByDegree(1).coefficient,
                             _n11 = _i34.monomByDegree(0).coefficient,
-                            _r6 = _s7.clone().pow(2).subtract(_e46.clone().multiply(_n11).multiply(4));
+                            _r6 = _s7.clone().pow(2).subtract(_e45.clone().multiply(_n11).multiply(4));
 
                         if (_r6.value > 0) {
-                          var _i35 = (-_s7.value + Math.sqrt(_r6.value)) / (2 * _e46.value),
-                              _n12 = (-_s7.value - Math.sqrt(_r6.value)) / (2 * _e46.value);
+                          var _i35 = (-_s7.value + Math.sqrt(_r6.value)) / (2 * _e45.value),
+                              _n12 = (-_s7.value - Math.sqrt(_r6.value)) / (2 * _e45.value);
 
-                          _t49.push(new o.Fraction(_i35.toFixed(3)).reduce()), _t49.push(new o.Fraction(_n12.toFixed(3)).reduce());
-                        } else if (0 !== _r6.value) return console.log("No zero for ", _i34.tex), [!1];
+                          _t45.push(new o.Fraction(_i35.toFixed(3)).reduce()), _t45.push(new o.Fraction(_n12.toFixed(3)).reduce());
+                        } else 0 === _r6.value || console.log("No zero for ", _i34.tex);
                       } else {
                         var _iterator40 = _createForOfIteratorHelper(_i34.getZeroes()),
                             _step40;
@@ -2138,7 +1888,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                         try {
                           for (_iterator40.s(); !(_step40 = _iterator40.n()).done;) {
                             var _s8 = _step40.value;
-                            !1 !== _s8 && !0 !== _s8 && -1 === _e45.indexOf(_s8.frac) && (_t49.push(_s8), _e45.push(_s8.frac));
+                            !1 !== _s8 && !0 !== _s8 && -1 === _e44.indexOf(_s8.frac) && (_t45.push(_s8), _e44.push(_s8.frac));
                           }
                         } catch (err) {
                           _iterator40.e(err);
@@ -2153,13 +1903,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     _iterator39.f();
                   }
 
-                  return _t49;
+                  return _t45;
               }
 
               return [];
-            });
-
-            _defineProperty(this, "monomByDegree", function (t, e) {
+            }, this.monomByDegree = function (t, e) {
               if (void 0 === t) return _this4.monomByDegree(_this4.degree(e), e);
 
               var i = _this4.clone().reduce();
@@ -2179,9 +1927,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return new s.Monom().zero();
-            });
-
-            _defineProperty(this, "monomsByDegree", function (t, e) {
+            }, this.monomsByDegree = function (t, e) {
               if (void 0 === t) return _this4.monomsByDegree(_this4.degree(e));
               var i = [];
 
@@ -2202,9 +1948,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return i;
-            });
-
-            _defineProperty(this, "monomByLetter", function (t) {
+            }, this.monomByLetter = function (t) {
               var e = _this4.clone().reduce();
 
               var _iterator43 = _createForOfIteratorHelper(e._monoms),
@@ -2222,9 +1966,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return new s.Monom().zero();
-            });
-
-            _defineProperty(this, "getDenominators", function () {
+            }, this.getDenominators = function () {
               var t = [];
 
               var _iterator44 = _createForOfIteratorHelper(_this4._monoms),
@@ -2232,8 +1974,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator44.s(); !(_step44 = _iterator44.n()).done;) {
-                  var _e47 = _step44.value;
-                  t.push(_e47.coefficient.denominator);
+                  var _e46 = _step44.value;
+                  t.push(_e46.coefficient.denominator);
                 }
               } catch (err) {
                 _iterator44.e(err);
@@ -2242,9 +1984,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return t;
-            });
-
-            _defineProperty(this, "getNumerators", function () {
+            }, this.getNumerators = function () {
               var t = [];
 
               var _iterator45 = _createForOfIteratorHelper(_this4._monoms),
@@ -2252,8 +1992,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator45.s(); !(_step45 = _iterator45.n()).done;) {
-                  var _e48 = _step45.value;
-                  t.push(_e48.coefficient.numerator);
+                  var _e47 = _step45.value;
+                  t.push(_e47.coefficient.numerator);
                 }
               } catch (err) {
                 _iterator45.e(err);
@@ -2262,33 +2002,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return t;
-            });
-
-            _defineProperty(this, "lcmDenominator", function () {
+            }, this.lcmDenominator = function () {
               var _r$Numeric;
 
               return (_r$Numeric = r.Numeric).lcm.apply(_r$Numeric, _toConsumableArray(_this4.getDenominators()));
-            });
-
-            _defineProperty(this, "gcdDenominator", function () {
+            }, this.gcdDenominator = function () {
               var _r$Numeric2;
 
               return (_r$Numeric2 = r.Numeric).gcd.apply(_r$Numeric2, _toConsumableArray(_this4.getDenominators()));
-            });
-
-            _defineProperty(this, "lcmNumerator", function () {
+            }, this.lcmNumerator = function () {
               var _r$Numeric3;
 
               return (_r$Numeric3 = r.Numeric).lcm.apply(_r$Numeric3, _toConsumableArray(_this4.getNumerators()));
-            });
-
-            _defineProperty(this, "gcdNumerator", function () {
+            }, this.gcdNumerator = function () {
               var _r$Numeric4;
 
               return (_r$Numeric4 = r.Numeric).gcd.apply(_r$Numeric4, _toConsumableArray(_this4.getNumerators()));
-            });
-
-            _defineProperty(this, "commonMonom", function () {
+            }, this.commonMonom = function () {
               var t,
                   e,
                   i = new s.Monom().one(),
@@ -2301,16 +2031,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator46.s(); !(_step46 = _iterator46.n()).done;) {
-                  var _t51 = _step46.value;
-                  i.setLetter(_t51, n);
+                  var _t47 = _step46.value;
+                  i.setLetter(_t47, n);
 
                   var _iterator47 = _createForOfIteratorHelper(_this4._monoms),
                       _step47;
 
                   try {
                     for (_iterator47.s(); !(_step47 = _iterator47.n()).done;) {
-                      var _e49 = _step47.value;
-                      if (i.setLetter(_t51, Math.min(_e49.degree(_t51), i.degree(_t51))), 0 === i.degree(_t51)) break;
+                      var _e48 = _step47.value;
+                      if (i.setLetter(_t47, Math.min(_e48.degree(_t47), i.degree(_t47))), 0 === i.degree(_t47)) break;
                     }
                   } catch (err) {
                     _iterator47.e(err);
@@ -2325,40 +2055,32 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return i;
-            });
-
-            _defineProperty(this, "makeItComplicate", function () {
+            }, this.makeItComplicate = function () {
               var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
               if (_this4._texString = "", _this4.degree() < 1) return _this4;
 
               var e = r.Numeric.randomInt(0, _this4.degree() - 1),
-                  i = new l().rndSimple(e, !1, t > 1, "x", !1, t > 1 ? -1 : 1),
-                  s = new l().rndSimple(1, !1, t > 1),
+                  i = new h().rndSimple(e, !1, t > 1, "x", !1, t > 1 ? -1 : 1),
+                  s = new h().rndSimple(1, !1, t > 1),
                   n = _this4.clone().subtract(i.clone().multiply(s));
 
               return n.factorizePartial(!0), _this4._texString = "".concat(i.genDisplay("tex", !1, !0), " \\cdot ").concat(s.genDisplay("tex", !1, !0), " ").concat(n.texString, " "), _this4;
-            });
-
-            _defineProperty(this, "factorizePartial", function (t) {
+            }, this.factorizePartial = function (t) {
               if (_this4._texString = "", _this4.length <= 1) return _this4;
-              var e, i, n, o, h, a;
+              var e, i, n, o, l, a;
 
-              for (var c = 0; c < _this4.length; c++) {
-                e = _this4._monoms[c].clone();
+              for (var u = 0; u < _this4.length; u++) {
+                e = _this4._monoms[u].clone();
 
-                for (var u = c + 1; u < _this4.length; u++) {
-                  if (i = _this4._monoms[u].clone(), h = r.Numeric.gcd(e.coefficient.numerator, i.coefficient.numerator), 1 !== h) return n = s.Monom.lcm(e, i), a = 1 === e.coefficient.sign() ? "+" : "-", _this4._texString = "".concat(!0 === t ? a : "+" === a ? "" : a).concat(n.tex), o = new l().add(e.divide(n)).add(i.divide(n)), _this4._texString += o.genDisplay("tex", !1, !0), _this4._texString += _this4.clone().subtract(o.clone().multiply(n)).genDisplay("tex", !0, !1), _this4;
+                for (var c = u + 1; c < _this4.length; c++) {
+                  if (i = _this4._monoms[c].clone(), l = r.Numeric.gcd(e.coefficient.numerator, i.coefficient.numerator), 1 !== l) return n = s.Monom.lcm(e, i), a = 1 === e.coefficient.sign() ? "+" : "-", _this4._texString = "".concat(!0 === t ? a : "+" === a ? "" : a).concat(n.tex), o = new h().add(e.divide(n)).add(i.divide(n)), _this4._texString += o.genDisplay("tex", !1, !0), _this4._texString += _this4.clone().subtract(o.clone().multiply(n)).genDisplay("tex", !0, !1), _this4;
                 }
               }
 
               return _this4._texString = _this4.genDisplay("tex", t), _this4;
-            });
-
-            _defineProperty(this, "minify", function () {
+            }, this.minify = function () {
               return _this4.multiply(_this4.lcmDenominator()).divide(_this4.gcdNumerator()).reduce(), _this4.reduce();
-            });
-
-            _defineProperty(this, "canDivide", function (t) {
+            }, this.canDivide = function (t) {
               var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "x";
               var i = t.degree(),
                   s = {};
@@ -2371,16 +2093,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return i > 1 && (console.log("Currently, only first degree polynom are supported"), !1);
-            });
-
-            for (var _len15 = arguments.length, _e28 = new Array(_len15 > 1 ? _len15 - 1 : 0), _key15 = 1; _key15 < _len15; _key15++) {
-              _e28[_key15 - 1] = arguments[_key15];
-            }
-
-            return this._monoms = [], this._factors = [], void 0 !== _t30 && this.parse.apply(this, [_t30].concat(_e28)), this;
+            }, this._monoms = [], this._factors = [], void 0 !== t && this.parse.apply(this, [t].concat(e)), this;
           }
 
-          _createClass(l, [{
+          _createClass(h, [{
             key: "isPolynom",
             get: function get() {
               return !0;
@@ -2396,7 +2112,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }, {
             key: "factors",
             get: function get() {
-              return 0 === this._factors.length && this.factorize(), this._factors;
+              return this._factors;
             },
             set: function set(t) {
               this._factors = t;
@@ -2412,8 +2128,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator48.s(); !(_step48 = _iterator48.n()).done;) {
-                  var _e50 = _step48.value;
-                  _e50.monoms.length > 1 ? t += "(".concat(_e50.tex, ")") : t = _e50.tex + t;
+                  var _e49 = _step48.value;
+                  _e49.monoms.length > 1 ? t += "(".concat(_e49.tex, ")") : t = _e49.tex + t;
                 }
               } catch (err) {
                 _iterator48.e(err);
@@ -2431,9 +2147,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }, {
             key: "length",
             get: function get() {
-              return this._monoms.filter(function (t) {
-                return !t.coefficient.isZero;
-              }).length;
+              return this._monoms.length;
             }
           }, {
             key: "display",
@@ -2458,8 +2172,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator49.s(); !(_step49 = _iterator49.n()).done;) {
-                  var _t52 = _step49.value;
-                  if (_t52.variables.length > 1) return !0;
+                  var _t48 = _step49.value;
+                  if (_t48.variables.length > 1) return !0;
                 }
               } catch (err) {
                 _iterator49.e(err);
@@ -2479,8 +2193,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator50.s(); !(_step50 = _iterator50.n()).done;) {
-                  var _e51 = _step50.value;
-                  t = t.concat(_e51.variables);
+                  var _e50 = _step50.value;
+                  t = t.concat(_e50.variables);
                 }
               } catch (err) {
                 _iterator50.e(err);
@@ -2515,10 +2229,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return l;
+          return h;
         }();
 
-        e.Polynom = l;
+        e.Polynom = h;
       },
       107: function _(t, e, i) {
         Object.defineProperty(e, "__esModule", {
@@ -2527,34 +2241,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var s = i(38);
 
         e.Rational = /*#__PURE__*/function () {
-          function _class2(_t53, _e52) {
+          function _class(t, e) {
             var _this5 = this;
 
-            _classCallCheck(this, _class2);
+            _classCallCheck(this, _class);
 
-            _defineProperty(this, "_rawString", void 0);
-
-            _defineProperty(this, "_numerator", void 0);
-
-            _defineProperty(this, "_denominator", void 0);
-
-            _defineProperty(this, "clone", function () {
+            this.clone = function () {
               return _this5._numerator = _this5._numerator.clone(), _this5._denominator = _this5._denominator.clone(), _this5;
-            });
-
-            _defineProperty(this, "domain", function () {
+            }, this.domain = function () {
               var t = _this5._denominator.getZeroes();
 
               return 0 === t.length || !1 === t[0] ? "\\mathbb{R}" : !0 === t[0] ? "\\varnothing" : "\\mathbb{R}\\setminus\\left{" + t.map(function (t) {
                 return "boolean" == typeof t ? "" : t.frac;
               }).join(";") + "\\right}";
-            });
-
-            _defineProperty(this, "amplify", function (t) {
+            }, this.amplify = function (t) {
               return _this5._numerator.multiply(t), _this5._denominator.multiply(t), _this5;
-            });
-
-            _defineProperty(this, "simplify", function (t) {
+            }, this.simplify = function (t) {
               var e = _this5._numerator.euclidian(t);
 
               if (!e.reminder.isZero()) return _this5;
@@ -2562,9 +2264,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               var i = _this5._denominator.euclidian(t);
 
               return i.reminder.isZero() ? (_this5._numerator = e.quotient, _this5._denominator = i.quotient, _this5) : _this5;
-            });
-
-            _defineProperty(this, "reduce", function () {
+            }, this.reduce = function () {
               console.log(_this5._numerator.tex), _this5._numerator.factorize(), console.log(_this5._numerator.factors.map(function (t) {
                 return t.tex;
               }));
@@ -2574,9 +2274,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
               try {
                 for (_iterator51.s(); !(_step51 = _iterator51.n()).done;) {
-                  var _t54 = _step51.value;
+                  var _t49 = _step51.value;
 
-                  _this5.simplify(_t54);
+                  _this5.simplify(_t49);
                 }
               } catch (err) {
                 _iterator51.e(err);
@@ -2585,26 +2285,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this5;
-            });
-
-            _defineProperty(this, "opposed", function () {
+            }, this.opposed = function () {
               return _this5._numerator.opposed(), _this5;
-            });
-
-            _defineProperty(this, "add", function (t) {
+            }, this.add = function (t) {
               var e = _this5._denominator.clone();
 
               return _this5.amplify(t._denominator), _this5._numerator.add(t._numerator.clone().multiply(e)), _this5;
-            });
-
-            _defineProperty(this, "subtract", function (t) {
+            }, this.subtract = function (t) {
               return _this5.add(t.clone().opposed());
-            });
-
-            this._numerator = _t53 ? _t53.clone() : new s.Polynom(), this._denominator = _e52 ? _e52.clone() : new s.Polynom();
+            }, this._numerator = t ? t.clone() : new s.Polynom(), this._denominator = e ? e.clone() : new s.Polynom();
           }
 
-          _createClass(_class2, [{
+          _createClass(_class, [{
             key: "tex",
             get: function get() {
               return "\\dfrac{ ".concat(this._numerator.tex, " }{ ").concat(this._denominator.tex, " }");
@@ -2626,7 +2318,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return _class2;
+          return _class;
         }();
       },
       506: function _(t, e, i) {
@@ -2636,16 +2328,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         var s = i(956);
 
         var n = /*#__PURE__*/function () {
-          function n(_t55, _e53) {
+          function n(t, e) {
             var _this6 = this;
 
             _classCallCheck(this, n);
 
-            _defineProperty(this, "_numerator", void 0);
-
-            _defineProperty(this, "_denominator", void 0);
-
-            _defineProperty(this, "parse", function (t, e) {
+            return this.parse = function (t, e) {
               var i;
               if (null === t) return _this6._numerator = 0, _this6._denominator = 1, _this6;
 
@@ -2667,91 +2355,56 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   break;
 
                 case "object":
-                  t instanceof n && (_this6._numerator = +t.numerator, _this6._denominator = +t.denominator);
+                  t.isFraction && (_this6._numerator = +t.numerator, _this6._denominator = +t.denominator);
               }
 
               return _this6;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               var t = new n();
               return t.numerator = +_this6._numerator, t.denominator = +_this6._denominator, t;
-            });
-
-            _defineProperty(this, "zero", function () {
+            }, this.zero = function () {
               return _this6._numerator = 0, _this6._denominator = 1, _this6;
-            });
-
-            _defineProperty(this, "one", function () {
+            }, this.one = function () {
               return _this6._numerator = 1, _this6._denominator = 1, _this6;
-            });
-
-            _defineProperty(this, "infinite", function () {
+            }, this.infinite = function () {
               return _this6._numerator = 1 / 0, _this6._denominator = 1, _this6;
-            });
-
-            _defineProperty(this, "invalid", function () {
+            }, this.invalid = function () {
               return _this6._numerator = NaN, _this6._denominator = 1, _this6;
-            });
-
-            _defineProperty(this, "opposed", function () {
+            }, this.opposed = function () {
               return _this6._numerator = -_this6._numerator, _this6;
-            });
-
-            _defineProperty(this, "add", function (t) {
-              var e = new n(t),
-                  i = _this6._numerator,
-                  s = _this6._denominator;
-              return _this6._numerator = i * e.denominator + e.numerator * s, _this6._denominator = s * e.denominator, _this6.reduce();
-            });
-
-            _defineProperty(this, "subtract", function (t) {
-              return _this6.add(new n(t).opposed());
-            });
-
-            _defineProperty(this, "multiply", function (t) {
+            }, this.add = function (t) {
+              var e = _this6._numerator,
+                  i = _this6._denominator;
+              return _this6._numerator = e * t.denominator + t.numerator * i, _this6._denominator = i * t.denominator, _this6.reduce();
+            }, this.subtract = function (t) {
+              return _this6.add(t.clone().opposed());
+            }, this.multiply = function (t) {
               var e = new n(t);
               return _this6._numerator = _this6._numerator * e.numerator, _this6._denominator = _this6._denominator * e.denominator, _this6.reduce();
-            });
-
-            _defineProperty(this, "divide", function (t) {
+            }, this.divide = function (t) {
               var e = new n(t);
-              return e.isZero() ? new n().infinite() : _this6.multiply(e.invert());
-            });
-
-            _defineProperty(this, "invert", function () {
-              if (_this6.isZero()) return _this6.infinite();
+              if (0 === e.numerator) return new n().infinite();
+              var i = +_this6._numerator,
+                  s = +_this6._denominator;
+              return _this6._numerator = i * e.denominator, _this6._denominator = s * e.numerator, _this6.reduce();
+            }, this.invert = function () {
               var t = +_this6._numerator,
                   e = +_this6._denominator;
               return _this6._numerator = e, _this6._denominator = t, _this6;
-            });
-
-            _defineProperty(this, "pow", function (t) {
-              return Number.isSafeInteger(t) ? 0 === t ? _this6.one() : 1 === t ? _this6 : -1 === t ? _this6.invert() : (_this6.reduce(), t < 0 && _this6.invert(), _this6._numerator = Math.pow(_this6._numerator, Math.abs(t)), _this6._denominator = Math.pow(_this6._denominator, Math.abs(t)), _this6) : _this6.invalid();
-            });
-
-            _defineProperty(this, "root", function (t) {
-              return 0 === t ? _this6.invalid() : 1 === t ? _this6 : -1 === t ? _this6.invert() : (t < 0 && _this6.invert(), _this6._numerator = Math.pow(_this6._numerator, Math.abs(1 / t)), _this6._denominator = Math.pow(_this6._denominator, Math.abs(1 / t)), _this6);
-            });
-
-            _defineProperty(this, "sqrt", function () {
+            }, this.pow = function (t) {
+              return Number.isSafeInteger(t) ? (_this6.reduce(), t < 0 && _this6.invert(), _this6._numerator = Math.pow(_this6._numerator, Math.abs(t)), _this6._denominator = Math.pow(_this6._denominator, Math.abs(t)), _this6) : _this6.invalid();
+            }, this.root = function (t) {
+              return 0 === t || (t < 0 && _this6.invert(), Math.pow(_this6._numerator, Math.abs(1 / t)), Math.pow(_this6._denominator, Math.abs(1 / t)), _this6._numerator = Math.pow(_this6._numerator, Math.abs(1 / t)), _this6._denominator = Math.pow(_this6._denominator, Math.abs(1 / t))), _this6;
+            }, this.sqrt = function () {
               return _this6.root(2);
-            });
-
-            _defineProperty(this, "abs", function () {
+            }, this.abs = function () {
               return _this6._numerator = Math.abs(_this6._numerator), _this6._denominator = Math.abs(_this6._denominator), _this6;
-            });
-
-            _defineProperty(this, "reduce", function () {
+            }, this.reduce = function () {
               var t = s.Numeric.gcd(_this6._numerator, _this6._denominator);
               return _this6._numerator = _this6._numerator / t, _this6._denominator = _this6._denominator / t, _this6._denominator < 0 && (_this6._denominator = -_this6._denominator, _this6._numerator = -_this6._numerator), _this6;
-            });
-
-            _defineProperty(this, "amplify", function (t) {
+            }, this.amplify = function (t) {
               return Number.isSafeInteger(t) && (_this6._numerator *= t, _this6._denominator *= t), _this6;
-            });
-
-            _defineProperty(this, "compare", function (t, e) {
+            }, this.compare = function (t, e) {
               switch (void 0 === e && (e = "="), e) {
                 case ">":
                   return _this6.value > t.value;
@@ -2774,77 +2427,47 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 default:
                   return !1;
               }
-            });
-
-            _defineProperty(this, "lesser", function (t) {
+            }, this.lesser = function (t) {
               return _this6.compare(t, "<");
-            });
-
-            _defineProperty(this, "leq", function (t) {
+            }, this.leq = function (t) {
               return _this6.compare(t, "<=");
-            });
-
-            _defineProperty(this, "greater", function (t) {
+            }, this.greater = function (t) {
               return _this6.compare(t, ">");
-            });
-
-            _defineProperty(this, "geq", function (t) {
+            }, this.geq = function (t) {
               return _this6.compare(t, ">=");
-            });
-
-            _defineProperty(this, "isEqual", function (t) {
+            }, this.isEqual = function (t) {
               return _this6.compare(t, "=");
-            });
-
-            _defineProperty(this, "isDifferent", function (t) {
+            }, this.isDifferent = function (t) {
               return _this6.compare(t, "<>");
-            });
-
-            _defineProperty(this, "isOpposed", function (t) {
+            }, this.isOpposed = function (t) {
               return _this6.isEqual(t.clone().opposed());
-            });
-
-            _defineProperty(this, "isInverted", function (t) {
+            }, this.isInverted = function (t) {
               return _this6.isEqual(new n().one().divide(t.clone()));
-            });
-
-            _defineProperty(this, "isZero", function () {
+            }, this.isZero = function () {
               return 0 === _this6._numerator;
-            });
-
-            _defineProperty(this, "isOne", function () {
+            }, this.isOne = function () {
               return 1 === _this6._numerator && 1 === _this6._denominator;
-            });
-
-            _defineProperty(this, "isPositive", function () {
+            }, this.isPositive = function () {
               return 1 === _this6.sign();
-            });
-
-            _defineProperty(this, "isNegative", function () {
+            }, this.isNegative = function () {
               return -1 === _this6.sign();
-            });
-
-            _defineProperty(this, "isNaN", function () {
+            }, this.isNaN = function () {
               return isNaN(_this6._numerator);
-            });
-
-            _defineProperty(this, "isInfinity", function () {
+            }, this.isInfinity = function () {
               return _this6._numerator === 1 / 0;
-            });
-
-            _defineProperty(this, "isFinite", function () {
+            }, this.isFinite = function () {
               return !_this6.isInfinity();
-            });
-
-            _defineProperty(this, "isSquare", function () {
+            }, this.isSquare = function () {
               return Math.sqrt(_this6._numerator) % 1 == 0 && Math.sqrt(_this6._denominator) % 1 == 0;
-            });
-
-            _defineProperty(this, "sign", function () {
+            }, this.sign = function () {
               return _this6._numerator * _this6._denominator >= 0 ? 1 : -1;
-            });
+            }, this.areEquals = function () {
+              for (var _e51 = 0; _e51 < arguments.length; _e51++) {
+                if (!_this6.isEqual(_e51 < 0 || arguments.length <= _e51 ? undefined : arguments[_e51])) return !1;
+              }
 
-            return this._numerator = 1, this._denominator = 1, this.parse(_t55, _e53);
+              return !0;
+            }, this._numerator = 1, this._denominator = 1, void 0 !== t && this.parse(t, e), this;
           }
 
           _createClass(n, [{
@@ -2904,24 +2527,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         Object.defineProperty(e, "__esModule", {
           value: !0
         }), e.Nthroot = void 0, e.Nthroot = /*#__PURE__*/function () {
-          function _class4() {
+          function _class2() {
             var _this7 = this;
 
-            _classCallCheck(this, _class4);
+            _classCallCheck(this, _class2);
 
-            _defineProperty(this, "_radical", void 0);
-
-            _defineProperty(this, "_nth", void 0);
-
-            _defineProperty(this, "_coefficient", void 0);
-
-            _defineProperty(this, "_isValid", void 0);
-
-            _defineProperty(this, "parse", function (t, e, i) {
+            this.parse = function (t, e, i) {
               return _this7._coefficient = void 0 === i ? 1 : i, _this7._nth = void 0 === e ? 2 : e, _this7._radical = void 0 === t ? 1 : t, _this7._nth % 2 == 0 && _this7._radical < 0 && (_this7._isValid = !1), _this7;
-            });
-
-            _defineProperty(this, "reduce", function () {
+            }, this.reduce = function () {
               var t = Math.floor(Math.pow(_this7._radical, 1 / _this7._nth));
 
               for (; t > 1;) {
@@ -2929,20 +2542,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this7;
-            });
-
-            _defineProperty(this, "multiply", function (t) {
+            }, this.multiply = function (t) {
               return _this7._radical *= t.radical, _this7.reduce();
-            });
-
-            _defineProperty(this, "hasRadical", function () {
+            }, this.hasRadical = function () {
               return !(1 === _this7._radical || 0 === _this7._radical || !1 === _this7._isValid);
-            });
-
-            this._radical = 1, this._coefficient = 1, this._nth = 2, this._isValid = !0;
+            }, this._radical = 1, this._coefficient = 1, this._nth = 2, this._isValid = !0;
           }
 
-          _createClass(_class4, [{
+          _createClass(_class2, [{
             key: "radical",
             get: function get() {
               return this._radical;
@@ -2979,7 +2586,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return _class4;
+          return _class2;
         }();
       },
       9: function _(t, e, i) {
@@ -2990,8 +2597,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             n = i(586),
             r = i(557),
             o = i(38),
-            l = i(956),
-            h = i(760);
+            h = i(956),
+            l = i(760);
 
         var a = /*#__PURE__*/function () {
           function a() {
@@ -2999,21 +2606,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             _classCallCheck(this, a);
 
-            _defineProperty(this, "_a", void 0);
+            for (var _len19 = arguments.length, t = new Array(_len19), _key19 = 0; _key19 < _len19; _key19++) {
+              t[_key19] = arguments[_key19];
+            }
 
-            _defineProperty(this, "_b", void 0);
-
-            _defineProperty(this, "_c", void 0);
-
-            _defineProperty(this, "_OA", void 0);
-
-            _defineProperty(this, "_d", void 0);
-
-            _defineProperty(this, "_n", void 0);
-
-            _defineProperty(this, "_exists", void 0);
-
-            _defineProperty(this, "parse", function () {
+            return this.parse = function () {
               for (var _len20 = arguments.length, t = new Array(_len20), _key20 = 0; _key20 < _len20; _key20++) {
                 t[_key20] = arguments[_key20];
               }
@@ -3026,54 +2623,40 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               } else if (1 === t.length) {
                 if (t[0].isLine) return t[0].clone();
 
-                var _e54 = new h.Equation(t[0]);
+                var _e52 = new l.Equation(t[0]);
 
-                if (_e54.isEquation) {
-                  _e54.reorder(!0);
+                if (_e52.isEquation) {
+                  _e52.reorder(!0);
 
-                  var _t57 = new Set(_e54.letters());
+                  var _t50 = new Set(_e52.letters());
 
-                  if (!_t57.has("x") && !_t57.has("y")) return;
+                  if (!_t50.has("x") && !_t50.has("y")) return;
 
                   for (var _i39 = 0, _arr4 = ["x", "y"]; _i39 < _arr4.length; _i39++) {
-                    var _e55 = _arr4[_i39];
-                    _t57.has(_e55) && _t57["delete"](_e55);
+                    var _e53 = _arr4[_i39];
+                    _t50.has(_e53) && _t50["delete"](_e53);
                   }
 
-                  return _t57.size > 0 ? (console.log("Extra variable in the equation."), _this8) : _this8.parseByCoefficient(_e54.left.monomByLetter("x").coefficient, _e54.left.monomByLetter("y").coefficient, _e54.left.monomByDegree(0).coefficient);
+                  return _t50.size > 0 ? (console.log("Extra variable in the equation."), _this8) : _this8.parseByCoefficient(_e52.left.monomByLetter("x").coefficient, _e52.left.monomByLetter("y").coefficient, _e52.left.monomByDegree(0).coefficient);
                 }
               }
 
               return console.log("Someting wrong happend while creating the line"), _this8;
-            });
-
-            _defineProperty(this, "parseByCoefficient", function (t, e, i) {
+            }, this.parseByCoefficient = function (t, e, i) {
               return _this8._a = new s.Fraction(t), _this8._b = new s.Fraction(e), _this8._c = new s.Fraction(i), _this8._d = new n.Vector(_this8._b.clone(), _this8._a.clone().opposed()), _this8._OA = new r.Point(new s.Fraction().zero(), _this8._c.clone()), _this8._n = _this8._d.clone().normal(), _this8._exists = !0, _this8;
-            });
-
-            _defineProperty(this, "parseByPointAndVector", function (t, e) {
+            }, this.parseByPointAndVector = function (t, e) {
               return _this8.parseByCoefficient(e.y, e.x.clone().opposed(), t.x.clone().multiply(e.y).subtract(t.y.clone().multiply(e.x)).opposed()), _this8._OA = t.clone(), _this8._d = e.clone(), _this8._n = _this8._d.clone().normal(), _this8._exists = !0, _this8;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               return _this8._a = _this8._a.clone(), _this8._b = _this8._b.clone(), _this8._c = _this8._c.clone(), _this8._d = _this8._d.clone(), _this8._OA = _this8._OA.clone(), _this8._n = _this8._n.clone(), _this8;
-            });
-
-            _defineProperty(this, "isParellelTo", function (t) {
+            }, this.isParellelTo = function (t) {
               return _this8.slope.isEqual(t.slope) && _this8.height.isDifferent(t.height);
-            });
-
-            _defineProperty(this, "isSameAs", function (t) {
+            }, this.isSameAs = function (t) {
               return _this8.slope.isEqual(t.slope) && _this8.height.isEqual(t.height);
-            });
-
-            _defineProperty(this, "simplifyDirection", function () {
-              var t = l.Numeric.lcm(_this8._d.x.denominator, _this8._d.y.denominator),
-                  e = l.Numeric.gcd(_this8._d.x.numerator, _this8._d.y.numerator);
+            }, this.simplifyDirection = function () {
+              var t = h.Numeric.lcm(_this8._d.x.denominator, _this8._d.y.denominator),
+                  e = h.Numeric.gcd(_this8._d.x.numerator, _this8._d.y.numerator);
               return _this8._d.x.multiply(t).divide(e), _this8._d.y.multiply(t).divide(e), _this8;
-            });
-
-            _defineProperty(this, "intersection", function (t) {
+            }, this.intersection = function (t) {
               var e = new r.Point(),
                   i = !1,
                   s = !1;
@@ -3083,13 +2666,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 isParallel: i,
                 isSame: s
               };
-            });
-
-            for (var _len19 = arguments.length, _t56 = new Array(_len19), _key19 = 0; _key19 < _len19; _key19++) {
-              _t56[_key19] = arguments[_key19];
-            }
-
-            return this._exists = !1, void 0 !== _t56 && this.parse.apply(this, _t56), this;
+            }, this._exists = !1, void 0 !== t && this.parse.apply(this, t), this;
           }
 
           _createClass(a, [{
@@ -3105,7 +2682,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           }, {
             key: "equation",
             get: function get() {
-              return new h.Equation(new o.Polynom().parse("xy", this._a, this._b, this._c), new o.Polynom("0")).simplify();
+              return new l.Equation(new o.Polynom().parse("xy", this._a, this._b, this._c), new o.Polynom("0")).simplify();
             }
           }, {
             key: "tex",
@@ -3231,13 +2808,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             _classCallCheck(this, n);
 
-            _defineProperty(this, "_x", void 0);
+            for (var _len21 = arguments.length, t = new Array(_len21), _key21 = 0; _key21 < _len21; _key21++) {
+              t[_key21] = arguments[_key21];
+            }
 
-            _defineProperty(this, "_y", void 0);
-
-            _defineProperty(this, "_exist", void 0);
-
-            _defineProperty(this, "parse", function () {
+            this.parse = function () {
               for (var _len22 = arguments.length, t = new Array(_len22), _key22 = 0; _key22 < _len22; _key22++) {
                 t[_key22] = arguments[_key22];
               }
@@ -3251,35 +2826,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return 2 === t.length && (_this9._x = new s.Fraction(t[0]).reduce(), _this9._y = new s.Fraction(t[1]).reduce()), _this9;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               var t = new n();
               return null !== _this9._x && (t.x = _this9._x.clone()), null !== _this9._y && (t.y = _this9._y.clone()), t;
-            });
-
-            _defineProperty(this, "zero", function () {
+            }, this.zero = function () {
               return _this9._x = new s.Fraction(null), _this9._y = new s.Fraction(null), _this9;
-            });
-
-            _defineProperty(this, "origin", function () {
+            }, this.origin = function () {
               return _this9.zero(), _this9;
-            });
-
-            _defineProperty(this, "middleOf", function (t, e) {
+            }, this.middleOf = function (t, e) {
               return _this9._x = t.x.clone().add(e.x).divide(2), _this9._y = t.y.clone().add(e.y).divide(2), _this9;
-            });
-
-            _defineProperty(this, "texValues", function (t) {
+            }, this.texValues = function (t) {
               var e = [];
               return e.push(_this9._x.value.toFixed(void 0 === t ? 2 : t)), e.push(_this9._y.value.toFixed(void 0 === t ? 2 : t)), "\\left(".concat(e.join(";"), "\\right)");
-            });
-
-            for (var _len21 = arguments.length, _t58 = new Array(_len21), _key21 = 0; _key21 < _len21; _key21++) {
-              _t58[_key21] = arguments[_key21];
-            }
-
-            this._x = new s.Fraction().zero(), this._y = new s.Fraction().zero(), void 0 !== _t58 && this.parse.apply(this, _t58);
+            }, this._x = new s.Fraction().zero(), this._y = new s.Fraction().zero(), void 0 !== t && this.parse.apply(this, t);
           }
 
           _createClass(n, [{
@@ -3314,11 +2873,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return n;
         }();
 
-        _defineProperty(n, "pmatrix", function (t, e, i) {
+        e.Point = n, n.pmatrix = function (t, e, i) {
           return void 0 === i ? "\\begin{pmatrix} ".concat(t.tex ? t.tex : t, " \\\\ ").concat(e.tex ? e.tex : e, " \\end{pmatrix}") : "\\begin{pmatrix} ".concat(t.tex ? t.tex : t, " \\\\ ").concat(e.tex ? e.tex : e, " \\\\ ").concat(i.tex ? i.tex : i, " \\end{pmatrix}");
-        });
-
-        e.Point = n;
+        };
       },
       164: function _(t, e, i) {
         Object.defineProperty(e, "__esModule", {
@@ -3328,37 +2885,25 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             n = i(506),
             r = i(586),
             o = i(9),
-            l = i(760);
+            h = i(760);
 
         e.Triangle = /*#__PURE__*/function () {
-          function _class6() {
+          function _class3() {
             var _this10 = this;
 
-            _classCallCheck(this, _class6);
+            _classCallCheck(this, _class3);
 
-            _defineProperty(this, "_A", void 0);
-
-            _defineProperty(this, "_B", void 0);
-
-            _defineProperty(this, "_C", void 0);
-
-            _defineProperty(this, "_lines", void 0);
-
-            _defineProperty(this, "_middles", void 0);
-
-            _defineProperty(this, "_remarquables", void 0);
-
-            _defineProperty(this, "parse", function () {
+            return this.parse = function () {
               for (var _len23 = arguments.length, t = new Array(_len23), _key23 = 0; _key23 < _len23; _key23++) {
                 t[_key23] = arguments[_key23];
               }
 
               if (6 === t.length) {
-                var _e56 = t.map(function (t) {
+                var _e54 = t.map(function (t) {
                   return new n.Fraction(t);
                 });
 
-                return _this10.parse(new s.Point(_e56[0], _e56[1]), new s.Point(_e56[2], _e56[3]), new s.Point(_e56[4], _e56[5]));
+                return _this10.parse(new s.Point(_e54[0], _e54[1]), new s.Point(_e54[2], _e54[3]), new s.Point(_e54[4], _e54[5]));
               }
 
               if (3 === t.length) {
@@ -3377,12 +2922,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     AC: t[2]
                   };
 
-                  var _e57 = t[0].intersection(t[1]);
+                  var _e55 = t[0].intersection(t[1]);
 
-                  if (!_e57.hasIntersection) return _this10;
-                  if (_this10._B = _e57.point.clone(), _e57 = t[1].intersection(t[2]), !_e57.hasIntersection) return _this10;
-                  if (_this10._C = _e57.point.clone(), _e57 = t[2].intersection(t[0]), !_e57.hasIntersection) return _this10;
-                  _this10._A = _e57.point.clone();
+                  if (!_e55.hasIntersection) return _this10;
+                  if (_this10._B = _e55.point.clone(), _e55 = t[1].intersection(t[2]), !_e55.hasIntersection) return _this10;
+                  if (_this10._C = _e55.point.clone(), _e55 = t[2].intersection(t[0]), !_e55.hasIntersection) return _this10;
+                  _this10._A = _e55.point.clone();
                 } else {
                   if (t.filter(function (t) {
                     return !0 === t.isPoint;
@@ -3396,25 +2941,19 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               } else if (1 === t.length && !0 === t[0].isTriangle) return t[0].clone();
 
               return _this10._updateTriangle(), _this10;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               return _this10._A = _this10._A.clone(), _this10._B = _this10._B.clone(), _this10._C = _this10._C.clone(), _this10._lines = {
                 AB: _this10._lines.AB.clone(),
                 BC: _this10._lines.BC.clone(),
                 AC: _this10._lines.AC.clone()
               }, _this10._updateTriangle(), _this10;
-            });
-
-            _defineProperty(this, "_updateTriangle", function () {
+            }, this._updateTriangle = function () {
               _this10._middles = {
                 AB: new s.Point().middleOf(_this10._A, _this10._B),
                 AC: new s.Point().middleOf(_this10._A, _this10._C),
                 BC: new s.Point().middleOf(_this10._B, _this10._C)
               }, _this10._remarquables = _this10._calculateRemarquableLines();
-            });
-
-            _defineProperty(this, "getPointByName", function (t) {
+            }, this.getPointByName = function (t) {
               switch (t.toUpperCase()) {
                 case "A":
                   return _this10._A;
@@ -3427,13 +2966,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this10._A;
-            });
-
-            _defineProperty(this, "getSegment", function (t, e) {
+            }, this.getSegment = function (t, e) {
               return new r.Vector(_this10.getPointByName(t), _this10.getPointByName(e));
-            });
-
-            _defineProperty(this, "_calculateRemarquableLines", function () {
+            }, this._calculateRemarquableLines = function () {
               var t = {
                 medians: {
                   A: new o.Line(_this10._A, _this10._middles.BC),
@@ -3461,22 +2996,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                 }
               };
               return t.medians.intersection = t.medians.A.intersection(t.medians.B).point, t.mediators.intersection = t.mediators.AB.intersection(t.mediators.BC).point, t.heights.intersection = t.heights.A.intersection(t.heights.B).point, t.bisectors.intersection = t.bisectors.A.intersection(t.bisectors.B).point, t;
-            });
-
-            _defineProperty(this, "_calculateBisectors", function (t) {
+            }, this._calculateBisectors = function (t) {
               var e,
                   i,
                   s = _this10.lines;
               "A" === t ? (e = s.AB, i = s.AC) : "B" === t ? (e = s.AB, i = s.BC) : "C" === t && (e = s.BC, i = s.AC);
-              var n = new o.Line(new l.Equation(e.equation.left.clone().multiply(i.n.simplify().norm), i.equation.left.clone().multiply(e.n.simplify().norm)).reorder(!0).simplify()),
-                  r = new o.Line(new l.Equation(e.equation.left.clone().multiply(i.n.simplify().norm), i.equation.left.clone().multiply(e.n.simplify().norm).opposed()).reorder(!0).simplify());
+              var n = new o.Line(new h.Equation(e.equation.left.clone().multiply(i.n.simplify().norm), i.equation.left.clone().multiply(e.n.simplify().norm)).reorder(!0).simplify()),
+                  r = new o.Line(new h.Equation(e.equation.left.clone().multiply(i.n.simplify().norm), i.equation.left.clone().multiply(e.n.simplify().norm).opposed()).reorder(!0).simplify());
               return "A" === t ? n.hitSegment(_this10.B, _this10.C) ? n : r : "B" === t ? n.hitSegment(_this10.A, _this10.C) ? n : r : "C" === t ? n.hitSegment(_this10.B, _this10.A) ? n : r : n;
-            });
-
-            return arguments.length > 0 && this.parse.apply(this, arguments), this;
+            }, arguments.length > 0 && this.parse.apply(this, arguments), this;
           }
 
-          _createClass(_class6, [{
+          _createClass(_class3, [{
             key: "isTriangle",
             get: function get() {
               return !0;
@@ -3553,7 +3084,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return _class6;
+          return _class3;
         }();
       },
       586: function _(t, e, i) {
@@ -3569,11 +3100,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
             _classCallCheck(this, r);
 
-            _defineProperty(this, "_x", void 0);
+            for (var _len24 = arguments.length, t = new Array(_len24), _key24 = 0; _key24 < _len24; _key24++) {
+              t[_key24] = arguments[_key24];
+            }
 
-            _defineProperty(this, "_y", void 0);
-
-            _defineProperty(this, "parse", function () {
+            this.parse = function () {
               for (var _len25 = arguments.length, t = new Array(_len25), _key25 = 0; _key25 < _len25; _key25++) {
                 t[_key25] = arguments[_key25];
               }
@@ -3587,82 +3118,46 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               }
 
               return _this11;
-            });
-
-            _defineProperty(this, "clone", function () {
+            }, this.clone = function () {
               var t = new r();
               return null !== _this11._x && (t.x = _this11._x.clone()), null !== _this11._y && (t.y = _this11._y.clone()), t;
-            });
-
-            _defineProperty(this, "reset", function () {
+            }, this.reset = function () {
               return _this11._x = null, _this11._y = null, _this11;
-            });
-
-            _defineProperty(this, "zero", function () {
+            }, this.zero = function () {
               return _this11.reset(), _this11._x = new s.Fraction(null), _this11._y = new s.Fraction(null), _this11;
-            });
-
-            _defineProperty(this, "one", function () {
+            }, this.one = function () {
               return _this11._x = new s.Fraction(), _this11._y = new s.Fraction(), _this11;
-            });
-
-            _defineProperty(this, "_parseString", function (t) {
+            }, this._parseString = function (t) {
               var e = t.split(/[,;\s]/g);
               return _this11.x = new s.Fraction(e[0] || null), _this11.y = new s.Fraction(e[1] || null), _this11;
-            });
-
-            _defineProperty(this, "opposed", function () {
+            }, this.opposed = function () {
               return _this11._x.opposed(), _this11._y.opposed(), _this11;
-            });
-
-            _defineProperty(this, "add", function (t) {
+            }, this.add = function (t) {
               return _this11._x.add(t.x), _this11._y.add(t.y), _this11;
-            });
-
-            _defineProperty(this, "subtract", function (t) {
+            }, this.subtract = function (t) {
               return _this11.add(t.clone().opposed());
-            });
-
-            _defineProperty(this, "scalarProductWithVector", function (t) {
+            }, this.scalarProductWithVector = function (t) {
               return _this11._x.clone().multiply(t.x).add(_this11._y.clone().multiply(t.y));
-            });
-
-            _defineProperty(this, "normal", function () {
+            }, this.normal = function () {
               var t = _this11.x.clone().opposed(),
                   e = _this11.y.clone();
 
               return _this11._x = e, _this11._y = t, _this11;
-            });
-
-            _defineProperty(this, "isNormalTo", function (t) {
+            }, this.isNormalTo = function (t) {
               return _this11.scalarProductWithVector(t).isZero();
-            });
-
-            _defineProperty(this, "multiplyByScalar", function (t) {
+            }, this.multiplyByScalar = function (t) {
               var e = new s.Fraction(t);
               return _this11._x.multiply(e), _this11._y.multiply(e), _this11;
-            });
-
-            _defineProperty(this, "divideByScalar", function (t) {
+            }, this.divideByScalar = function (t) {
               return _this11.multiplyByScalar(new s.Fraction(t).invert());
-            });
-
-            _defineProperty(this, "simplify", function () {
+            }, this.simplify = function () {
               return _this11.multiplyByScalar(n.Numeric.lcm(_this11._x.denominator, _this11._y.denominator)).divideByScalar(n.Numeric.gcd(_this11._x.numerator, _this11._y.numerator));
-            });
-
-            _defineProperty(this, "angleWith", function (t, e, i) {
+            }, this.angleWith = function (t, e, i) {
               var s = _this11.scalarProductWithVector(t).value,
                   n = i ? 1 : 180 / Math.PI;
 
               return e && (s = Math.abs(s)), n * Math.acos(s / (_this11.norm * t.norm));
-            });
-
-            for (var _len24 = arguments.length, _t60 = new Array(_len24), _key24 = 0; _key24 < _len24; _key24++) {
-              _t60[_key24] = arguments[_key24];
-            }
-
-            this._x = new s.Fraction().zero(), this._y = new s.Fraction().zero(), void 0 !== _t60 && this.parse.apply(this, _t60);
+            }, this._x = new s.Fraction().zero(), this._y = new s.Fraction().zero(), void 0 !== t && this.parse.apply(this, t);
           }
 
           _createClass(r, [{
@@ -3706,11 +3201,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           return r;
         }();
 
-        _defineProperty(r, "scalarProduct", function (t, e) {
+        e.Vector = r, r.scalarProduct = function (t, e) {
           return t.x.value * e.x.value + t.y.value * e.y.value;
-        });
-
-        e.Vector = r;
+        };
       },
       956: function _(t, e) {
         Object.defineProperty(e, "__esModule", {
@@ -3812,13 +3305,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         Object.defineProperty(e, "__esModule", {
           value: !0
         }), e.Shutingyard = void 0, e.Shutingyard = /*#__PURE__*/function () {
-          function _class8() {
-            _classCallCheck(this, _class8);
+          function _class4() {
+            _classCallCheck(this, _class4);
 
-            _defineProperty(this, "_rpn", []);
+            this._rpn = [];
           }
 
-          _createClass(_class8, [{
+          _createClass(_class4, [{
             key: "isOperation",
             value: function isOperation(t) {
               return !!t[0].match(/[+\-*/^]/g) || !!t.match(/^sin|cos|tan/g);
@@ -3858,9 +3351,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
               },
                   r = "",
                   o = 0,
-                  l = "";
+                  h = "";
               t = this.Uniformizer(t);
-              var h,
+              var l,
                   a = 50;
 
               for (; o < t.length;) {
@@ -3869,22 +3362,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                   break;
                 }
 
-                switch ((_this$NextToken = this.NextToken(t, o), _this$NextToken2 = _slicedToArray(_this$NextToken, 3), r = _this$NextToken2[0], o = _this$NextToken2[1], l = _this$NextToken2[2], _this$NextToken), l) {
+                switch ((_this$NextToken = this.NextToken(t, o), _this$NextToken2 = _slicedToArray(_this$NextToken, 3), r = _this$NextToken2[0], o = _this$NextToken2[1], h = _this$NextToken2[2], _this$NextToken), h) {
                   case "monom":
                     e.push(r);
                     break;
 
                   case "operation":
                     if (i.length > 0) {
-                      var _t61 = i[i.length - 1];
+                      var _t51 = i[i.length - 1];
 
-                      for (h = 50; _t61 in n && ("left" === n[r] && s[r] <= s[_t61] || "right" === n[r] && s[r] < s[_t61]);) {
-                        if (h--, 0 === h) {
+                      for (l = 50; _t51 in n && ("left" === n[r] && s[r] <= s[_t51] || "right" === n[r] && s[r] < s[_t51]);) {
+                        if (l--, 0 === l) {
                           console.log("SECURITY LEVEL 2 OPERATION EXIT");
                           break;
                         }
 
-                        e.push(i.pop() || ""), _t61 = i[i.length - 1];
+                        e.push(i.pop() || ""), _t51 = i[i.length - 1];
                       }
                     }
 
@@ -3896,8 +3389,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     break;
 
                   case "function-argument":
-                    for (h = 50; "(" !== i[i.length - 1] && i.length > 0;) {
-                      if (h--, 0 === h) {
+                    for (l = 50; "(" !== i[i.length - 1] && i.length > 0;) {
+                      if (l--, 0 === l) {
                         console.log("SECURITY LEVEL 2 FUNCTION ARGUMENT EXIT");
                         break;
                       }
@@ -3912,8 +3405,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     break;
 
                   case ")":
-                    for (h = 50; "(" !== i[i.length - 1] && i.length > 1;) {
-                      if (h--, 0 === h) {
+                    for (l = 50; "(" !== i[i.length - 1] && i.length > 1;) {
+                      if (l--, 0 === l) {
                         console.log("SECURITY LEVEL 2 CLOSING PARENTHESE EXIT");
                         break;
                       }
@@ -3925,7 +3418,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
                     break;
 
                   default:
-                    console.log("SHUTING YARD: ".concat(l, " : ").concat(r, " "));
+                    console.log("SHUTING YARD: ".concat(h, " : ").concat(r, " "));
                 }
               }
 
@@ -3938,7 +3431,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
             }
           }]);
 
-          return _class8;
+          return _class4;
         }();
       }
     },
@@ -3964,11 +3457,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
           n = i(956),
           r = i(330),
           o = i(937),
-          l = i(38),
-          h = i(760),
+          h = i(38),
+          l = i(760),
           a = i(554),
-          c = i(107),
-          u = i(586),
+          u = i(107),
+          c = i(586),
           m = i(9),
           _ = i(557),
           f = i(164);
@@ -3978,12 +3471,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         Fraction: e.Fraction,
         Root: r.Nthroot,
         Monom: o.Monom,
-        Polynom: l.Polynom,
-        Equation: h.Equation,
+        Polynom: h.Polynom,
+        Equation: l.Equation,
         LinearSystem: a.LinearSystem,
-        Rational: c.Rational,
+        Rational: u.Rational,
         Geometry: {
-          Vector: u.Vector,
+          Vector: c.Vector,
           Point: _.Point,
           Line: m.Line,
           Triangle: f.Triangle
@@ -3993,12 +3486,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
         Fraction: e.Fraction,
         Root: r.Nthroot,
         Monom: o.Monom,
-        Polynom: l.Polynom,
-        Equation: h.Equation,
+        Polynom: h.Polynom,
+        Equation: l.Equation,
         LinearSystem: a.LinearSystem,
-        Rational: c.Rational,
+        Rational: u.Rational,
         Geometry: {
-          Vector: u.Vector,
+          Vector: c.Vector,
           Point: _.Point,
           Line: m.Line,
           Triangle: f.Triangle

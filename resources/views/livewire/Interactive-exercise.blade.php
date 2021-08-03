@@ -1,9 +1,16 @@
-<article x-data="{ 'interactive': false }"
-		 class="bg-white border-gray-200 rounded-lg px-3 pt-3 pb-1"
+<article x-data="{
+			'interactive': false,
+			'finished': @entangle('exerciseDone'),
+			}"
+		 class="bg-white rounded-xl px-3 pt-3 pb-1"
+		 :class="{
+		 'border-2 border-green-600': finished,
+		 'border border-gray-200': !finished
+		 }"
 >
 	<div class="flex items-center justify-between">
 		<h2 class="text-lg font-semibold">
-			exercice
+			exercice <span x-text="finished"></span>
 		</h2>
 		<div>
 			<button class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}"
@@ -19,6 +26,9 @@
 				</a>
 			@endif
 		</div>
+	</div>
+	<div>
+		{{$numberOfCorrectAnswers}} / {{$exercice->questions->count()}}
 	</div>
 	
 	<div>

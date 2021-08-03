@@ -1,33 +1,36 @@
 <div class="form-input mx-3"
 	 x-data="{
-								userInput: '',
-								correct: false,
-								answer: new Pi.Polynom('{{$question->answer}}'),
-								option: '{{$question->checker_options}}'.split(';'),
-								check() {
-									try {
-										const checkPolynom = new Pi.Polynom(this.userInput)
-										if(!this.answer.isEqual(checkPolynom)){return false;}
-										
-										if(this.option.includes('factor')){
-											return this.answer.isFactorized(this.userInput)
-										} else if (this.option.includes('dev')) {
-											// TODO: Must check if it's entirely developped, ordered (by letter) and reduced
-											return !this.answer.isFactorized(this.userInput)
-										}else{
-											return true;
-										}
-									} catch {
-										return false
-									}
-								}
-							}"
+			polynom: new Pi.Polynom('{{$question->answer}}'),
+			check() {
+				resultat = false;
+				try {
+					const checkPolynom = new Pi.Polynom(this.userInput)
+					
+					// Not the same polynom
+					if(!this.polynom.isEqual(checkPolynom)){
+						resultat =  false;
+					}else{
+						// With options
+						if(this.options.includes('factor')){
+							resultat =  this.polynom.isFactorized(this.userInput)
+						} else if (this.options.includes('dev')) {
+							// TODO: Must check if it's entirely developped, ordered (by letter) and reduced
+							resultat = !this.polynom.isFactorized(this.userInput)
+						}else{
+							resultat = true;
+						}
+					}
+				}catch{}
+				this.reponses[this.questionId] = resultat?1:0
+				$wire.correctAnswer(this.userInput, resultat);
+			}
+		}"
 >
 	<input
 			placeholder=" "
 			x-model="userInput"
-			@input="correct = check()"
-			:class="{'success':correct}"
+			@keyup.enter="check()"
+			:class="{'success':reponses[questionId]}"
 	>
 	<label>Réponse</label>
 </div>

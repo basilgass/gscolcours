@@ -1,37 +1,28 @@
 <div class="form-input mx-3"
 	 x-data="{
-	'userInput': '{{$pivotAnswer}}',
-	'correct': {{($pivotCorrect)?'true':'false'}},
-	'answer': '{{$question->answer}}',
-	'option': '{{$question->checker_options}}',
-	check() {
-		// Exact numeric answer
-		if(+this.option===0){
-			if(+this.userInput===+this.answer){
-				this.questionIsCorrect = true
-				$wire.correctAnswer(this.userInput, true);
-				return true
+		check() {
+			// Exact numeric answer
+			let resultat = false;
+			if(this.options.length===0 || +this.options[0]===0){
+				if(+this.userInput===+this.answer){
+					resultat = true
+				}
+			}else{
+				if( Math.abs(this.userInput-this.answer)<= (0.00000000000001 + (+this.options[0]))){
+					resultat = true
+				}
 			}
-		}else{
-			if( Math.abs(this.userInput-this.answer)<= (0.00000000000001 + (+this.option))){
-			this.questionIsCorrect = true
-				$wire.correctAnswer(this.userInput, true);
-				return true
-			}
+			
+			this.reponses[this.questionId] = resultat?1:0
+			$wire.correctAnswer(this.userInput, resultat);
 		}
-		
-		this.questionIsCorrect = false
-		$wire.correctAnswer(this.userInput, false);
-		return false
-	}
-}"
-	 x-init="questionIsCorrect = correct"
+	}"
 >
 	<input
 			placeholder=" "
 			x-model="userInput"
-			@keyup.enter="correct = check()"
-			:class="{'success':correct}"
+			@keyup.enter="check()"
+			:class="{'success':reponses[questionId]}"
 	>
 	<label>Réponse</label>
 </div>

@@ -1,22 +1,25 @@
 <div class="question-wrapper"
 	 id="question-{{$question->id}}"
 	 x-data="{
-     questionIsCorrect: false,
+	 	questionId: {{$questionId}},
+		 userInput: '{{$pivotAnswer}}',
+		 answer: '{{$question->answer}}',
+		 options: '{{$question->checker_options}}'.split(';'),
      }"
 >
 	<div class="flex"
 		 :class="{
-					 'border-gray-200': !questionIsCorrect && interactive,
-					 'border-green-500': questionIsCorrect && interactive,
+					 'border-gray-200': !reponses[questionId] && interactive,
+					 'border-green-500': reponses[questionId] && interactive,
 					}">
 		
 		<!-- Numbering -->
 		<div class="font-semibold px-3 w-16"
 			:class="{
-				'text-green-600': questionIsCorrect
+				'text-green-600': reponses[questionId]
 			}">
 			{{$question->position}}.
-			<i x-show="questionIsCorrect" class="bi bi-check inline text-xs"></i>
+			<i x-show="reponses[questionId]" class="bi bi-check inline text-xs"></i>
 		</div>
 		
 		<!-- Body -->
@@ -33,8 +36,8 @@
 		 x-cloak>
 		<div class="flex border pb-2 py-4 rounded pt-6"
 			 :class="{
-				'bg-gray-50 border-gray-100': !questionIsCorrect,
-				'bg-green-50 border-green-100': questionIsCorrect,
+				'bg-gray-50 border-gray-100': !reponses[questionId],
+				'bg-green-50 border-green-100': reponses[questionId],
 			}"
 		>
 			@include('livewire.checker.'.$question->checker)

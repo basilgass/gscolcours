@@ -13,13 +13,15 @@ class InteractiveQuestion extends Component {
 	 * @return \Illuminate\View\View|string
 	 */
 
+	public int $questionId;
 	public Question $question;
 	public bool $interactive;
 	public string $pivotAnswer;
 	public bool $pivotCorrect;
 	public int $pivotAttempts;
 
-	public function mount( Question $question, $interactive = false ) {
+	public function mount( int $questionId, Question $question, $interactive = false ) {
+		$this->questionId = $questionId;
 		$this->question     = $question;
 		$this->$interactive = $interactive;
 
@@ -29,15 +31,6 @@ class InteractiveQuestion extends Component {
 		$this->pivotAttempts = 0;
 
 		if ( Auth::check() ) {
-			if ( ! $this->question->users()->find( Auth::id() )->exists ) {
-				// Create the default pivot data.
-				$this->question->users()
-				               ->attach( Auth::id(), [
-					               'answer'   => '',
-					               'correct'  => false,
-					               'attempts' => 0
-				               ] );
-			}
 			$pivot = $this->question->users()->find( Auth::id() )->pivot;
 
 			$this->pivotAnswer = $pivot->answer;
@@ -65,6 +58,9 @@ class InteractiveQuestion extends Component {
 			$this->pivotAnswer = $answer;
 			$this->pivotCorrect = $correct;
 			$this->pivotAttempts = $this->pivotAttempts+1;
+
+			// Send an event to parent
+//			$this->emitUp('answerUpdated');
 		}
 	}
 }
