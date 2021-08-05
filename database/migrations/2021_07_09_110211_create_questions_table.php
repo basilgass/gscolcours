@@ -13,7 +13,7 @@ class CreateQuestionsTable extends Migration {
 			$table->text( 'body' );
 			$table->string('answer')->default(null);
 			$table->string('checker')->default('');
-			$table->text('checker_text');
+			$table->text('checker_text')->default('');
 			$table->string('checker_options')->default('');
 
 			//
