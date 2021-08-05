@@ -32,8 +32,7 @@
 	</div>
 	
 	<div id="questions-wrapper"
-		 class="py-10"
-		 :class="interactive?'space-y-10':'space-y-2'"
+		 class="py-10 space-y-2"
 	>
 		<h2 class="h2">Questions</h2>
 		@forelse($exercice->questions as $question)

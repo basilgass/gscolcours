@@ -3,6 +3,6 @@
 	
 	<x-scolcours.breadcrumbs :theme="$theme" :article="$article"/>
 	
-	<livewire:interactive-exercise :exercice="$exercice"/>
+	<x-exercise-interactive :exercise="$exercice"/>
 
 </x-scolcours-layout>

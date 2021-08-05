@@ -1,5 +1,5 @@
 @php(
-	$questionOptions = explode(';', $question->checker_options)
+	$questionOptions = preg_split('/\R/', $question->checker_text)
 )
 <div class="form-input mx-3"
 	 x-data="{
@@ -22,7 +22,7 @@
 		$wire.correctAnswer(idx, resultat);
 	}
 }"
-	 x-init=" questionIsCorrect = reponses[questionId]"
+	 x-init="questionIsCorrect = reponses[questionId]"
 >
 	<div class="relative w-44">
 		<button class="w-full text-left
@@ -36,6 +36,7 @@
 			@foreach($questionOptions as $opt)
 				<div class="w-full py-3 px-4 hover:bg-gray-200 cursor-pointer checker-option-item"
 					 @click="check($event, {{$loop->index}})"
+					 wire:ignore
 				>{{$opt}}</div>
 			@endforeach
 		</div>

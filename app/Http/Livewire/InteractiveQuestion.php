@@ -20,10 +20,10 @@ class InteractiveQuestion extends Component {
 	public bool $pivotCorrect;
 	public int $pivotAttempts;
 
-	public function mount( int $questionId, Question $question, $interactive = false ) {
+	public function mount( int $questionId, Question $question, $interactive = false) {
 		$this->questionId = $questionId;
 		$this->question     = $question;
-		$this->$interactive = $interactive;
+		$this->interactive = $interactive;
 
 		// Get the current answer value
 		$this->pivotAnswer = '';

@@ -6,7 +6,6 @@
 	<div id="exercises-wrapper" class="space-y-10">
 		@foreach($exercices as $exercice)
 			<x-exercise-interactive :exercise="$exercice"/>
-			
 		@endforeach
 	</div>
 </x-scolcours-layout>

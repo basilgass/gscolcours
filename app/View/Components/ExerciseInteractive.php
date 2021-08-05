@@ -47,9 +47,16 @@ class ExerciseInteractive extends Component {
 
 	private function getReponses(){
 		if(Auth::check()) {
-			return $this->exercise->questions->map( fn( $q ) => $q->users()->find( Auth::id() )->pivot->correct ? 1 : 0 )->join( ',' );
+			return $this->exercise->questions
+				->filter(fn($q)=>$q->checker!=='sans')
+				->map( fn( $q )
+					=> $q->users()->find( Auth::id() )->pivot->correct ? 1 : 0
+				)->join( ',' );
 		}else{
-			return $this->exercise->questions->map( fn( $q ) => 0 )->join( ',' );
+			return $this->exercise->questions
+				->filter(fn($q)=>$q->checker!=='sans')
+				->map( fn( $q ) => 0 )
+				->join( ',' );
 		}
 	}
 }

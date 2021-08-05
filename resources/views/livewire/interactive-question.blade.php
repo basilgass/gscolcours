@@ -1,35 +1,35 @@
 <div class="question-wrapper"
 	 id="question-{{$question->id}}"
 	 x-data="{
-	 	questionId: {{$questionId}},
+	 	 questionId: {{$questionId}},
 		 userInput: '{{$pivotAnswer}}',
 		 answer: '{{$question->answer}}',
-		 options: '{{$question->checker_options}}'.split(';'),
+		 checker_text: `{{$question->checker_text}}`,
+		 checker_options: '{{$question->checker_options}}'.split(';'),
      }"
 >
-	<div class="flex"
-		 :class="{
-					 'border-gray-200': !reponses[questionId] && interactive,
-					 'border-green-500': reponses[questionId] && interactive,
-					}">
+	<div class="flex">
 		
 		<!-- Numbering -->
+		@if($question->checker!=='sans')
 		<div class="font-semibold px-3 w-16"
-			:class="{
+			 :class="{
 				'text-green-600': reponses[questionId]
 			}">
-			{{$question->position}}.
+			{{$questionId+1}}.
 			<i x-show="reponses[questionId]" class="bi bi-check inline text-xs"></i>
 		</div>
+		@endif
 		
 		<!-- Body -->
 		<div class="flex-1">
 			{{$question->body}}
 		</div>
-		
+	
 	</div>
 	
 	<!-- Answer question wrapper -->
+	@if($question->checker!=='sans')
 	<div class="mt-2 mb-4 ml-10"
 		 x-show="interactive"
 		 x-transition
@@ -43,5 +43,6 @@
 			@include('livewire.checker.'.$question->checker)
 		</div>
 	</div>
-	
+		@endif
+
 </div>

@@ -10,7 +10,8 @@ class QuestionEdit extends Component {
 		'question.position'=>'required|min:1|numeric',
 		'question.body'=>'required|min:2',
 		'question.answer'=>'required|min:1',
-		'question.checker'=>'required',
+		'question.checker'=>'required|min:1',
+		'question.checker_text'=>'',
 		'question.checker_options'=>''
 	];
 

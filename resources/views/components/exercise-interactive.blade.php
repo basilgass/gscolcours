@@ -2,8 +2,15 @@
 			'interactive': false,
 			'nombreReponseCorrect': 0,
 			'finished': false,
-			'reponses': [{{$reponses}}]
+			'reponses': [{{$reponses}}], // réponses obtenues actuellement
+			points(){
+				const pts = this.reponses.reduce((sum, x)=>sum+=x)
+				this.finished = pts === this.reponses.length
+				
+				return pts
+				}
 			}"
+		 x-init="finished = points()===reponses.length"
 		 class="bg-white rounded-xl px-3 pt-3 pb-1"
 		 :class="{
 			 'border-2 border-green-600': finished,
@@ -11,9 +18,13 @@
 		 }"
 >
 	<div class="flex items-center justify-between">
-		<h2 class="text-lg font-semibold">
-			exercice <span x-text="finished"></span>
-		</h2>
+		<div class="flex items-baseline space-x-2">
+			<h2 class="text-lg font-semibold">
+				exercice {{$exercise->id}}
+			</h2>
+			
+			<div x-text="'( ' + points() + ' / ' + reponses.length + ' )'"></div>
+		</div>
 		<div>
 			<button class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}"
 					@click="interactive=!interactive">
@@ -30,7 +41,7 @@
 		</div>
 	</div>
 	<div>
-		<span x-text="reponses.reduce((sum, x)=>sum+=x)"></span> / {{$exercice->questions->count()}}
+	
 	</div>
 	
 	<div>
@@ -42,20 +53,21 @@
 			<p>{{$exercice->body}}</p>
 		</div>
 		
-		
 		<div id="questions-wrapper"
-			 class="py-10"
+			 class="mb-4"
 			 :class="interactive?'space-y-10':'space-y-2'"
 		>
+			@php($n=0)
 			@forelse($exercice->questions as $question)
 				
 				<div class="w-full">
 					<livewire:interactive-question
-							:questionId="$loop->index"
+							:questionId="$n"
 							:question="$question"
 							:key="'question-'.time()"
 					/>
 				</div>
+				@php($n = $question->checker==='sans'?$n:$n+1)
 			
 			@empty
 				Il n'y a pas de question dans cet exercice !
