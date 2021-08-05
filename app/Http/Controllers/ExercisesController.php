@@ -43,14 +43,23 @@ class ExercisesController extends Controller {
 	 */
 	public function store( Request $request ) {
 		// Validate the form ?
+		$this->validate( $request, [
+			"title"=>[''],
+			"body"=>['required']
+		]);
 
 		$exercice = Exercise::create([
 			"article_id" => $request->article,
-			"title" =>$request->title,
+			"title" =>$request->title??'',
 			"body" =>$request->body,
 		]);
 
-		$n = count($request->questions);
+
+		$n = 0;
+		if($request->questions!==null) {
+			$n = count( $request->questions );
+		}
+
 		if($n>0) {
 			for ( $i = 0; $i < $n; $i ++ ) {
 				Question::create( [
