@@ -5,6 +5,7 @@
 	 		{'label': 'texte', 'checker': 'text'},
 	 		{'label': 'nombre', 'checker': 'number'},
 	 		{'label': 'choix', 'checker': 'choices'},
+	 		{'label': 'vrai/faux', 'checker': 'truefalse'},
 	 		{'label': 'polynôme', 'checker': 'polynom'},
 	 		{'label': 'mot', 'checker': 'string'},
 	 	],
@@ -77,6 +78,9 @@
 						</div>
 						
 						<div x-show="checker==='number'">
+						</div>
+						
+						<div x-show="checker==='truefalse'">
 						</div>
 						
 						<div x-show="checker==='choices'">
