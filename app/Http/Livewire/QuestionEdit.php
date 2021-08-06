@@ -35,6 +35,8 @@ class QuestionEdit extends Component {
 		$this->validate();
 		$this->question->save();
 		$this->emit('updateExercise');
+
+		session()->flash('questionUpdated', 'La question a été mise à jour !');
 	}
 
 	public function destroy() {

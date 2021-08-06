@@ -4,8 +4,8 @@
 	 	checkers: [
 	 		{'label': 'texte', 'checker': 'text'},
 	 		{'label': 'nombre', 'checker': 'number'},
+	 		{'label': 'fraction', 'checker': 'fraction'},
 	 		{'label': 'choix', 'checker': 'choices'},
-	 		{'label': 'vrai/faux', 'checker': 'truefalse'},
 	 		{'label': 'polynôme', 'checker': 'polynom'},
 	 		{'label': 'mot', 'checker': 'string'},
 	 	],
@@ -65,6 +65,7 @@
 						<div x-show="checker==='choices'">
 							Texte supplémentaire
 						<textarea
+								x-ref="checker_text"
 								class="input w-full"
 								rows="5"
 								wire:model.defer="question.checker_text"
@@ -80,15 +81,18 @@
 						<div x-show="checker==='number'">
 						</div>
 						
-						<div x-show="checker==='truefalse'">
+						<div x-show="checker==='fraction'">
+							<button @click="$wire.set('question.checker_options', 'reduced')" >Fraction réduite</button>
 						</div>
 						
 						<div x-show="checker==='choices'">
+							<button @click="$wire.set('question.checker_text', 'vrai\nfaux')" >Vrai / Faux</button>
+							
 						</div>
 						
 						<div x-show="checker==='polynom'">
-							factoriser -> factor<br>
-							develeopper -> dev <br>
+							<button @click="$wire.set('question.checker_options', 'factor')" >polynôme factorisé</button>
+							<button @click="$wire.set('question.checker_options', 'developed')" >polynôme développé</button>
 						</div>
 						
 						<div x-show="checker==='string'">
@@ -98,10 +102,19 @@
 					
 				</div>
 			</div>
-			<div class="w-full flex justify-end space-x-2 mt-2">
-				<button wire:click="destroy" class="px-3 py-1 border border-red-600 bg-red-500 text-white text-xs rounded">Supprimer</button>
-				
-				<button wire:click="update" class="px-3 py-1 border border-blue-600 bg-blue-500 text-white text-xs rounded">Mettre à jour</button>
+			<div class="w-full flex justify-between space-x-2 mt-2">
+				<div class="flex-1">
+					@if (session()->has('questionUpdated'))
+						<div class="text-green-800">
+							{{ session('questionUpdated') }}
+						</div>
+					@endif
+				</div>
+				<div>
+					<button wire:click="destroy" class="px-3 py-1 border border-red-600 bg-red-500 text-white text-xs rounded">Supprimer</button>
+					
+					<button wire:click="update" class="px-3 py-1 border border-blue-600 bg-blue-500 text-white text-xs rounded">Mettre à jour</button>
+				</div>
 			</div>
 		</div>
 		

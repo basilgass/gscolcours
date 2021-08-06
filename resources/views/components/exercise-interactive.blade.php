@@ -45,11 +45,11 @@
 	</div>
 	
 	<div>
-		<div id="exercise-title">
+		<div id="exercise-title" wire:ignore>
 			<h3 class="exercise-title text-lg">{{$exercice->title}}</h3>
 		</div>
 		
-		<div id="exercise-body" class="my-4">
+		<div id="exercise-body" class="my-4" wire:ignore>
 			<p>{{$exercice->body}}</p>
 		</div>
 		

@@ -22,7 +22,7 @@
 		@endif
 		
 		<!-- Body -->
-		<div class="flex-1">
+		<div class="flex-1" wire:ignore>
 			{{$question->body}}
 		</div>
 	
@@ -30,11 +30,11 @@
 	
 	<!-- Answer question wrapper -->
 	@if($question->checker!=='sans')
-	<div class="mt-2 mb-4 ml-10"
+	<div class="mt-4 mb-2 ml-10"
 		 x-show="interactive"
 		 x-transition
 		 x-cloak>
-		<div class="flex border pb-2 py-4 rounded pt-6"
+		<div class="flex border p-4 rounded"
 			 :class="{
 				'bg-gray-50 border-gray-100': !reponses[questionId],
 				'bg-green-50 border-green-100': reponses[questionId],

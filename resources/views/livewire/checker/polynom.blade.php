@@ -13,7 +13,7 @@
 						// With options
 						if(this.checker_options.includes('factor')){
 							resultat =  this.polynom.isFactorized(this.userInput)
-						} else if (this.checker_options.includes('dev')) {
+						} else if (this.checker_options.includes('developed')) {
 							// TODO: Must check if it's entirely developped, ordered (by letter) and reduced
 							resultat = !this.polynom.isFactorized(this.userInput)
 						}else{
