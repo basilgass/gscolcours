@@ -9,4 +9,11 @@
     .typo h3,.h3 {
         @apply text-lg font-semibold;
     }
+
+    .typo ol {
+        @apply list-inside list-decimal
+    }
+    .typo ul {
+        @apply list-inside list-disc
+    }
 }

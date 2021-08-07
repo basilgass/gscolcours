@@ -33,7 +33,7 @@
 			
 			@if(auth()->user()?->role==='admin')
 				<a href="{{route('edit exercise', ['theme'=>$exercice->article->theme, 'article'=>$exercice->article, 'exercise'=>$exercice->id])}}"
-				   class="text-sm px-4 py-2 font-thin hover:{{$exercice->textColor}}"
+				   class="text-sm px-4 py-2 font-thin hover:{{$exercice->article->theme->textColor}}"
 				>
 					<i class="bi bi-check2-circle"></i>éditer
 				</a>
@@ -49,8 +49,8 @@
 			<h3 class="exercise-title text-lg">{{$exercice->title}}</h3>
 		</div>
 		
-		<div id="exercise-body" class="my-4" wire:ignore>
-			<p>{{$exercice->body}}</p>
+		<div id="exercise-body" class="my-4 prose" wire:ignore>
+			@markdown($exercice->body)
 		</div>
 		
 		<div id="questions-wrapper"

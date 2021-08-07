@@ -1,5 +1,5 @@
 @php(
-	$questionOptions = preg_split('/\R/', $question->checker_text)
+	$questionOptions = preg_split('/\R/', $question->checker_options)
 )
 <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4"
 	 wire:ignore

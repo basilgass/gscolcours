@@ -5,7 +5,7 @@
 		 userInput: '{{$pivotAnswer}}',
 		 answer: '{{$question->answer}}',
 		 checker_text: `{{$question->checker_text}}`,
-		 checker_options: '{{$question->checker_options}}'.split(';'),
+		 checker_options: `{{$question->checker_options}}`.split(';'),
      }"
 >
 	<div class="flex">
@@ -22,8 +22,8 @@
 		@endif
 		
 		<!-- Body -->
-		<div class="flex-1" wire:ignore>
-			{{$question->body}}
+		<div class="flex-1 prose" wire:ignore>
+			@markdown($question->body)
 		</div>
 	
 	</div>

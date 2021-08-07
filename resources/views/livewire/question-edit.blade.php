@@ -1,17 +1,14 @@
 <div class="question-wrapper"
 	 id="question-{{$question->id}}"
 	 x-data="{
-	 	checkers: [
-	 		{'label': 'texte', 'checker': 'text'},
-	 		{'label': 'nombre', 'checker': 'number'},
-	 		{'label': 'fraction', 'checker': 'fraction'},
-	 		{'label': 'choix', 'checker': 'choices'},
-	 		{'label': 'polynôme', 'checker': 'polynom'},
-	 		{'label': 'mot', 'checker': 'string'},
-	 	],
-	 	updateTitle() {
-	 		let arr = this.checkers.filter(x=>x.checker===this.checker)
-	 		return arr.length===1?arr[0].label:'?'
+	 	checkers: {
+	 		text: {label: 'texte'},
+	 		number: {label: 'nombre', showOptions: true},
+	 		fraction: {label: 'fraction'},
+	 		choices: {label: 'choix', showOptions: true},
+	 		polynom: {label: 'polynôme'},
+	 		string: {label: 'mot'},
+	 		empty: {label: 'sans', showText: true},
 	 	},
 	 	checker: @entangle('question.checker')
 	 	}">
@@ -35,24 +32,24 @@
 				<div class=" w-full">
 					<label>question</label>
 					<textarea rows="5" x-ref="body" class="w-full"
-						   wire:model.defer="question.body" placeholder=" "></textarea>
-					
+							  wire:model.defer="question.body" placeholder=" "></textarea>
+				
 				</div>
 				
 				<div class="form-input w-full">
-					<input x-ref="question" @keyup.enter="$refs.checker.focus()"
+					<input x-ref="reponse" @keyup.enter="$refs.checker.focus()"
 						   wire:model.defer="question.answer" placeholder=" ">
 					<label>réponse souhaitée</label>
 				</div>
 				
 				<div class="w-full">
 					<div class="w-full flex">
-						<template x-for="(item, id) of checkers" :key="'tabbtn'+id">
+						<template x-for="(item, itemChecker) of checkers" :key="'tabBtn-'+itemChecker">
 							<button class="flex-1 text-center py-3 bg-white"
-									@click="checker=item.checker"
-								 :class="{
-								 'border': item.checker!==checker,
-								 'border-t border-l border-r': item.checker===checker
+									@click="checker=itemChecker"
+									:class="{
+								 'border': itemChecker!==checker,
+								 'border-t border-l border-r': itemChecker===checker
 								 }"
 									x-text="item.label"></button>
 						</template>
@@ -60,46 +57,65 @@
 					
 					
 					<div class="tab-wrapper w-full bg-white px-3 pt-5 pb-1">
-						<h3 class="h3" x-text="updateTitle()"></h3>
+						<h3 class="h3" x-text="checkers[checker].label"></h3>
 						
-						<div x-show="checker==='choices'">
+						<div x-show="checkers[checker].showText">
 							Texte supplémentaire
-						<textarea
-								x-ref="checker_text"
-								class="input w-full"
-								rows="5"
-								wire:model.defer="question.checker_text"
-						></textarea>
+							<textarea
+									x-ref="checker_text"
+									class="input w-full"
+									rows="5"
+									wire:model.defer="question.checker_text"
+							></textarea>
 						</div>
 						
-						<labe> Options
-							<input class="input" wire:model.defer="question.checker_options"></labe>
+						<div x-show="checkers[checker].showOptions">
+							<label> Options
+								<textarea
+										class="input w-full"
+										rows="5"
+										wire:model.defer="question.checker_options"
+								></textarea>
+							</label>
+						</div>
+						
 						
 						<div x-show="checker==='text'">
 						</div>
 						
 						<div x-show="checker==='number'">
+							<p>Par défaut, valeur exacte (vide ou 0)</p>
 						</div>
 						
 						<div x-show="checker==='fraction'">
-							<button @click="$wire.set('question.checker_options', 'reduced')" >Fraction réduite</button>
+							<button class="btn" @click="$wire.set('question.checker_options', 'reduced')">Fraction réduite</button>
 						</div>
 						
 						<div x-show="checker==='choices'">
-							<button @click="$wire.set('question.checker_text', 'vrai\nfaux')" >Vrai / Faux</button>
-							
+							<div class="flex justify-between" x-data="{vf: false}">
+								<button class="btn" @click="vf=true; $wire.set('question.checker_options', 'faux\nvrai')">Faux / Vrai</button>
+								<div x-show="vf">
+									<button class="btn" @click="$wire.set('question.answer', 0)">Solution fausse</button>
+									<button class="btn" @click="$wire.set('question.answer', 1)">Solution vrai</button>
+								</div>
+							</div>
+						
 						</div>
 						
 						<div x-show="checker==='polynom'">
-							<button @click="$wire.set('question.checker_options', 'factor')" >polynôme factorisé</button>
-							<button @click="$wire.set('question.checker_options', 'developed')" >polynôme développé</button>
+							<button class="btn" @click="$wire.set('question.checker_options', 'factor')">polynôme factorisé</button>
+							<button class="btn" @click="$wire.set('question.checker_options', 'developed')">polynôme développé</button>
 						</div>
 						
 						<div x-show="checker==='string'">
 						</div>
+						
+						<div x-show="checker==='empty'">
+							Pas de réponse demandée - l'utilisateur valide simplement l'exercice...
+						</div>
 					</div>
-					
-					
+				
+				
 				</div>
 			</div>
 			<div class="w-full flex justify-between space-x-2 mt-2">
@@ -117,6 +133,6 @@
 				</div>
 			</div>
 		</div>
-		
+	
 	</div>
 </div>
