@@ -25,7 +25,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
     	Blade::directive( 'markdown', function($expression){
-    		return "<?php echo config('scolcours.markdown')->convertToHtml($expression) ?>";
+    		// TODO: make markdown work on the website !!!!!
+    		return "<?php echo $expression; ?>";
+/*    		return "<?php echo config('scolcours.markdown')->convertToHtml($expression) ?>";*/
 	    });
     }
 }

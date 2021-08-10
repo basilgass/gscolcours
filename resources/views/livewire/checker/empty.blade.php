@@ -19,7 +19,7 @@
 	
 	<div x-show="open">
 		<div class="prose">
-			@markdown($question->checker_text)
+			<x-markdown>{{$question->checker_text}}</x-markdown>
 		</div>
 	</div>
 

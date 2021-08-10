@@ -9,6 +9,7 @@
 	 		polynom: {label: 'polynôme'},
 	 		string: {label: 'mot'},
 	 		empty: {label: 'sans', showText: true},
+	 		'venn3': {label: 'Venn 3'}
 	 	},
 	 	checker: @entangle('question.checker')
 	 	}">
@@ -113,6 +114,10 @@
 						<div x-show="checker==='empty'">
 							Pas de réponse demandée - l'utilisateur valide simplement l'exercice...
 						</div>
+						
+						<div x-show="checker==='venn3'">
+						</div>
+					
 					</div>
 				
 				

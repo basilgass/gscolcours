@@ -11,6 +11,10 @@ class adminController extends Controller {
 		//
 	}
 
+	public function dev() {
+		return view('admin.dev');
+	}
+
 	public function updateArticles() {
 		$files = collect( [] );
 		foreach ( Theme::all() as $theme ) {

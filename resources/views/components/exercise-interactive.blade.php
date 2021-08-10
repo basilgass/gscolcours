@@ -50,7 +50,7 @@
 		</div>
 		
 		<div id="exercise-body" class="my-4 prose" wire:ignore>
-			@markdown($exercice->body)
+			<x-markdown>{{ $exercice->body }}</x-markdown>
 		</div>
 		
 		<div id="questions-wrapper"

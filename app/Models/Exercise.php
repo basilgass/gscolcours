@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\InteractiveExercise
+ * App\Models\Exercise
  *
  * @property int $id
  * @property int $article_id
+ * @property string $title
  * @property string $body
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Exercise whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise whereUpdatedAt($value)
  * @mixin \Eloquent
  */

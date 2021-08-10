@@ -9,7 +9,6 @@
      }"
 >
 	<div class="flex">
-		
 		<!-- Numbering -->
 		@if($question->checker!=='sans')
 		<div class="font-semibold px-3 w-16"
@@ -22,18 +21,18 @@
 		@endif
 		
 		<!-- Body -->
-		<div class="flex-1 prose" wire:ignore>
-			@markdown($question->body)
+		<div class="flex-1 prose mardown-me" wire:ignore>
+			<x-markdown>{{$question->body}}</x-markdown>
 		</div>
-	
 	</div>
-	
+
 	<!-- Answer question wrapper -->
 	@if($question->checker!=='sans')
 	<div class="mt-4 mb-2 ml-10"
 		 x-show="interactive"
 		 x-transition
 		 x-cloak>
+		
 		<div class="flex border p-4 rounded"
 			 :class="{
 				'bg-gray-50 border-gray-100': !reponses[questionId],
@@ -42,7 +41,7 @@
 		>
 			@include('livewire.checker.'.$question->checker)
 		</div>
-	</div>
+		</div>
 		@endif
 
 </div>

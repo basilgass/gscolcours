@@ -1,6 +1,7 @@
 require('./bootstrap');
-
 require('alpinejs');
+const md = require('markdown-it')({html:true});
+window.markdown = md;
 
 const AsciiMathParser = require('./asciimath2tex')
 window.asciimath2tex = new AsciiMathParser();
