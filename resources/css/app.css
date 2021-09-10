@@ -24,10 +24,15 @@
 .katex-left > .katex-display > .katex > .katex-html {
     @apply text-left;
 }
-
-
 @layer base {
     .btn {
-        @apply border px-3 py-2 rounded hover:bg-gray-100 hover:shadow
+        @apply border px-10 py-2 rounded-2xl hover:bg-gray-100 hover:shadow
+    }
+    .btn-primary {
+        @apply btn bg-blue-500 text-white hover:bg-blue-600;
+    }
+
+    .btn-form {
+        @apply btn-primary uppercase font-semibold text-xs;
     }
 }

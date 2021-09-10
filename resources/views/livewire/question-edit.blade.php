@@ -1,6 +1,7 @@
-<div class="question-wrapper"
+<div class="question-wrapper bg-white border border-gray-300 rounded-xl p-3"
 	 id="question-{{$question->id}}"
 	 x-data="{
+	 	showQuestionEditor: {{$question->body==='?'?'true':'false'}},
 	 	checkers: {
 	 		text: {label: 'texte'},
 	 		number: {label: 'nombre', showOptions: true},
@@ -13,13 +14,17 @@
 	 	},
 	 	checker: @entangle('question.checker')
 	 	}">
-	<div class="flex">
+		<h3 class="h3 cursor-pointer"
+			@click="showQuestionEditor=!showQuestionEditor">
+			Question {{$question->position}}
+			<i class="text-gray-400 bi bi-chevron-down transform hover:rotate-5"></i>
+		</h3>
 		
 		<div class="w-full
 			border border-blue-100 bg-blue-50
 			p-2 mt-6
 			rounded"
-			 x-data=""
+			 x-show="showQuestionEditor"
 		>
 			<div class="flex flex-col space-y-7">
 				<h3 class="h3">Modifier la question</h3>
@@ -138,6 +143,4 @@
 				</div>
 			</div>
 		</div>
-	
-	</div>
 </div>

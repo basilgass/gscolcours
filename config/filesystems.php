@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'illustrations' => [
+	        'driver' => 'local',
+	        'root' => storage_path('app/illustrations'),
+	        'url' => env('APP_URL').'/illustrations',
+	        'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -63,10 +70,6 @@ return [
 	        'root' => resource_path() . '/views/toolbox'
         ],
 
-        'latex' => [
-	        'driver' => 'local',
-	        'root'   => storage_path() . '/latex'
-        ],
     ],
 
     /*
@@ -82,6 +85,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('illustrations') => storage_path('app/illustrations'),
     ],
 
 ];

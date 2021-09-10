@@ -3,6 +3,9 @@
 	
 	<x-scolcours.breadcrumbs :theme="$theme"/>
 	
+	@can('admin')
+		<a class="btn-primary" href="{{route('nouvel article', $theme)}}">Nouveau chapitre</a>
+	@endcan
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 		@foreach($theme->articles as $article)
 			<article class="h-full flex flex-col
@@ -22,7 +25,6 @@
 					</a>
 				</footer>
 			</article>
-			
 		@endforeach
 	</div>
 </x-scolcours-layout>

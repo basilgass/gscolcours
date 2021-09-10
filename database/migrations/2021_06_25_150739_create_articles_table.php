@@ -8,7 +8,7 @@ class CreateArticlesTable extends Migration {
 	public function up() {
 		Schema::create( 'articles', function ( Blueprint $table ) {
 			$table->bigIncrements( 'id' );
-			$table->foreignId('theme_id')->constrained();
+			$table->foreignId('theme_id')->constrained()->onDelete( 'cascade' );
 			$table->string('slug')->unique();
 			$table->string('name');
 			$table->text('description');

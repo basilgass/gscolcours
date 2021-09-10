@@ -41,7 +41,15 @@ class Article extends Model {
 	public function exercises() {
 		return $this->hasMany( Exercise::class);
 	}
+
+	public function illustrations() {
+		return $this->belongsToMany( Illustration::class);
+	}
 	public function getViewAttribute(){
 		return "themes.{$this->theme->slug}.{$this->slug}";
+	}
+
+	public function getUrlAttribute(  ) {
+		return route('article', [$this->theme->slug, $this->slug]);
 	}
 }

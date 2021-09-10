@@ -43,6 +43,9 @@ class Question extends Model {
 		return $this->belongsTo( Exercise::class);
 	}
 
+	public function illustrations() {
+		return $this->hasMany( Illustration::class);
+	}
 	public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
 		return $this->belongsToMany(User::class)
 		            ->withPivot(['answer', 'correct', 'attempts']);

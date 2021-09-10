@@ -1,35 +1,21 @@
-<article x-data="{}" class="bg-white rounded p-3">
-	
+<form wire:submit.prevent="update" x-data="{}" class="bg-white rounded-xl p-3 border border-gray-300">
+	@csrf
 	<div class="flex items-center justify-between">
 		<h2 class="text-lg font-semibold">
 			exercice
 		</h2>
-		
-		<a class="hover:text-blue-700" href="{{$exercice->url}}"><i class="bi bi-eye"></i> voir</a>
+		<a class="hover:text-blue-700" href="{{$exercice->url}}">
+			<i class="bi bi-eye"></i> voir
+		</a>
 	</div>
 	
-	<div id="exercise-title">
-		<div class="form-input mt-5">
-			<input class="w-full"
-				   placeholder=" "
-				   wire:model.defer="exercice.title">
-			<label>titre de l'exercice</label>
-		</div>
-	</div>
+	<x-form.input name="title" wire:model.lazy="exercice.title"/>
+	<x-form.textarea name="body" rows="10" wire:model.lazy="exercice.body"></x-form.textarea>
+	<x-form.button>mettre à jour</x-form.button>
 	
-	<div id="exercise-body" class="my-4">
-		<div class="form-textarea">
-				<textarea class="w-full"
-						  rows="5"
-						  wire:model.defer="exercice.body"></textarea>
-		</div>
-	</div>
-	
-	<div id="exercise-admin-board">
-		<div class="flex justify-end w-full">
-			<button wire:click="update" class="border px-3 py-2">mettre à jour</button>
-		</div>
-	</div>
+{{--TODO: enable markdown preview in exerecices editing --}}
+	<x-markdown>{{ $exercice->body }}</x-markdown>
+</form>
 	
 	<div id="questions-wrapper"
 		 class="py-10 space-y-2"
@@ -37,7 +23,6 @@
 		<h2 class="h2">Questions</h2>
 		@forelse($exercice->questions as $question)
 			<div class="w-full">
-				
 				<livewire:question-edit
 						:question="$question"
 						:key="'question-'.time()"
@@ -52,4 +37,3 @@
 			<button wire:click="ajouterQuestion">Ajouter une question</button>
 		</div>
 	</div>
-</article>

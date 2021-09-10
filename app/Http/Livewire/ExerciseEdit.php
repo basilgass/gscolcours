@@ -38,7 +38,7 @@ class ExerciseEdit extends Component {
 		Question::create([
 			'exercise_id' => $this->exercice->id,
 			'position'=>count($this->exercice->questions)+1,
-			'body'=> ' ? ',
+			'body'=> '?',
 			'answer'=> '0',
 			'checker'=>'number',
 			'checker_options'=>''

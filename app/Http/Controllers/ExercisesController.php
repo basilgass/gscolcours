@@ -23,6 +23,24 @@ class ExercisesController extends Controller {
 	}
 
 	/**
+	 * Display the specified resource.
+	 *
+	 *
+	 * @param Theme    $theme
+	 * @param Article  $article
+	 * @param Exercise $exercise
+	 *
+	 * @return Application|Factory|View
+	 */
+	public function show(Theme $theme, Article $article, Exercise $exercise ) {
+		return view('themes.exercice', [
+			'theme'=>$theme,
+			'article'=>$article,
+			'exercice'=>$exercise
+		]);
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Application|Factory|View
@@ -80,23 +98,6 @@ class ExercisesController extends Controller {
 		]);
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 *
-	 * @param Theme    $theme
-	 * @param Article  $article
-	 * @param Exercise $exercise
-	 *
-	 * @return Application|Factory|View
-	 */
-	public function show(Theme $theme, Article $article, Exercise $exercise ) {
-		return view('themes.exercice', [
-			'theme'=>$theme,
-			'article'=>$article,
-			'exercice'=>$exercise
-		]);
-	}
 
 	/**
 	 * Show the form for editing the specified resource.

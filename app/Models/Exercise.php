@@ -40,6 +40,10 @@ class Exercise extends Model {
 		return $this->hasMany( Question::class)->orderBy('position');
 	}
 
+	public function illustrations(  ) {
+		return $this->belongsToMany(Illustration::class);
+	}
+
 	public function getUrlAttribute() {
 		return "/{$this->article->theme->slug}/{$this->article->slug}/exercices/{$this->id}";
 	}
