@@ -44,8 +44,8 @@
     @livewireStyles
 
 </head>
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100"
+<body class="font-sans antialiased min-h-screen">
+<div class="min-h-screen flex flex-col bg-gray-100 pb-36"
      x-data='{asideMenu: false}'
 >
     <div class="fixed w-full h-full bg-black/60" x-show="asideMenu" x-transition.opacity.duration.300ms></div>
@@ -55,7 +55,7 @@
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8
 			text-white
 			flex justify-between">
-                <div class="text-3xl" >
+                <div class="text-3xl">
                     <i class="bi bi-list cursor-pointer" @click="asideMenu=true;cover=true"></i>
                     {{ $header }}
                 </div>
@@ -96,16 +96,16 @@
 
 <!-- Page Content -->
     @if($fullpage)
-        <main class="container mx-auto">
+        <main class="container mx-auto flex-1">
             {{ $slot }}
         </main>
     @else
         <x-aside></x-aside>
 
-        <main class="container mx-auto pt-1 min-h-screen">
+        <main class="container mx-auto pt-1 min-h-screen flex-1">
             {{ $slot }}
         </main>
-@endif
+    @endif
 
 
 <!-- Page footer -->
