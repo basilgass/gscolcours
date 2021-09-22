@@ -48,7 +48,7 @@ Alpine.start()
 /* Alpine loading done */
 
 
-/* Function web wide */
+/* Function app wide */
 window.katexAutoRender = function (el) {
 	renderMathInElement(el, {
 		// customised options

@@ -91,7 +91,7 @@ class ExercisesController extends Controller {
 			}
 		}
 
-		return redirect()->route('show exercice', [
+		return redirect()->route('exercises.show', [
 			'theme'=> $exercice->article->theme,
 			'article'=> $exercice->article,
 			'exercise'=>$exercice->id

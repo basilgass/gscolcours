@@ -1,21 +1,39 @@
-<!--
-name: factorisation
-description: Technique de factorisation de polynômes
-categories: 1m
--->
-<div class="mt-10">
-	<div class="{{$theme->color}} border rounded-3xl
-		grid grid-cols-2 md:grid-cols-3
-		gap-6 p-6">
-		
-			<a class="text-center text-lg font-thin whitespace-nowrap
-			rounded border py-24
-			text-black bg-white
-			cursor-pointer
-			transform hover:scale-105 rotate-1 hover:rotate-0 duration-300"
-			   href="/{{$theme->slug}}/{{$article->slug}}/exercices">
-				<i class="bi bi-work mr-2"></i>
-				Exercices
-			</a>
-	</div>
+<div x-data="algebre_factorisation()" x-init="generate()">
+    <div class="flex">
+        <div x-katex="question.tex + '='"></div>
+        <input class="input flex-1 text-xl font-thin"
+                      @input="validate($event.target.value)"
+                      x-model="answer"
+                      @keyup.enter="generate()"
+        />
+            <button
+                @click="generate()" class="btn disabled:cursor-not-allowed"
+                :class="{'btn-success':correct}"
+                :disabled="correct===false"
+            >Suivant</button>
+    </div>
+
 </div>
+
+<script>
+    function algebre_factorisation() {
+        return {
+            question: '',
+            answer: '',
+            correct: true,
+            generate() {
+                if(!this.correct){return}
+
+                let P = new Pi.Polynom().rndSimple(1, true),
+                    Q = new Pi.Polynom().rndSimple(1, true)
+
+                this.question = P.clone().multiply(Q)
+                this.answer = ''
+                this.correct = false
+            },
+            validate(value) {
+                this.correct = this.question.isFactorized(value)
+            }
+        }
+    }
+</script>

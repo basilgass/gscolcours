@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-	// mode: 'jit',
+	mode: 'jit',
 	purge: [
 		'./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
 		'./storage/framework/views/*.php',
@@ -38,7 +38,7 @@ module.exports = {
 		padding: ['hover', 'responsive'],
 		textShadow: ['hover'],
 		fontWeight: ['hover', 'focus'],
-		borderRadius: ['responsive', 'hover'],
+		borderRadius: ['responsive', 'hover']
 	},
 
 	plugins: [

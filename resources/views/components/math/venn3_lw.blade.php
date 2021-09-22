@@ -1,10 +1,14 @@
-@props([ 'name'=>''])
+@props([
+	'name'=>'',
+	'answer'=>''
+	])
 
-<div x-data="alpineVenn_{{$name}}()" {{$attributes}}>
+<div x-data="alpineVenn_{{$name}}()"
+	 {{$attributes}}
+	 wire:ignore>
 	{{ $slot }}
-
-    <!-- Système pour récupérer les valeurs cliquées -->
-	<div class="hidden">
+	Réponse: {{$answer}}
+	<div class="">
 		<input type="checkbox" id="vennCheckE_{{$name}}" @change="venn.E = $event.target.checked">
 		<input type="checkbox" id="vennCheckA_{{$name}}" @change="venn.A = $event.target.checked">
 		<input type="checkbox" id="vennCheckB_{{$name}}" @change="venn.B = $event.target.checked">
@@ -13,11 +17,11 @@
 		<input type="checkbox" id="vennCheckAC_{{$name}}" @change="venn.AC = $event.target.checked">
 		<input type="checkbox" id="vennCheckBC_{{$name}}" @change="venn.BC = $event.target.checked">
 		<input type="checkbox" id="vennCheckABC_{{$name}}" @change="venn.ABC = $event.target.checked">
+	</div>
 
-        <div  x-text="result()?'bonne réponse':'mauvaise réponse'"></div>
-    </div>
+	<div x-text="result()?'bonne réponse':'mauvaise réponse'"></div>
 
-	<div id="svgOutput_{{$name}}" class="w-96 mx-auto"></div>
+	<div id="svgOutput_{{$name}}" class="w-96"></div>
 
 	<script>
 		function alpineVenn_{{$name}}() {
@@ -32,18 +36,16 @@
 			return {
 				venn,
 				updateGeom() {geom.update()},
+				answer: '{{$answer}}'.split(','),
 				result() {
 					for (let key in this.venn) {
 						if (this.venn[key] && !this.answer.includes(key)) {
-                            this.correct = false
 							return false;
 						}
 						if (!this.venn[key] && this.answer.includes(key)) {
-                            this.correct = false
 							return false;
 						}
 					}
-                    this.correct = true
 					return true;
 				}
 			}

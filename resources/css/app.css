@@ -26,10 +26,14 @@
 }
 @layer base {
     .btn {
-        @apply border px-10 py-2 rounded-2xl hover:bg-gray-100 hover:shadow
+        @apply border px-5 py-2 rounded-2xl hover:bg-gray-100 hover:shadow inline-block text-center
     }
     .btn-primary {
         @apply btn bg-blue-500 text-white hover:bg-blue-600;
+    }
+
+    .btn-success {
+        @apply btn bg-green-500 text-white hover:bg-green-600;
     }
 
     .btn-form {

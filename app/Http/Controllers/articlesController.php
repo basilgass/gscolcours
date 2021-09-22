@@ -64,7 +64,7 @@ class articlesController extends Controller
 				'type'=>'image'
 			] ) );
 		}
-    	return redirect()->route('article', [$article->theme,$article]);
+    	return redirect()->route('articles.show', [$article->theme,$article]);
 
     }
 
@@ -106,7 +106,7 @@ class articlesController extends Controller
 
 		$article->save();
 
-		return redirect(route('article', [$article->theme,$article]));
+		return redirect(route('articles.show', [$article->theme,$article]));
 	}
 
 	/**
@@ -119,6 +119,6 @@ class articlesController extends Controller
 	public function destroy( Article $article ) {
 		$theme = $article->theme;
 		$article->delete();
-		return redirect(route('theme', $theme));
+		return redirect(route('articles.index', $theme));
 	}
 }
