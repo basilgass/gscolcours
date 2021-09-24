@@ -1,37 +1,49 @@
 <div x-data="algebre_ensembles_venn()" x-init="generate()">
-    <p>Déterminer <span x-katex="question"></span></p>
-    <x-math.venn3 name="exemple"></x-math.venn3>
-    <button
-        @click="generate()" class="btn disabled:cursor-not-allowed"
-        :class="{'btn-success':correct}"
-        :disabled="correct===false"
-    >Suivant
-    </button>
+    <x-panel>
+        <div>
+            Déterminer <span class="ml-4" x-katex.inline="question"></span>
+            <x-form.input name="donnée" x-model="userQuestion" @input="generate()">Hello world</x-form.input>
+
+        </div>
+        <x-math.venn3 name="exemple"></x-math.venn3>
+        <button
+            @click="generate()" class="btn disabled:cursor-not-allowed"
+            :class="{'btn-success':correct}"
+            :disabled="correct===false"
+        >Valider
+        </button>
+    </x-panel>
 </div>
 
 <div class="mt-10" x-data="algebre_ensembles_numerique()" x-init="generate()">
-    <div>Dans un ensemble
-        <span x-katex="'E=\\lbrace 0;1;2;3;4;5;6;7;8;9\\rbrace'"></span>, on a les sous-ensembles:
-        <div>
-            <template x-for="(item, index) in question.items" :key="'ensemble-item-' + index">
-                <p x-katex="item"></p>
-            </template>
+    <x-panel>
+        <div>Dans un ensemble
+            <span class="mx-2" x-katex.inline="'E=\\lbrace 0;1;2;3;4;5;6;7;8;9\\rbrace'"></span>, on a les sous-ensembles:
+            <div class="grid grid-cols-1 md:grid-cols-3 my-5">
+                <template x-for="(item, index) in question.items" :key="'ensemble-item-' + index">
+                    <span x-katex.inline="item"></span>
+                </template>
+            </div>
         </div>
-    </div>
-    <div>
-        Déterminer <span x-katex="question.tex"></span>
-    </div>
-    <input class="input flex-1 text-xl font-thin"
-           @input="validate($event.target.value)"
-           x-model="answer"
-           @keyup.enter="generate()"
-    />
-    <button
-        @click="generate()" class="btn disabled:cursor-not-allowed"
-        :class="{'btn-success':correct}"
-        :disabled="correct===false"
-    >Suivant
-    </button>
+        <div>
+            Déterminer <span class="ml-4" x-katex.inline="question.tex"></span>
+        </div>
+
+        <div class="mt-4">
+            <input class="input flex-1 text-xl font-thin"
+                  @input="validate($event.target.value)"
+                  x-model="answer"
+                   x-ref="inputAnswer"
+                  @keyup.enter="generate()"
+            />
+            <button
+                @click="generate()" class="btn disabled:cursor-not-allowed"
+                :class="{'btn-success':correct}"
+                :disabled="correct===false"
+            >Suivant
+            </button>
+        </div>
+    </x-panel>
 </div>
 <script>
     function genererUnEnsemble(deep=6) {
@@ -72,20 +84,30 @@
         }
 
         // Crate a Logical set
-        return new Pi.Logicalset(setRaw)
+        return setRaw
     }
 
     function algebre_ensembles_venn() {
         return {
+            userQuestion: '',
             question: '',
             answer: '',
             correct: true,
             generate() {
-                const V = genererUnEnsemble()
-
-                // Create the question and the answer
-                this.question = V.tex
-                this.answer = V.vennABC()
+                let V
+                try {
+                    V = new Pi.Logicalset(this.userQuestion)
+                    // Create the question and the answer
+                    this.question = V.tex
+                    this.answer = V.vennABC()
+                }catch(e){
+                    const raw = genererUnEnsemble()
+                    this.userQuestion = raw
+                    V = new Pi.Logicalset(raw)
+                    // Create the question and the answer
+                    this.question = V.tex
+                    this.answer = V.vennABC()
+                }
             },
             validate(value) {
                 this.correct = false;
@@ -100,26 +122,28 @@
             expectedAnswer: '',
             correct: true,
             generate() {
-                const V = genererUnEnsemble(4)
-                const numArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                const A = Pi.Numeric.randomArray(numArray, Pi.Numeric.randomInt(3, 8)).sort()
-                const B = Pi.Numeric.randomArray(numArray, Pi.Numeric.randomInt(3, 8)).sort()
-                const C = Pi.Numeric.randomArray(numArray, Pi.Numeric.randomInt(3, 8)).sort()
+                const V = new Pi.Logicalset(genererUnEnsemble(4))
+
+                const E = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                const A = Pi.Numeric.randomArray(E, Pi.Numeric.randomInt(2, 5)).sort()
+                const B = Pi.Numeric.randomArray(E, Pi.Numeric.randomInt(2, 5)).sort()
+                const C = Pi.Numeric.randomArray(E, Pi.Numeric.randomInt(2, 5)).sort()
                 const items = [
                     `A=\\lbrace ${A} \\rbrace`,
                     `B=\\lbrace ${B} \\rbrace`,
                     `C=\\lbrace ${C} \\rbrace`
                 ]
 
-
-
                 // Create the question and the answer
                 this.question = {tex: V.tex, items}
-                this.expectedAnswer = V.evaluate(A,B,C).join(',')
-
-                if(this.expectedAnswer===''){}
+                this.expectedAnswer = V.evaluate({A, B, C}, E).join(',')
 
                 this.correct = false
+                this.$refs.inputAnswer.focus()
+                this.answer=''
+                if(this.expectedAnswer===''){
+                    this.generate()
+                }
             },
             validate(value) {
                 this.correct =  this.expectedAnswer===this.answer.replace('/\s/g', '').split(',').map(x=>+x).sort().join(',')

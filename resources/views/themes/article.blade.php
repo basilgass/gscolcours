@@ -37,7 +37,7 @@
 	@endif
 
 	@if(View::exists($article->view))
-		<div class="article-wrapper bg-white border border-gray-200 rounded-xl py-5 px-3">
+		<div class="article-wrapper mt-10">
 			@includeIf($article->view)
 		</div>
 	@endif
